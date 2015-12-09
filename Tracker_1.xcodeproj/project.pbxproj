@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		764BCECC1C0C1CAA008AFF67 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764BCECB1C0C1CAA008AFF67 /* CoreLocation.framework */; };
-		764BCECF1C0C1D2E008AFF67 /* MathController.m in Sources */ = {isa = PBXBuildFile; fileRef = 764BCECE1C0C1D2E008AFF67 /* MathController.m */; };
+		764BCED21C0C4F0D008AFF67 /* Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 764BCED11C0C4F0D008AFF67 /* Math.m */; };
 		7685F2281C0B190700E6F39D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7685F2271C0B190700E6F39D /* main.m */; };
 		7685F22B1C0B190700E6F39D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7685F22A1C0B190700E6F39D /* AppDelegate.m */; };
 		7685F22E1C0B190700E6F39D /* Tracker_1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7685F22C1C0B190700E6F39D /* Tracker_1.xcdatamodeld */; };
@@ -27,7 +27,6 @@
 		7685F2701C0B1E2500E6F39D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7685F26F1C0B1E2500E6F39D /* CoreData.framework */; };
 		7685F2721C0B1E3000E6F39D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7685F2711C0B1E3000E6F39D /* UIKit.framework */; };
 		7685F2741C0B1E3900E6F39D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7685F2731C0B1E3900E6F39D /* Foundation.framework */; };
-		7685F2BB1C0B2C9D00E6F39D /* moonrunner_resources in Resources */ = {isa = PBXBuildFile; fileRef = 7685F2BA1C0B2C9D00E6F39D /* moonrunner_resources */; };
 		7685F2BE1C0B377D00E6F39D /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7685F2BD1C0B377D00E6F39D /* HomeViewController.m */; };
 		7685F2C11C0B396200E6F39D /* NewRunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7685F2C01C0B396200E6F39D /* NewRunViewController.m */; };
 /* End PBXBuildFile section */
@@ -51,8 +50,8 @@
 
 /* Begin PBXFileReference section */
 		764BCECB1C0C1CAA008AFF67 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		764BCECD1C0C1D2E008AFF67 /* MathController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathController.h; path = ../MathController.h; sourceTree = "<group>"; };
-		764BCECE1C0C1D2E008AFF67 /* MathController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MathController.m; path = ../MathController.m; sourceTree = "<group>"; };
+		764BCED01C0C4F0D008AFF67 /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
+		764BCED11C0C4F0D008AFF67 /* Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Math.m; sourceTree = "<group>"; };
 		7685F2231C0B190700E6F39D /* Tracker_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tracker_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7685F2271C0B190700E6F39D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7685F2291C0B190700E6F39D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -83,7 +82,6 @@
 		7685F26F1C0B1E2500E6F39D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7685F2711C0B1E3000E6F39D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7685F2731C0B1E3900E6F39D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		7685F2BA1C0B2C9D00E6F39D /* moonrunner_resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = moonrunner_resources; sourceTree = "<group>"; };
 		7685F2BC1C0B377D00E6F39D /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = ../HomeViewController.h; sourceTree = "<group>"; };
 		7685F2BD1C0B377D00E6F39D /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../HomeViewController.m; sourceTree = "<group>"; };
 		7685F2BF1C0B396200E6F39D /* NewRunViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewRunViewController.h; path = ../NewRunViewController.h; sourceTree = "<group>"; };
@@ -158,10 +156,9 @@
 				7685F2C01C0B396200E6F39D /* NewRunViewController.m */,
 				7685F2321C0B190700E6F39D /* DetailViewController.h */,
 				7685F2331C0B190700E6F39D /* DetailViewController.m */,
-				764BCECD1C0C1D2E008AFF67 /* MathController.h */,
-				764BCECE1C0C1D2E008AFF67 /* MathController.m */,
+				764BCED01C0C4F0D008AFF67 /* Math.h */,
+				764BCED11C0C4F0D008AFF67 /* Math.m */,
 				7685F2351C0B190700E6F39D /* Main.storyboard */,
-				7685F2BA1C0B2C9D00E6F39D /* moonrunner_resources */,
 				7685F2381C0B190700E6F39D /* Assets.xcassets */,
 				7685F23A1C0B190700E6F39D /* LaunchScreen.storyboard */,
 				7685F23D1C0B190700E6F39D /* Info.plist */,
@@ -273,6 +270,11 @@
 					7685F2221C0B190700E6F39D = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = N9EJ58W8LM;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					7685F2411C0B190700E6F39D = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -312,7 +314,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7685F23C1C0B190700E6F39D /* LaunchScreen.storyboard in Resources */,
-				7685F2BB1C0B2C9D00E6F39D /* moonrunner_resources in Resources */,
 				7685F2391C0B190700E6F39D /* Assets.xcassets in Resources */,
 				7685F2371C0B190700E6F39D /* Main.storyboard in Resources */,
 			);
@@ -346,8 +347,8 @@
 				7685F2691C0B1DEC00E6F39D /* Run+CoreDataProperties.m in Sources */,
 				7685F2BE1C0B377D00E6F39D /* HomeViewController.m in Sources */,
 				7685F22B1C0B190700E6F39D /* AppDelegate.m in Sources */,
+				764BCED21C0C4F0D008AFF67 /* Math.m in Sources */,
 				7685F2C11C0B396200E6F39D /* NewRunViewController.m in Sources */,
-				764BCECF1C0C1D2E008AFF67 /* MathController.m in Sources */,
 				7685F22E1C0B190700E6F39D /* Tracker_1.xcdatamodeld in Sources */,
 				7685F2281C0B190700E6F39D /* main.m in Sources */,
 			);

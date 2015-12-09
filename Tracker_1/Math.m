@@ -1,18 +1,20 @@
 //
-//  MathController.m
+//  Math.m
 //  Tracker_1
 //
-//  Created by Anastasiia Staiko on 11/29/15.
+//  Created by Anastasiia Staiko on 11/30/15.
 //  Copyright © 2015 Anastasiia Staiko. All rights reserved.
 //
 
-#import "MathController.h"
+#import "Math.h"
 
-@implementation MathController
-
-static bool const isMetric = YES;  // can change to NO for US users
+static bool const isMetric = YES;   // can change that to NO
 static float const metersInKM = 1000;
 static float const metersInMile = 1609.344;
+
+@implementation Math
+
+
 
 + (NSString *)stringifyDistance:(float)meters
 {
