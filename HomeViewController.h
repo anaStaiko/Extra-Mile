@@ -10,7 +10,7 @@
 
 @interface HomeViewController : UIViewController
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext; //
 
 
 @end
