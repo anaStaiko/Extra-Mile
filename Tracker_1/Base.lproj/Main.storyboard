@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RMx-3f-FxP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RMx-3f-FxP">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -85,6 +85,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VrX-kn-wu2">
                                 <rect key="frame" x="0.0" y="201" width="600" height="399"/>
+                                <connections>
+                                    <outlet property="delegate" destination="kIb-33-eBx" id="aT1-u3-O2d"/>
+                                </connections>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBS-Nb-6Oq">
                                 <rect key="frame" x="29" y="72" width="371" height="39"/>
@@ -156,7 +159,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGe-wi-m92">
-                                <rect key="frame" x="41" y="323" width="133" height="71"/>
+                                <rect key="frame" x="39" y="275" width="133" height="46"/>
                                 <color key="backgroundColor" red="0.37419205609158057" green="0.68414496470601738" blue="0.79207569808027922" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Start">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -166,7 +169,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVe-L3-ESb">
-                                <rect key="frame" x="41" y="446" width="133" height="68"/>
+                                <rect key="frame" x="39" y="336" width="133" height="47"/>
                                 <color key="backgroundColor" red="0.3741920561" green="0.68414496469999997" blue="0.7920756981" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Stop">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -181,11 +184,18 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-0l-Vmi">
+                                <rect key="frame" x="39" y="412" width="240" height="128"/>
+                                <connections>
+                                    <outlet property="delegate" destination="fAo-sr-HZl" id="ODd-Ap-tfl"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="0.17367473821989532" green="0.17367473821989532" blue="0.17367473821989532" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="distLabel" destination="92s-hj-szw" id="PgV-d4-D07"/>
+                        <outlet property="mapView" destination="j4k-0l-Vmi" id="7bc-GP-TOd"/>
                         <outlet property="paceLabel" destination="acW-al-6X7" id="jb5-ff-JlD"/>
                         <outlet property="promptLabel" destination="lbS-X4-LCj" id="JAm-0r-Lkw"/>
                         <outlet property="startButton" destination="YGe-wi-m92" id="p65-mz-3JU"/>
@@ -196,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oht-MZ-sm8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="-581"/>
+            <point key="canvasLocation" x="-20" y="-626"/>
         </scene>
     </scenes>
 </document>

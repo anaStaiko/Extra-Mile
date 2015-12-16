@@ -28,13 +28,6 @@
 
 #pragma mark - Managing the detail item
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self configureView];
-}
-
-
 - (void)setRun:(Run *)run
 {
     if (_run != run) {
@@ -42,6 +35,15 @@
         [self configureView];
     }
 }
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self configureView];
+
+    
+}
+
 
 - (void)configureView
 {
@@ -96,11 +98,12 @@
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
 {
+    
     if ([overlay isKindOfClass:[MKPolyline class]]) {
         MKPolyline *polyLine = (MKPolyline *)overlay;
         MKPolylineRenderer *aRenderer = [[MKPolylineRenderer alloc] initWithPolyline:polyLine];
         aRenderer.strokeColor = [UIColor blackColor];
-        aRenderer.lineWidth = 3;
+        aRenderer.lineWidth = 2;
         return aRenderer;
     }
     
@@ -136,7 +139,6 @@
         
         // no locations were found!
         self.mapView.hidden = YES;
-        
         
         UIAlertController *alertController = [UIAlertController
                                               alertControllerWithTitle:@"Error"

@@ -12,11 +12,12 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Math.h"
 #import "Location.h"
+#import <MapKit/MapKit.h>
 
 
 static NSString * const detailSegueName = @"RunDetails";
 
-@interface NewRunViewController () <UIActionSheetDelegate, CLLocationManagerDelegate>
+@interface NewRunViewController () <UIActionSheetDelegate, CLLocationManagerDelegate, MKMapViewDelegate>
 
 @property int seconds;
 @property float distance;
@@ -25,6 +26,8 @@ static NSString * const detailSegueName = @"RunDetails";
 @property (nonatomic, strong) NSTimer *timer;
 
 @property (nonatomic, strong) Run *run;
+
+@property (nonatomic, weak) IBOutlet MKMapView *mapView;
 
 @property (nonatomic, weak) IBOutlet UILabel *promptLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
@@ -54,6 +57,8 @@ static NSString * const detailSegueName = @"RunDetails";
     self.distLabel.hidden = YES;
     self.paceLabel.hidden = YES;
     self.stopButton.hidden = YES;
+    
+    self.mapView.hidden = YES;
 }
 
 
@@ -95,18 +100,32 @@ static NSString * const detailSegueName = @"RunDetails";
      didUpdateLocations:(NSArray *)locations
 {
     for (CLLocation *newLocation in locations) {
-        if (newLocation.horizontalAccuracy < 20) {
+        
+        NSDate *eventDate = newLocation.timestamp;
+        
+        NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+        
+        if (fabs(howRecent) < 10.0 && newLocation.horizontalAccuracy < 20) {
             
             // update distance
             if (self.locations.count > 0) {
                 self.distance += [newLocation distanceFromLocation:self.locations.lastObject];
+                
+                CLLocationCoordinate2D coords[2];
+                coords[0] = ((CLLocation *)self.locations.lastObject).coordinate;
+                coords[1] = newLocation.coordinate;
+                
+                MKCoordinateRegion region =
+                MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 500, 500);
+                [self.mapView setRegion:region animated:YES];
+                
+                [self.mapView addOverlay:[MKPolyline polylineWithCoordinates:coords count:2]];
             }
             
             [self.locations addObject:newLocation];
         }
     }
 }
-
 
 - (void)saveRun {
     Run *newRun = [NSEntityDescription insertNewObjectForEntityForName:@"Run"
@@ -158,7 +177,23 @@ static NSString * const detailSegueName = @"RunDetails";
                                                 selector:@selector(eachSecond) userInfo:nil repeats:YES];
     [self startLocationUpdates];
     
+    self.mapView.hidden = NO;
+    
 }
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
+{
+    if ([overlay isKindOfClass:[MKPolyline class]]) {
+        MKPolyline *polyLine = (MKPolyline *)overlay;
+        MKPolylineRenderer *aRenderer = [[MKPolylineRenderer alloc] initWithPolyline:polyLine];
+        aRenderer.strokeColor = [UIColor blueColor];
+        aRenderer.lineWidth = 3;
+        return aRenderer;
+    }
+    return nil;
+}
+
+
 
 -(IBAction)stopPressed:(id)sender {
     
@@ -204,23 +239,6 @@ static NSString * const detailSegueName = @"RunDetails";
     }
 
 
-/////////
-
-
-//- (IBAction)stopPressed:(id)sender
-//{
-//    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self
-//                                                    cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
-//                                                    otherButtonTitles:@"Save", @"Discard", nil];
-//    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-//    [actionSheet showInView:self.view];
-//}
-//
-//
-//
-
-
-
 
 -(void)alertController:(UIAlertController *)alerController clickedButtonAtIndex:(NSInteger)buttonIndex {
     
@@ -239,22 +257,6 @@ static NSString * const detailSegueName = @"RunDetails";
 }
 
 
-//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-//{
-//    [self.locationManager stopUpdatingLocation];
-//    
-//    // save
-//    if (buttonIndex == 0) {
-//        [self saveRun]; ///< ADD THIS LINE
-//        [self performSegueWithIdentifier:detailSegueName sender:nil];
-//        
-//        // discard
-//    } else if (buttonIndex == 1) {
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-//    }
-//}
-
-/////////
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

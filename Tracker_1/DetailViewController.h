@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@import MapKit;
+
 @class Run;
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <MKMapViewDelegate>
 
 @property (strong, nonatomic) Run *run;
 
