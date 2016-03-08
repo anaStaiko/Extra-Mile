@@ -13,6 +13,10 @@
 #import "Math.h"
 #import "Location.h"
 #import <MapKit/MapKit.h>
+#import "DetailViewController.h"
+#import "BadgeController.h"
+#import "Badge.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 
 static NSString * const detailSegueName = @"RunDetails";
@@ -26,6 +30,10 @@ static NSString * const detailSegueName = @"RunDetails";
 @property (nonatomic, strong) NSTimer *timer;
 
 @property (nonatomic, strong) Run *run;
+
+@property (nonatomic, strong) Badge *upcomingBadge;
+@property (nonatomic, weak) IBOutlet UILabel *nextBadgeLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *nextBadgeImageView;
 
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
 
@@ -59,6 +67,10 @@ static NSString * const detailSegueName = @"RunDetails";
     self.stopButton.hidden = YES;
     
     self.mapView.hidden = YES;
+    
+    self.nextBadgeLabel.hidden = YES;
+    self.nextBadgeImageView.hidden = YES;
+    
 }
 
 
@@ -73,6 +85,35 @@ static NSString * const detailSegueName = @"RunDetails";
     self.timeLabel.text = [NSString stringWithFormat:@"Time: %@",  [Math stringifySecondCount:self.seconds usingLongFormat:NO]];
     self.distLabel.text = [NSString stringWithFormat:@"Distance: %@", [Math stringifyDistance:self.distance]];
     self.paceLabel.text = [NSString stringWithFormat:@"Pace: %@",  [Math stringifyAvgPaceFromDist:self.distance overTime:self.seconds]];
+    self.nextBadgeLabel.text = [NSString stringWithFormat:@"%@ until %@!", [Math stringifyDistance:(self.upcomingBadge.distance - self.distance)], self.upcomingBadge.name];
+    [self checkNextBadge];
+                                                                                                  
+}
+
+- (void)checkNextBadge
+{
+    Badge *nextBadge = [[BadgeController defaultController] nextBadgeForDistance:self.distance];
+    
+    if (self.upcomingBadge
+        && ![nextBadge.name isEqualToString:self.upcomingBadge.name]) {
+        
+        [self playSuccessSound];
+    }
+    
+    self.upcomingBadge = nextBadge;
+    self.nextBadgeImageView.image = [UIImage imageNamed:nextBadge.imageName];
+}
+
+- (void)playSuccessSound
+{
+    NSString *path = [NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], @"/success.wav"];
+    SystemSoundID soundID;
+    NSURL *filePath = [NSURL fileURLWithPath:path isDirectory:NO];
+    AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain(filePath), &soundID);
+    AudioServicesPlaySystemSound(soundID);
+    
+    //also vibrate
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
 
@@ -91,8 +132,15 @@ static NSString * const detailSegueName = @"RunDetails";
     // Movement threshold for new events.
     self.locationManager.distanceFilter = 10; // meters
     
-    [self.locationManager requestAlwaysAuthorization];
+//    [self.locationManager requestAlwaysAuthorization];
+    
+//    [self.locationManager startUpdatingLocation];
+    
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
     [self.locationManager startUpdatingLocation];
+
 }
 
 
@@ -175,9 +223,14 @@ static NSString * const detailSegueName = @"RunDetails";
     self.locations = [NSMutableArray array];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:(1.0) target:self
                                                 selector:@selector(eachSecond) userInfo:nil repeats:YES];
+    self.mapView.hidden = NO;
+    
+    self.nextBadgeImageView.hidden = NO;
+    self.nextBadgeLabel.hidden = NO;
+    
     [self startLocationUpdates];
     
-    self.mapView.hidden = NO;
+  
     
 }
 
@@ -235,6 +288,9 @@ static NSString * const detailSegueName = @"RunDetails";
     [alert addAction:discard];
     
     [self presentViewController:alert animated:YES completion:nil];
+    
+    [self.locationManager stopUpdatingLocation];
+    
 
     }
 
@@ -246,7 +302,7 @@ static NSString * const detailSegueName = @"RunDetails";
     
         // save
         if (buttonIndex == 0) {
-            [self saveRun]; ///< ADD THIS LINE
+            [self saveRun]; 
             [self performSegueWithIdentifier:detailSegueName sender:nil];
     
             // discard

@@ -12,12 +12,9 @@
 
 @class Run;
 
-@interface DetailViewController : UIViewController <MKMapViewDelegate>
+@interface DetailViewController : UIViewController
 
 @property (strong, nonatomic) Run *run;
-
-//@property (strong, nonatomic) id detailItem;
-//@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 @end
 

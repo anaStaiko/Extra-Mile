@@ -6,21 +6,30 @@
 //  Copyright © 2015 Anastasiia Staiko. All rights reserved.
 //
 
+#import <MapKit/MapKit.h>
 #import "DetailViewController.h"
 #import "Run.h"
-#import "Location.h"
-#import <MapKit/MapKit.h>
 #import "Math.h"
+#import "Location.h"
+#import "Badge.h"
+#import "BadgeController.h"
+#import "Location.h"
+#import "MulticolorPolylineSegment.h"
+#import "BadgeAnnotation.h"
 
-
+static float const mapPadding = 1.1f;
 
 @interface DetailViewController () <MKMapViewDelegate>
+
+@property (strong, nonatomic) NSArray *colorSegmentArray;
 
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
 @property (nonatomic, weak) IBOutlet UILabel *distanceLabel;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *paceLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *badgeImageView;
+@property (nonatomic, weak) IBOutlet UIButton *infoButton;
 
 @end
 
@@ -28,19 +37,13 @@
 
 #pragma mark - Managing the detail item
 
-- (void)setRun:(Run *)run
-{
-    if (_run != run) {
-        _run = run;
-        [self configureView];
-    }
-}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self configureView];
-
+    [self loadMap];
     
 }
 
@@ -58,8 +61,65 @@
     
     self.paceLabel.text = [NSString stringWithFormat:@"Pace: %@",  [Math stringifyAvgPaceFromDist:self.run.distance.floatValue overTime:self.run.duration.intValue]];
     
-    [self loadMap];
+    Badge *badge = [[BadgeController defaultController] bestBadgeForDistance:self.run.distance.floatValue];
+    self.badgeImageView.image = [UIImage imageNamed:badge.imageName];
+
 }
+
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id < MKAnnotation >)annotation
+{
+    BadgeAnnotation *badgeAnnotation = (BadgeAnnotation *)annotation;
+    
+    MKAnnotationView *annView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"checkpoint"];
+    if (!annView) {
+        annView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"checkpoint"];
+        annView.image = [UIImage imageNamed:@"mapPin"];
+        annView.canShowCallout = YES;
+    }
+    
+    UIImageView *badgeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 75, 50)];
+    badgeImageView.image = [UIImage imageNamed:badgeAnnotation.imageName];
+    badgeImageView.contentMode = UIViewContentModeScaleAspectFit;
+    annView.leftCalloutAccessoryView = badgeImageView;
+    
+    return annView;
+}
+
+
+
+- (IBAction)displayModeToggled:(UISwitch *)sender
+{
+    self.badgeImageView.hidden = !sender.isOn;
+    self.infoButton.hidden = !sender.isOn;
+    self.mapView.hidden = sender.isOn;
+  
+}
+
+- (IBAction)infoButtonPressed
+{
+    Badge *badge = [[BadgeController defaultController] bestBadgeForDistance:self.run.distance.floatValue];
+    
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:badge.name
+                                          message:badge.information
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             [self dismissViewControllerAnimated:YES completion:nil];
+                         }];
+    
+    
+    [alertController addAction:ok];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
 
 
 - (MKCoordinateRegion)mapRegion
@@ -90,8 +150,8 @@
     region.center.latitude = (minLat + maxLat) / 2.0f;
     region.center.longitude = (minLng + maxLng) / 2.0f;
     
-    region.span.latitudeDelta = (maxLat - minLat) * 1.1f; // 10% padding
-    region.span.longitudeDelta = (maxLng - minLng) * 1.1f; // 10% padding
+    region.span.latitudeDelta = (maxLat - minLat) * mapPadding; // 10% padding
+    region.span.longitudeDelta = (maxLng - minLng) * mapPadding; // 10% padding
     
     return region;
 }
@@ -99,13 +159,12 @@
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
 {
     
-    if ([overlay isKindOfClass:[MKPolyline class]]) {
-        MKPolyline *polyLine = (MKPolyline *)overlay;
+    if ([overlay isKindOfClass:[MulticolorPolylineSegment class]]) {
+        MulticolorPolylineSegment *polyLine = (MulticolorPolylineSegment *)overlay;
         MKPolylineRenderer *aRenderer = [[MKPolylineRenderer alloc] initWithPolyline:polyLine];
-        aRenderer.strokeColor = [UIColor blackColor];
-        aRenderer.lineWidth = 2;
-        return aRenderer;
-    }
+        aRenderer.strokeColor = polyLine.color;
+        aRenderer.lineWidth = 3;
+        return aRenderer;    }
     
     return nil;
 }
@@ -129,11 +188,18 @@
         
         self.mapView.hidden = NO;
         
+//        self.mapView.mapType = MKMapTypeSatellite;
+        
         // set the map bounds
         [self.mapView setRegion:[self mapRegion]];
         
         // make the line(s!) on the map
-        [self.mapView addOverlay:[self polyLine]];
+//        [self.mapView addOverlay:[self polyLine]];
+        
+        NSArray *colorSegmentArray = [Math colorSegmentsForLocations:self.run.locations.array];
+        [self.mapView addOverlays:colorSegmentArray];
+        
+        [self.mapView addAnnotations:[[BadgeController defaultController] annotationsForRun:self.run]];
         
     } else {
         
@@ -162,6 +228,13 @@
 }
 
 
+- (void)setRun:(Run *)run
+{
+    if (_run != run) {
+        _run = run;
+        [self configureView];
+    }
+}
 
 //- (void)setDetailItem:(id)newDetailItem {
 //    if (_detailItem != newDetailItem) {
