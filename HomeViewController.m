@@ -15,7 +15,7 @@
 
 @interface HomeViewController ()
 
-@property (strong, nonatomic) NSArray *runArray;
+@property (strong, nonatomic) NSArray *runArray; 
 
 @end
 

@@ -14,7 +14,7 @@
 #import "BadgeController.h"
 #import "Badge.h"
 
-@interface PastRunsViewController () {
+@interface PastRunsViewController () { 
     
     NSMutableArray *rowsContent;
 }

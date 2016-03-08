@@ -8,6 +8,6 @@
 
 #import "Badge.h"
 
-@implementation Badge
+@implementation Badge 
 
 @end

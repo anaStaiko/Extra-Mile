@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController 
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 

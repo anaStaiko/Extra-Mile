@@ -13,7 +13,7 @@
 #import "Run.h"
 #import "BadgeController.h"
 
-@interface BadgeDetailsViewController ()
+@interface BadgeDetailsViewController () 
 
 @property (nonatomic, weak) IBOutlet UIImageView *badgeImageView;
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;

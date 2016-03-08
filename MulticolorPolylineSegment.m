@@ -8,6 +8,6 @@
 
 #import "MulticolorPolylineSegment.h"
 
-@implementation MulticolorPolylineSegment
+@implementation MulticolorPolylineSegment 
 
 @end

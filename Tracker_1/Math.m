@@ -18,7 +18,7 @@ static float const metersInMile = 1609.344;
 @implementation Math
 
 
-+ (NSArray *)colorSegmentsForLocations:(NSArray *)locations
++ (NSArray *)colorSegmentsForLocations:(NSArray *)locations 
 {
     // make array of all speeds, find slowest+fastest
     NSMutableArray *speeds = [NSMutableArray array];

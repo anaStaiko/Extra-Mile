@@ -10,6 +10,6 @@
 
 @interface BadgeAnnotation : MKPointAnnotation
 
-@property (strong, nonatomic) NSString *imageName;
+@property (strong, nonatomic) NSString *imageName; 
 
 @end

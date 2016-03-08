@@ -17,7 +17,7 @@
 #import "MulticolorPolylineSegment.h"
 #import "BadgeAnnotation.h"
 
-static float const mapPadding = 1.1f;
+static float const mapPadding = 1.1f;  
 
 @interface DetailViewController () <MKMapViewDelegate>
 
