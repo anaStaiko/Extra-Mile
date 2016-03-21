@@ -193,7 +193,6 @@ static float const mapPadding = 1.1f;
         // set the map bounds
         [self.mapView setRegion:[self mapRegion]];
         
-        // make the line(s!) on the map
 //        [self.mapView addOverlay:[self polyLine]];
         
         NSArray *colorSegmentArray = [Math colorSegmentsForLocations:self.run.locations.array];

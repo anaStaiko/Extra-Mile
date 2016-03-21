@@ -119,8 +119,7 @@ static NSString * const detailSegueName = @"RunDetails";
 
 - (void)startLocationUpdates
 {
-    // Create the location manager if this object does not
-    // already have one.
+
     if (self.locationManager == nil) {
         self.locationManager = [[CLLocationManager alloc] init];
     }
@@ -132,12 +131,9 @@ static NSString * const detailSegueName = @"RunDetails";
     // Movement threshold for new events.
     self.locationManager.distanceFilter = 10; // meters
     
-//    [self.locationManager requestAlwaysAuthorization];
-    
-//    [self.locationManager startUpdatingLocation];
-    
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [self.locationManager requestWhenInUseAuthorization];
+            [self.locationManager requestAlwaysAuthorization];
     }
     [self.locationManager startUpdatingLocation];
 

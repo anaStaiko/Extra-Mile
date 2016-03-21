@@ -23,7 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.//
     
 }
 
@@ -49,7 +48,7 @@
     if ([nextController isKindOfClass:[NewRunViewController class]]) {
         ((NewRunViewController *) nextController).managedObjectContext = self.managedObjectContext;
     } else if ([nextController isKindOfClass:[PastRunsViewController class]]) {
-        ((PastRunsViewController *) nextController).runArray = self.runArray;
+        ((PastRunsViewController *) nextController).runArray = [self.runArray mutableCopy];
     } else if ([nextController isKindOfClass:[BadgesTableViewController class]]) {
         ((BadgesTableViewController *) nextController).earnStatusArray = [[BadgeController defaultController] earnStatusesForRuns:self.runArray];
     }

@@ -35,16 +35,13 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
-    
-//    CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/8);
-    
+
     self.nameLabel.text = self.earnStatus.badge.name;
     self.distanceLabel.text = [Math stringifyDistance:self.earnStatus.badge.distance];
     self.badgeImageView.image = [UIImage imageNamed:self.earnStatus.badge.imageName];
     self.earnedLabel.text = [NSString stringWithFormat:@"Reached on %@" , [formatter stringFromDate:self.earnStatus.earnRun.timestamp]];
     
     if (self.earnStatus.silverRun) {
-//        self.silverImageView.transform = transform;
         self.silverImageView.hidden = NO;
         self.silverLabel.text = [NSString stringWithFormat:@"Earned on %@" , [formatter stringFromDate:self.earnStatus.silverRun.timestamp]];
         
@@ -54,7 +51,6 @@
     }
     
     if (self.earnStatus.goldRun) {
-//        self.goldImageView.transform = transform;
         self.goldImageView.hidden = NO;
         self.goldLabel.text = [NSString stringWithFormat:@"Earned on %@" , [formatter stringFromDate:self.earnStatus.goldRun.timestamp]];
         

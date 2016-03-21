@@ -13,10 +13,13 @@
 #import "Math.h"
 #import "BadgeController.h"
 #import "Badge.h"
+#import "NewRunViewController.h"
+#import "AppDelegate.h"
+
 
 @interface PastRunsViewController () { 
     
-    NSMutableArray *rowsContent;
+//    NSMutableArray *rowsContent;
 }
 
 @end
@@ -32,18 +35,22 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
 //    self.tableView.allowsMultipleSelectionDuringEditing = NO;
 }
 
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
+}
 
 #pragma mark - Contents Assignment
 
 
 -(void)setRunArray:(NSArray *)runArray {
     
-    rowsContent = [NSMutableArray arrayWithArray:runArray];
+//    rowsContent = [NSMutableArray arrayWithArray:runArray];
+    _runArray = [runArray mutableCopy];
     [self.tableView reloadData];
 }
 
@@ -53,13 +60,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return rowsContent.count;
+    return self.runArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RunCell *cell = (RunCell *)[tableView dequeueReusableCellWithIdentifier:@"RunCell"];
-    Run *runObject = [rowsContent objectAtIndex:indexPath.row];
+    Run *runObject = [self.runArray objectAtIndex:indexPath.row];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -79,7 +86,7 @@
 {
     if ([[segue destinationViewController] isKindOfClass:[DetailViewController class]]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Run *run = [rowsContent objectAtIndex:indexPath.row];
+        Run *run = [self.runArray objectAtIndex:indexPath.row];
         [(DetailViewController *)[segue destinationViewController] setRun:run];
     }
 }
@@ -99,10 +106,28 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-      
-        [rowsContent removeObjectAtIndex:indexPath.row];
-
+    Run *run = [self.runArray objectAtIndex:indexPath.row];
+        NSMutableArray * dArray=[[NSMutableArray alloc]init];
+        [dArray insertObject:run atIndex:indexPath.row];
         
+//[[(AppDelegate*)[UIApplication sharedApplication] delegate].managedObjectContext deleteObject:run];
+        
+//        NSManagedObjectContext * localMOC=   [((AppDelegate *) [UIApplication sharedApplication] delegate]) managedObjectContext ];
+    AppDelegate* tempDelegate= [[UIApplication sharedApplication] delegate];
+        [tempDelegate.managedObjectContext deleteObject:run];
+    [(AppDelegate*)[[UIApplication sharedApplication] delegate] saveContext];
+     
+    NSError *error = nil;
+    [self.managedObjectContext save:&error];
+        
+    if (error) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+        }
+    
+      
+        [self.runArray removeObjectAtIndex:indexPath.row];
+
         NSMutableArray *savedArray = [NSMutableArray arrayWithObject:indexPath];
         
         [self.tableView deleteRowsAtIndexPaths:savedArray withRowAnimation:UITableViewRowAnimationAutomatic];

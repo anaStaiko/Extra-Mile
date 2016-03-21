@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Run.h"
+#import "Location+CoreDataProperties.h"
+
+
 @interface PastRunsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSArray *runArray; 
+//@property (strong, nonatomic) NSArray *runArray;
+
+@property (strong, nonatomic) NSMutableArray *runArray;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

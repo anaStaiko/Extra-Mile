@@ -91,14 +91,14 @@ float const goldMultiplier = 1.10; // 10% speed increase
                 double earnRunSpeed = earnStatus.earnRun.distance.doubleValue / earnStatus.earnRun.duration.doubleValue;
                 double runSpeed = run.distance.doubleValue / run.duration.doubleValue;
                 
-                // does it deserve silver?
+                // silver?
                 if (!earnStatus.silverRun
                     && runSpeed > earnRunSpeed * silverMultiplier) {
                     
                     earnStatus.silverRun = run;
                 }
                 
-                // does it deserve gold?
+                // gold?
                 if (!earnStatus.goldRun
                     && runSpeed > earnRunSpeed * goldMultiplier) {
                     
