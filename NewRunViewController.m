@@ -61,15 +61,26 @@ static NSString * const detailSegueName = @"RunDetails";
     self.promptLabel.hidden = NO;
     
     self.timeLabel.text = @"";
-    self.timeLabel.hidden = YES;
-    self.distLabel.hidden = YES;
-    self.paceLabel.hidden = YES;
-    self.stopButton.hidden = YES;
+    self.timeLabel.hidden = NO;
+    self.distLabel.hidden = NO;
+    self.paceLabel.hidden = NO;
+    self.stopButton.hidden = NO;
     
-    self.mapView.hidden = YES;
+    self.mapView.hidden = NO;
     
-    self.nextBadgeLabel.hidden = YES;
-    self.nextBadgeImageView.hidden = YES;
+    self.nextBadgeLabel.hidden = NO;
+    self.nextBadgeImageView.hidden = NO;
+    
+//    self.timeLabel.text = @"";
+//    self.timeLabel.hidden = YES;
+//    self.distLabel.hidden = YES;
+//    self.paceLabel.hidden = YES;
+//    self.stopButton.hidden = YES;
+//    
+//    self.mapView.hidden = YES;
+//    
+//    self.nextBadgeLabel.hidden = YES;
+//    self.nextBadgeImageView.hidden = YES;
     
 }
 

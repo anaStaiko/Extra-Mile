@@ -12,10 +12,16 @@
 #import "PastRunsViewController.h"
 #import "BadgeController.h"
 #import <CoreData/CoreData.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface HomeViewController ()
+@interface HomeViewController ()  <CLLocationManagerDelegate, MKMapViewDelegate>
 
-@property (strong, nonatomic) NSArray *runArray; 
+@property (strong, nonatomic) NSArray *runArray;
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
+
+@property (nonatomic, weak) IBOutlet MKMapView *mapView;
 
 @end
 
@@ -23,8 +29,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
+    self.mapView.showsUserLocation = YES;
+    self.mapView.showsBuildings = YES;
+    
+//    if (self.locationManager == nil) {
+//        self.locationManager = [[CLLocationManager alloc] init];
+//    }
+//    
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.activityType = CLActivityTypeFitness;
+    
+    self.locationManager = [CLLocationManager new];
+
+    // Movement threshold for new events.
+    self.locationManager.distanceFilter = 10; // meters
+    
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
     
 }
+
+
+
+
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    
+    
+    MKMapCamera *camera = [MKMapCamera cameraLookingAtCenterCoordinate:userLocation.coordinate fromEyeCoordinate:CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude) eyeAltitude:10000];
+    [mapView setCamera:camera animated:YES];
+    
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -41,6 +82,9 @@
     self.runArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
 }
 
+
+
+    
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

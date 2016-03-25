@@ -108,11 +108,8 @@
         
     Run *run = [self.runArray objectAtIndex:indexPath.row];
         NSMutableArray * dArray=[[NSMutableArray alloc]init];
-        [dArray insertObject:run atIndex:indexPath.row];
+        [dArray insertObject:run atIndex:0];
         
-//[[(AppDelegate*)[UIApplication sharedApplication] delegate].managedObjectContext deleteObject:run];
-        
-//        NSManagedObjectContext * localMOC=   [((AppDelegate *) [UIApplication sharedApplication] delegate]) managedObjectContext ];
     AppDelegate* tempDelegate= [[UIApplication sharedApplication] delegate];
         [tempDelegate.managedObjectContext deleteObject:run];
     [(AppDelegate*)[[UIApplication sharedApplication] delegate] saveContext];
