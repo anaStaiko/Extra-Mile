@@ -77,6 +77,8 @@
 		7685F2741C0B1E3900E6F39D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7685F2731C0B1E3900E6F39D /* Foundation.framework */; };
 		7685F2BE1C0B377D00E6F39D /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7685F2BD1C0B377D00E6F39D /* HomeViewController.m */; };
 		7685F2C11C0B396200E6F39D /* NewRunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7685F2C01C0B396200E6F39D /* NewRunViewController.m */; };
+		768C0A6E1CA8A9FB00D4B135 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768C0A6D1CA8A9FB00D4B135 /* Photos.framework */; };
+		76A6C9A11CAB091300C78C1F /* PicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A6C9A01CAB091300C78C1F /* PicViewController.m */; };
 		76A94D631CA3380000CE2D81 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A94D621CA3380000CE2D81 /* AVFoundation.framework */; };
 		76A94D681CA339E500CE2D81 /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A94D651CA339E500CE2D81 /* Filter.m */; };
 		76A94D691CA339E500CE2D81 /* PulseDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 76A94D671CA339E500CE2D81 /* PulseDetector.mm */; };
@@ -215,6 +217,9 @@
 		7685F2BD1C0B377D00E6F39D /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../HomeViewController.m; sourceTree = "<group>"; };
 		7685F2BF1C0B396200E6F39D /* NewRunViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewRunViewController.h; path = ../NewRunViewController.h; sourceTree = "<group>"; };
 		7685F2C01C0B396200E6F39D /* NewRunViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewRunViewController.m; path = ../NewRunViewController.m; sourceTree = "<group>"; };
+		768C0A6D1CA8A9FB00D4B135 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		76A6C99F1CAB091300C78C1F /* PicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PicViewController.h; path = ../PicViewController.h; sourceTree = "<group>"; };
+		76A6C9A01CAB091300C78C1F /* PicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PicViewController.m; path = ../PicViewController.m; sourceTree = "<group>"; };
 		76A94D621CA3380000CE2D81 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		76A94D641CA339E500CE2D81 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
 		76A94D651CA339E500CE2D81 /* Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
@@ -263,6 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				768C0A6E1CA8A9FB00D4B135 /* Photos.framework in Frameworks */,
 				761FBE571CA5E89B00F555CF /* AssetsLibrary.framework in Frameworks */,
 				761FBE551CA5E88D00F555CF /* CoreMedia.framework in Frameworks */,
 				761FBE531CA5E88100F555CF /* MediaPlayer.framework in Frameworks */,
@@ -330,6 +336,8 @@
 				761FBE581CA5E91300F555CF /* MediaViewController.h */,
 				761FBE591CA5E91300F555CF /* MediaViewController.m */,
 				76192CF31C9A1182006F5EE6 /* Main.storyboard */,
+				76A6C99F1CAB091300C78C1F /* PicViewController.h */,
+				76A6C9A01CAB091300C78C1F /* PicViewController.m */,
 				76A94D6A1CA339F800CE2D81 /* HeartRateViewController.h */,
 				76A94D6B1CA339F800CE2D81 /* HeartRateViewController.m */,
 				76FF39EE1C2A0BBA00D3C6A7 /* PastRunsViewController.h */,
@@ -382,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				7685F2271C0B190700E6F39D /* main.m */,
+				768C0A6D1CA8A9FB00D4B135 /* Photos.framework */,
 				761FBE561CA5E89B00F555CF /* AssetsLibrary.framework */,
 				761FBE541CA5E88D00F555CF /* CoreMedia.framework */,
 				761FBE521CA5E88100F555CF /* MediaPlayer.framework */,
@@ -679,6 +688,7 @@
 				76FF39F01C2A0BBA00D3C6A7 /* PastRunsViewController.m in Sources */,
 				76A94D6C1CA339F800CE2D81 /* HeartRateViewController.m in Sources */,
 				761FBE5A1CA5E91300F555CF /* MediaViewController.m in Sources */,
+				76A6C9A11CAB091300C78C1F /* PicViewController.m in Sources */,
 				76EED0D91C457FEB00EB48CB /* BadgeAnnotation.m in Sources */,
 				7685F2681C0B1DEC00E6F39D /* Location.m in Sources */,
 				76B91AD11C2388BD007537D1 /* BadgesTableViewController.m in Sources */,
