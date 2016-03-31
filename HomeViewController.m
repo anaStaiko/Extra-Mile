@@ -7,25 +7,21 @@
 //
 
 #import "HomeViewController.h"
-#import "NewRunViewController.h"
-#import "BadgesTableViewController.h"
-#import "PastRunsViewController.h"
-#import "BadgeController.h"
-#import <CoreData/CoreData.h>
-#import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
 
-@interface HomeViewController ()  <CLLocationManagerDelegate, MKMapViewDelegate>
+
+
+
+@interface HomeViewController () 
 
 @property (strong, nonatomic) NSArray *runArray;
-
-@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
 
 @end
 
 @implementation HomeViewController
+
+@synthesize locationManager;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,21 +32,26 @@
 //    if (self.locationManager == nil) {
 //        self.locationManager = [[CLLocationManager alloc] init];
 //    }
-//    
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.activityType = CLActivityTypeFitness;
+
+   locationManager=[[CLLocationManager alloc] init];
     
-    self.locationManager = [CLLocationManager new];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.activityType = CLActivityTypeFitness;
+    
+    locationManager.headingFilter = 1;
+    
+//    locationManager = [CLLocationManager new];
 
     // Movement threshold for new events.
-    self.locationManager.distanceFilter = 10; // meters
+   locationManager.distanceFilter = 10; // meters
     
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
-        [self.locationManager requestAlwaysAuthorization];
+    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [locationManager requestWhenInUseAuthorization];
+        [locationManager requestAlwaysAuthorization];
     }
-    [self.locationManager startUpdatingLocation];
+    [locationManager startUpdatingLocation];
+    [locationManager startUpdatingHeading];
     
 }
 
@@ -98,7 +99,28 @@
     }
 }
 
+
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
+    // Convert Degree to Radian and move the needle
+    float oldRad =  -manager.heading.trueHeading * M_PI / 180.0f;
+    float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
     
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         compassImage.transform = CGAffineTransformMakeRotation(newRad);
+                     }];
+    //	CABasicAnimation *theAnimation;
+    //    theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    //    theAnimation.fromValue = [NSNumber numberWithFloat:oldRad];
+    //    theAnimation.toValue=[NSNumber numberWithFloat:newRad];
+    //    theAnimation.duration = 0.01f;
+    //
+    //    [compassImage.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
+    //    compassImage.transform = CGAffineTransformMakeRotation(newRad);
+    NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
+}
+
     
 
 - (void)didReceiveMemoryWarning {

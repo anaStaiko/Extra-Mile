@@ -7,10 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewRunViewController.h"
+#import "BadgesTableViewController.h"
+#import "PastRunsViewController.h"
+#import "BadgeController.h"
+#import <CoreData/CoreData.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface HomeViewController : UIViewController 
+@interface HomeViewController : UIViewController  <CLLocationManagerDelegate, MKMapViewDelegate> {
+    
+    CLLocationManager *locationManager;
+    IBOutlet UIImageView *compassImage;
+    
+}
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @end

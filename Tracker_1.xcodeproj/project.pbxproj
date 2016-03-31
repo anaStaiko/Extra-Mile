@@ -79,6 +79,7 @@
 		7685F2C11C0B396200E6F39D /* NewRunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7685F2C01C0B396200E6F39D /* NewRunViewController.m */; };
 		768C0A6E1CA8A9FB00D4B135 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768C0A6D1CA8A9FB00D4B135 /* Photos.framework */; };
 		76A6C9A11CAB091300C78C1F /* PicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A6C9A01CAB091300C78C1F /* PicViewController.m */; };
+		76A6C9A51CAB468F00C78C1F /* compass_needle.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A6C9A41CAB468F00C78C1F /* compass_needle.png */; };
 		76A94D631CA3380000CE2D81 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A94D621CA3380000CE2D81 /* AVFoundation.framework */; };
 		76A94D681CA339E500CE2D81 /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A94D651CA339E500CE2D81 /* Filter.m */; };
 		76A94D691CA339E500CE2D81 /* PulseDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 76A94D671CA339E500CE2D81 /* PulseDetector.mm */; };
@@ -220,6 +221,7 @@
 		768C0A6D1CA8A9FB00D4B135 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		76A6C99F1CAB091300C78C1F /* PicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PicViewController.h; path = ../PicViewController.h; sourceTree = "<group>"; };
 		76A6C9A01CAB091300C78C1F /* PicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PicViewController.m; path = ../PicViewController.m; sourceTree = "<group>"; };
+		76A6C9A41CAB468F00C78C1F /* compass_needle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass_needle.png; sourceTree = "<group>"; };
 		76A94D621CA3380000CE2D81 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		76A94D641CA339E500CE2D81 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
 		76A94D651CA339E500CE2D81 /* Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				761FBE581CA5E91300F555CF /* MediaViewController.h */,
 				761FBE591CA5E91300F555CF /* MediaViewController.m */,
 				76192CF31C9A1182006F5EE6 /* Main.storyboard */,
+				76A6C9A41CAB468F00C78C1F /* compass_needle.png */,
 				76A6C99F1CAB091300C78C1F /* PicViewController.h */,
 				76A6C9A01CAB091300C78C1F /* PicViewController.m */,
 				76A94D6A1CA339F800CE2D81 /* HeartRateViewController.h */,
@@ -651,6 +654,7 @@
 				765269911C6523DF006AD05A /* badge28.jpg in Resources */,
 				7652698D1C6523DF006AD05A /* badge24.jpg in Resources */,
 				7629A9051C6519E8004A58D1 /* badges.txt in Resources */,
+				76A6C9A51CAB468F00C78C1F /* compass_needle.png in Resources */,
 				765269831C6523DF006AD05A /* badge14.jpg in Resources */,
 				76DBDE741C8F64B7003389D2 /* run.jpg in Resources */,
 				765269811C6523DF006AD05A /* badge12.jpg in Resources */,

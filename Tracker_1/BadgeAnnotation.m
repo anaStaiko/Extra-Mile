@@ -8,6 +8,8 @@
 
 #import "BadgeAnnotation.h"
 
-@implementation BadgeAnnotation 
+@implementation BadgeAnnotation
+
+
 
 @end
