@@ -37,7 +37,7 @@ static NSString * const detailSegueName = @"RunDetails";
 
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
 
-@property (nonatomic, weak) IBOutlet UILabel *promptLabel;
+//@property (nonatomic, weak) IBOutlet UILabel *promptLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *distLabel;
 @property (nonatomic, weak) IBOutlet UILabel *paceLabel;
@@ -58,7 +58,7 @@ static NSString * const detailSegueName = @"RunDetails";
     [super viewWillAppear:animated];
     
     self.startButton.hidden = NO;
-    self.promptLabel.hidden = NO;
+//    self.promptLabel.hidden = NO;
     
     self.timeLabel.text = @"";
     self.timeLabel.hidden = NO;
@@ -138,6 +138,8 @@ static NSString * const detailSegueName = @"RunDetails";
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.activityType = CLActivityTypeFitness;
+    self.locationManager.allowsBackgroundLocationUpdates = YES;
+    self.locationManager.pausesLocationUpdatesAutomatically = YES;
     
     // Movement threshold for new events.
     self.locationManager.distanceFilter = 10; // meters
@@ -217,7 +219,7 @@ static NSString * const detailSegueName = @"RunDetails";
     
     //hide the start UI
     self.startButton.hidden = YES;
-    self.promptLabel.hidden = YES;
+//    self.promptLabel.hidden = YES;
     
     //show the running UI
     self.timeLabel.hidden = NO;

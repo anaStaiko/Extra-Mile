@@ -8,9 +8,6 @@
 
 #import "HomeViewController.h"
 
-
-
-
 @interface HomeViewController () 
 
 @property (strong, nonatomic) NSArray *runArray;
