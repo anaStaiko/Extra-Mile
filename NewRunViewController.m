@@ -70,18 +70,7 @@ static NSString * const detailSegueName = @"RunDetails";
     
     self.nextBadgeLabel.hidden = NO;
     self.nextBadgeImageView.hidden = NO;
-    
-//    self.timeLabel.text = @"";
-//    self.timeLabel.hidden = YES;
-//    self.distLabel.hidden = YES;
-//    self.paceLabel.hidden = YES;
-//    self.stopButton.hidden = YES;
-//    
-//    self.mapView.hidden = YES;
-//    
-//    self.nextBadgeLabel.hidden = YES;
-//    self.nextBadgeImageView.hidden = YES;
-    
+
 }
 
 

@@ -16,7 +16,10 @@
 
 // Create and return the Array of available Filters
 +(NSArray *)getAllFilters{
-    NSArray *myArray = [NSArray arrayWithObjects:@"Vintage", @"Black & White", @"Monochrome Blue", @"Invert", @"Noise", @"More Brightness", @"Increase Saturation",@"Shadow Adjust",@"Posterize", @"Hue Adjust", @"Gamma Adjust", @"Exposure Adjust", @"Vignette",@"Sepia", @"Photo Effect Transfer", @"Photo Effect Process", @"Motion Blur", @"Edge Work", @"Pointillize", nil];
+    NSArray *myArray = [NSArray arrayWithObjects:@"Vintage", @"Black & White", @"Monochrome Blue", @"Invert", @"Noise", @"More Brightness", @"Increase Saturation",@"Shadow Adjust",@"Posterize", @"Hue Adjust", @"Gamma Adjust", @"Exposure Adjust", @"Vignette",@"Sepia", @"Photo Effect Transfer", @"Photo Effect Process", @"Motion Blur",
+//                        @"Edge Work",
+//                        @"Pointillize",
+                        nil];
     
     //sorting the Array alphabetically
     myArray = [myArray sortedArrayUsingSelector: @selector(localizedCaseInsensitiveCompare:)];
@@ -43,8 +46,8 @@
         [vignette setValue:@(24) forKey:@"inputRadius"];
         
         return vignette.outputImage;
-    }
-    else if ([filter isEqualToString:@"Black & White"]) {
+        
+    } else if ([filter isEqualToString:@"Black & White"]) {
         CIFilter *filt = [CIFilter filterWithName:@"CIColorMonochrome"];
         [filt setValue:image forKey:kCIInputImageKey];
         [filt setValue:[CIColor colorWithRed:.5 green:.5 blue:.5] forKey:@"inputColor"];
@@ -79,8 +82,9 @@
                                    forKey:@"inputBrightness"];
         [brightnesContrastFilter setValue: [NSNumber numberWithFloat:2.0f]
                                    forKey:@"inputContrast"];
+                return [brightnesContrastFilter outputImage];
         
-        return [brightnesContrastFilter valueForKey: @"outputImage"];
+//        return [brightnesContrastFilter valueForKey: @"outputImage"];
         
     }else if([filter isEqualToString:@"Increase Saturation"]){
         CIFilter *colorControlsFilter = [CIFilter filterWithName:@"CIColorControls"];
@@ -89,7 +93,9 @@
         [colorControlsFilter setValue:[NSNumber numberWithFloat:1.5] forKey:@"inputSaturation"];
         [colorControlsFilter setValue:[NSNumber numberWithFloat:1.0] forKey:@"inputContrast"];
         
-        return [colorControlsFilter valueForKey:@"outputImage"];
+//        return [colorControlsFilter valueForKey:@"outputImage"];
+        return [colorControlsFilter outputImage];
+
         
     }else if([filter isEqualToString:@"Shadow Adjust"]){
         CIFilter *adjustFilter = [CIFilter filterWithName:@"CIHighlightShadowAdjust"];
@@ -112,21 +118,26 @@
         [hueAdjust setDefaults];
         [hueAdjust setValue:image forKey:@"inputImage"];
         [hueAdjust setValue:[NSNumber numberWithFloat: 1.0f] forKey:@"inputAngle"];
-        return [hueAdjust valueForKey:@"outputImage"];
+//        return [hueAdjust valueForKey:@"outputImage"];
+        return [hueAdjust outputImage];
+
         
     }else if([filter isEqualToString:@"Gamma Adjust"]){
         CIFilter *gammaAdjust = [CIFilter filterWithName:@"CIGammaAdjust"];
         [gammaAdjust setDefaults];
         [gammaAdjust setValue: image forKey: @"inputImage"];
         [gammaAdjust setValue: [NSNumber numberWithFloat: 2.0f] forKey: @"inputPower"];
-        return [gammaAdjust valueForKey:@"outputImage"];
+//        return [gammaAdjust valueForKey:@"outputImage"];
+        return [gammaAdjust outputImage];
+
         
     }else if([filter isEqualToString:@"Exposure Adjust"]){
         CIFilter *expAdjust = [CIFilter filterWithName:@"CIExposureAdjust"];
         [expAdjust setDefaults];
         [expAdjust setValue: image forKey: @"inputImage"];
         [expAdjust setValue: [NSNumber numberWithFloat: 1.0f] forKey: @"inputEV"];
-        return [expAdjust valueForKey:@"outputImage"];
+//        return [expAdjust valueForKey:@"outputImage"];
+              return [expAdjust outputImage];
         
     }else if([filter isEqualToString:@"Vignette"]){
         CIFilter *filter = [CIFilter filterWithName:@"CIVignette"
@@ -161,23 +172,27 @@
         [myFilterC setValue:image forKey:@"inputImage"];
         [myFilterC setValue:[NSNumber numberWithFloat:20] forKey:@"inputRadius"];
         [myFilterC setValue:[NSNumber numberWithFloat:0] forKey:@"inputAngle"];
-        return [myFilterC valueForKey:@"outputImage"];
+//        return [myFilterC valueForKey:@"outputImage"];
+        return [myFilterC outputImage];
+
         
-    } else if([filter isEqualToString:@"Edge Work"]){
-        CIFilter *myFilterD = [CIFilter filterWithName:@"CIEdgeWork"];
-        [myFilterD setDefaults];
-        [myFilterD setValue:image forKey:@"inputImage"];
-        [myFilterD setValue:[NSNumber numberWithFloat:3.00] forKey:@"inputRadius"];
-        return [myFilterD valueForKey:@"outputImage"];
-        
-    } else if([filter isEqualToString:@"Pointillize"]){
-        CIFilter *myFilterE = [CIFilter filterWithName:@"CIPointillize"];
-        CIVector *vector = [CIVector vectorWithX:150 Y:150];
-        [myFilterE setDefaults];
-        [myFilterE setValue:image forKey:@"inputImage"];
-        [myFilterE setValue:[NSNumber numberWithFloat:20.00] forKey:@"inputRadius"];
-        [myFilterE setValue:vector forKey:@"inputCenter"];
-        return [myFilterE valueForKey:@"outputImage"];
+//    } else if([filter isEqualToString:@"Edge Work"]){
+//        CIFilter *myFilterD = [CIFilter filterWithName:@"CIEdgeWork"];
+//        [myFilterD setDefaults];
+//        [myFilterD setValue:image forKey:@"inputImage"];
+//        [myFilterD setValue:[NSNumber numberWithFloat:3.00] forKey:@"inputRadius"];
+//        return [myFilterD valueForKey:@"outputImage"];
+//        
+//    } else if([filter isEqualToString:@"Pointillize"]){
+//        CIFilter *myFilterE = [CIFilter filterWithName:@"CIPointillize"];
+//        CIVector *vector = [CIVector vectorWithX:150 Y:150];
+//        [myFilterE setDefaults];
+//        [myFilterE setValue:image forKey:@"inputImage"];
+//        [myFilterE setValue:[NSNumber numberWithFloat:20.00] forKey:@"inputRadius"];
+//        [myFilterE setValue:vector forKey:@"inputCenter"];
+//        return [myFilterE outputImage];
+//
+////        return [myFilterE valueForKey:@"outputImage"];
     }
     
     

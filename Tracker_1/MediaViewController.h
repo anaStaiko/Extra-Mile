@@ -40,7 +40,7 @@
 - (IBAction)savePhoto:(id)sender;
 
 //Opens the Camera to take a picture
-- (IBAction)takePhoto:(id)sender;
+//- (IBAction)takePhoto:(id)sender;
 //Tweets the current Photo
 - (IBAction)tweetAction:(id)sender;
 

@@ -143,16 +143,16 @@
 }
 
 
-//User can take a photo if the Device has a camera
-- (IBAction)takePhoto:(id)sender {
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        UIImagePickerController *pickerC = [[UIImagePickerController alloc] init];
-        pickerC.sourceType = UIImagePickerControllerSourceTypeCamera;
-        pickerC.delegate = self;
-        
-        [self presentViewController:pickerC animated:YES completion:nil];
-    }
-}
+////User can take a photo if the Device has a camera
+//- (IBAction)takePhoto:(id)sender {
+//    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+//        UIImagePickerController *pickerC = [[UIImagePickerController alloc] init];
+//        pickerC.sourceType = UIImagePickerControllerSourceTypeCamera;
+//        pickerC.delegate = self;
+//        
+//        [self presentViewController:pickerC animated:YES completion:nil];
+//    }
+//}
 
 // The Image on the screen will be Tweeted if the Device supports it
 // and a User-Account is set-up
