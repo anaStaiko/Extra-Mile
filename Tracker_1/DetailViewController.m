@@ -16,6 +16,8 @@
 #import "Location.h"
 #import "MulticolorPolylineSegment.h"
 #import "BadgeAnnotation.h"
+#import "SWDetailViewController.h"
+#import "SWShareScreenShot.h"
 
 static float const mapPadding = 1.1f;  
 
@@ -29,7 +31,7 @@ static float const mapPadding = 1.1f;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *paceLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *badgeImageView;
-@property (nonatomic, weak) IBOutlet UIButton *infoButton;
+//@property (nonatomic, weak) IBOutlet UIButton *infoButton;
 
 @end
 
@@ -88,37 +90,37 @@ static float const mapPadding = 1.1f;
 
 
 
-- (IBAction)displayModeToggled:(UISwitch *)sender
-{
-    self.badgeImageView.hidden = !sender.isOn;
-    self.infoButton.hidden = !sender.isOn;
-    self.mapView.hidden = sender.isOn;
-  
-}
+//- (IBAction)displayModeToggled:(UISwitch *)sender
+//{
+//    self.badgeImageView.hidden = !sender.isOn;
+////    self.infoButton.hidden = !sender.isOn;
+//    self.mapView.hidden = sender.isOn;
+//  
+//}
 
-- (IBAction)infoButtonPressed
-{
-    Badge *badge = [[BadgeController defaultController] bestBadgeForDistance:self.run.distance.floatValue];
-    
-    UIAlertController *alertController = [UIAlertController
-                                          alertControllerWithTitle:badge.name
-                                          message:badge.information
-                                          preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             //Do some thing here
-                             [self dismissViewControllerAnimated:YES completion:nil];
-                         }];
-    
-    
-    [alertController addAction:ok];
-    [self presentViewController:alertController animated:YES completion:nil];
-    
-}
+//- (IBAction)infoButtonPressed
+//{
+//    Badge *badge = [[BadgeController defaultController] bestBadgeForDistance:self.run.distance.floatValue];
+//    
+//    UIAlertController *alertController = [UIAlertController
+//                                          alertControllerWithTitle:badge.name
+//                                          message:badge.information
+//                                          preferredStyle:UIAlertControllerStyleAlert];
+//    
+//    UIAlertAction* ok = [UIAlertAction
+//                         actionWithTitle:@"OK"
+//                         style:UIAlertActionStyleDefault
+//                         handler:^(UIAlertAction * action)
+//                         {
+//                             //Do some thing here
+//                             [self dismissViewControllerAnimated:YES completion:nil];
+//                         }];
+//    
+//    
+//    [alertController addAction:ok];
+//    [self presentViewController:alertController animated:YES completion:nil];
+//    
+//}
 
 
 
@@ -234,6 +236,15 @@ static float const mapPadding = 1.1f;
         [self configureView];
     }
 }
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    [[SWShareScreenShot shareManager] keepImageByCurrentViewController:self withName:@"SWShareViewController"];
+    
+}
+
+
 
 //- (void)setDetailItem:(id)newDetailItem {
 //    if (_detailItem != newDetailItem) {

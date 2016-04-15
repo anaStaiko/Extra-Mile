@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @import MapKit;
 
 @class Run;
@@ -15,6 +16,8 @@
 @interface DetailViewController : UIViewController
 
 @property (strong, nonatomic) Run *run;
+
+
 
 @end
 

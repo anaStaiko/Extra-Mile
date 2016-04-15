@@ -62,26 +62,26 @@
     self.bestLabel.text = [NSString stringWithFormat:@"Best: %@, %@", [Math stringifyAvgPaceFromDist:self.earnStatus.bestRun.distance.floatValue overTime:self.earnStatus.bestRun.duration.intValue], [formatter stringFromDate:self.earnStatus.bestRun.timestamp]];
 }
     
-- (IBAction)infoButtonPressed:(UIButton *)sender
-{
-    UIAlertController *alertController = [UIAlertController
-                                          alertControllerWithTitle:self.earnStatus.badge.name                                          message:self.earnStatus.badge.information
-                                          preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             [self dismissViewControllerAnimated:YES completion:nil];
-                         }];
-    
-    
-    [alertController addAction:ok];
-    [self presentViewController:alertController animated:YES completion:nil];
-
-    
-}
+//- (IBAction)infoButtonPressed:(UIButton *)sender
+//{
+//    UIAlertController *alertController = [UIAlertController
+//                                          alertControllerWithTitle:self.earnStatus.badge.name                                          message:self.earnStatus.badge.information
+//                                          preferredStyle:UIAlertControllerStyleAlert];
+//    
+//    UIAlertAction* ok = [UIAlertAction
+//                         actionWithTitle:@"OK"
+//                         style:UIAlertActionStyleDefault
+//                         handler:^(UIAlertAction * action)
+//                         {
+//                             [self dismissViewControllerAnimated:YES completion:nil];
+//                         }];
+//    
+//    
+//    [alertController addAction:ok];
+//    [self presentViewController:alertController animated:YES completion:nil];
+//
+//    
+//}
 
 
 - (void)didReceiveMemoryWarning {

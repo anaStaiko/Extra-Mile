@@ -10,6 +10,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PulseDetector.h"
 #import "Filter.h"
+#import "PopupView.h"
+#import "PopupViewAnimationFade.h"
+
 
 typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
     STATE_PAUSED,
@@ -248,6 +251,19 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
         self.pulseRate.text=[NSString stringWithFormat:@"%0.0f", pulse];
     }
 }
+
+
+- (IBAction)popupViewFadeAction:(id)sender {
+    
+    PopupView *view = [PopupView defaultPopupView];
+    view.parentVC = self;
+    
+    [self presentPopupView:view animation:[PopupViewAnimationFade new] dismissed:^{
+        NSLog(@"View is loaded");
+    }];
+    
+}
+
 
 
 
