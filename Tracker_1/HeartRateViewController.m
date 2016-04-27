@@ -43,6 +43,10 @@ typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
     self.filter=[[Filter alloc] init];
     self.pulseDetector=[[PulseDetector alloc] init];
     [self startCameraCapture];
+    
+    
+    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -235,7 +239,7 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
 
 -(void) update {
     
-    self.validFrames.text = [NSString stringWithFormat:@"Valid Frames: %d%%", MIN(100, (100 * self.validFrameCounter)/MIN_FRAMES_FOR_FILTER_TO_SETTLE)];
+    self.validFrames.text = [NSString stringWithFormat:@"Processing: %d%%", MIN(100, (100 * self.validFrameCounter)/MIN_FRAMES_FOR_FILTER_TO_SETTLE)];
     
     // if we're paused then there's nothing to do
     if(self.currentState==STATE_PAUSED) return;
@@ -252,17 +256,17 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
     }
 }
 
-
-- (IBAction)popupViewFadeAction:(id)sender {
-    
-    PopupView *view = [PopupView defaultPopupView];
-    view.parentVC = self;
-    
-    [self presentPopupView:view animation:[PopupViewAnimationFade new] dismissed:^{
-        NSLog(@"View is loaded");
-    }];
-    
-}
+//
+//- (IBAction)popupViewFadeAction:(id)sender {
+//    
+//    PopupView *view = [PopupView defaultPopupView];
+//    view.parentVC = self;
+//    
+//    [self presentPopupView:view animation:[PopupViewAnimationFade new] dismissed:^{
+//        NSLog(@"View is loaded");
+//    }];
+//    
+//}
 
 
 

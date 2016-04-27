@@ -8,7 +8,10 @@
 
 #import "HomeViewController.h"
 
-@interface HomeViewController () 
+@interface HomeViewController () {
+    
+     BOOL checked;
+}
 
 @property (strong, nonatomic) NSArray *runArray;
 
@@ -49,10 +52,19 @@
     }
     [locationManager startUpdatingLocation];
     [locationManager startUpdatingHeading];
+
+   
+    UINavigationBar *navBar = self.navigationController.navigationBar;
+    UIImage *image = [UIImage imageNamed:@"gradient-strip-top.png"];
+    [navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     
+    [_toolBar setBackgroundImage:[UIImage imageNamed:@"gradient-strip-bottom-main-screen"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+    
+    
+    self->compassImage.hidden = YES;
+    
+
 }
-
-
 
 
 
@@ -96,7 +108,10 @@
     }
 }
 
-
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
+    
+    
+}
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
     // Convert Degree to Radian and move the needle
@@ -134,5 +149,38 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)compass:(id)sender {
+//    
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    checked = [defaults boolForKey:@"boxIsChecked"];
+    
+     self->compassImage.hidden = NO;
+    
+//    
+//    if (compassImage.hidden == NO) {
+//        compassImage.hidden = YES;
+//        
+//    }
+    
+//    if(!checked) {
+//        self->compassImage.hidden = YES;
+//
+//    } else if(checked) {
+//      self->compassImage.hidden = NO;
+//    }
+//    [defaults synchronize];
+//}
+//
+//-(void)checkTheBox {
+//    if(!checked) {
+//        self->compassImage.hidden = YES;
+//
+//    } else if(checked) {
+//        self->compassImage.hidden = NO;
+//    }
+}
+
+
 
 @end

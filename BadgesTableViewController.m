@@ -70,10 +70,10 @@
     
     if (earnStatus.earnRun) {
         
-        cell.nameLabel.textColor = [UIColor whiteColor];
+        cell.nameLabel.textColor = [UIColor blackColor];
 //        cell.nameLabel.textColor = self.greenColor;
         cell.nameLabel.text = earnStatus.badge.name;
-        cell.descLabel.textColor = [UIColor whiteColor];
+        cell.descLabel.textColor = [UIColor grayColor];
 //        cell.descLabel.textColor = self.greenColor;
         cell.descLabel.text = [NSString stringWithFormat:@"Earned: %@", [self.dateFormatter stringFromDate:earnStatus.earnRun.timestamp]];
         cell.badgeImageView.image = [UIImage imageNamed:earnStatus.badge.imageName];

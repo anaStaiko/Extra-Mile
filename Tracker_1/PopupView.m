@@ -34,7 +34,7 @@
 }
 
 + (instancetype)defaultPopupView{
-    return [[PopupView alloc]initWithFrame:CGRectMake(0, 0, 195, 210)];
+    return [[PopupView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
 }
 
 

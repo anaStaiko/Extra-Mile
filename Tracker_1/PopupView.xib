@@ -7,34 +7,33 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopupView">
             <connections>
-                <outlet property="innerView" destination="iN0-l3-epB" id="eB4-Iy-RFI"/>
+                <outlet property="innerView" destination="iN0-l3-epB" id="t9G-SE-lFb"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="195" height="210"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hZr-Wi-WxO">
+                    <rect key="frame" x="8" y="8" width="284" height="330"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOd-jx-QlV">
-                    <rect key="frame" x="76" y="166" width="54" height="52"/>
+                    <rect key="frame" x="133" y="340" width="54" height="52"/>
                     <state key="normal" title="Dismiss"/>
                     <connections>
                         <action selector="dismissAction:" destination="-1" eventType="touchUpInside" id="cB9-jh-AMf"/>
                     </connections>
                 </button>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hZr-Wi-WxO">
-                    <rect key="frame" x="8" y="8" width="179" height="129"/>
-                    <string key="text">Place (right/left) index finger over the rear camera lens and flash. Hold position still until the session is complete (about 15-20 sec).</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
             </subviews>
-            <color key="backgroundColor" red="0.68825593240000005" green="1" blue="0.9624380333" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.77371536139999997" green="0.77401719579999995" blue="0.79905849360000003" alpha="1" colorSpace="calibratedRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="470.5" y="357"/>
+            <point key="canvasLocation" x="470" y="357"/>
         </view>
     </objects>
 </document>

@@ -44,6 +44,16 @@ static NSString * const detailSegueName = @"RunDetails";
 @property (nonatomic, weak) IBOutlet UIButton *startButton;
 @property (nonatomic, weak) IBOutlet UIButton *stopButton;
 
+
+
+@property (weak, nonatomic) IBOutlet UILabel *T1;
+@property (weak, nonatomic) IBOutlet UILabel *D1;
+@property (weak, nonatomic) IBOutlet UILabel *P1;
+@property (weak, nonatomic) IBOutlet UILabel *NB1;
+
+
+
+
 @end
 
 @implementation NewRunViewController
@@ -51,6 +61,18 @@ static NSString * const detailSegueName = @"RunDetails";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UINavigationBar *navBar = self.navigationController.navigationBar;
+    UIImage *image = [UIImage imageNamed:@"gradient-strip-top.png"];
+    [navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    
+    self.T1.hidden = NO;
+    self.P1.hidden = NO;
+    self.NB1.hidden = NO;
+    self.D1.hidden = NO;
+    
+    
+    
 }
 
 
@@ -82,10 +104,10 @@ static NSString * const detailSegueName = @"RunDetails";
 
 - (void)eachSecond {
     self.seconds++;
-    self.timeLabel.text = [NSString stringWithFormat:@"Time: %@",  [Math stringifySecondCount:self.seconds usingLongFormat:NO]];
-    self.distLabel.text = [NSString stringWithFormat:@"Distance: %@", [Math stringifyDistance:self.distance]];
-    self.paceLabel.text = [NSString stringWithFormat:@"Pace: %@",  [Math stringifyAvgPaceFromDist:self.distance overTime:self.seconds]];
-    self.nextBadgeLabel.text = [NSString stringWithFormat:@"%@ until %@!", [Math stringifyDistance:(self.upcomingBadge.distance - self.distance)], self.upcomingBadge.name];
+    self.timeLabel.text = [NSString stringWithFormat:@"Time: \n %@", [Math stringifySecondCount:self.seconds usingLongFormat:NO]];
+    self.distLabel.text = [NSString stringWithFormat:@"Distance: \n %@", [Math stringifyDistance:self.distance]];
+    self.paceLabel.text = [NSString stringWithFormat:@"Pace: \n %@", [Math stringifyAvgPaceFromDist:self.distance overTime:self.seconds]];
+    self.nextBadgeLabel.text = [NSString stringWithFormat:@"%@ Until \n %@!", [Math stringifyDistance:(self.upcomingBadge.distance - self.distance)], self.upcomingBadge.name];
     [self checkNextBadge];
                                                                                                   
 }
@@ -207,7 +229,7 @@ static NSString * const detailSegueName = @"RunDetails";
 -(IBAction)startPressed:(id)sender {
     
     //hide the start UI
-    self.startButton.hidden = YES;
+    self.startButton.hidden = NO;
 //    self.promptLabel.hidden = YES;
     
     //show the running UI
@@ -227,6 +249,13 @@ static NSString * const detailSegueName = @"RunDetails";
     self.nextBadgeLabel.hidden = NO;
     
     [self startLocationUpdates];
+    
+    
+    
+    self.T1.hidden = YES;
+    self.P1.hidden = YES;
+    self.NB1.hidden = YES;
+    self.D1.hidden = YES;
     
   
     
@@ -250,7 +279,7 @@ static NSString * const detailSegueName = @"RunDetails";
     
     UIAlertController * alert=   [UIAlertController
                                   alertControllerWithTitle:@"Would you like to save your results?"
-                                  message:@"Save"
+                                  message:@""
                                   preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* save = [UIAlertAction
@@ -288,6 +317,7 @@ static NSString * const detailSegueName = @"RunDetails";
     [self presentViewController:alert animated:YES completion:nil];
     
     [self.locationManager stopUpdatingLocation];
+    [self.timer invalidate];
     
 
     }

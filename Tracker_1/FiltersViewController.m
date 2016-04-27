@@ -28,6 +28,13 @@
 {
     [super viewDidLoad];
     
+    
+//    UINavigationBar *navBar = self.navigationController.navigationBar;
+    UIImage *image = [UIImage imageNamed:@"gradient-strip-top.png"];
+
+    [_navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -66,6 +73,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+- (BOOL) prefersStatusBarHidden {
+    return YES;
+}
+
 
 
 

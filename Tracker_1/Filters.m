@@ -175,7 +175,7 @@
 //        return [myFilterC valueForKey:@"outputImage"];
         return [myFilterC outputImage];
 
-        
+//        
 //    } else if([filter isEqualToString:@"Edge Work"]){
 //        CIFilter *myFilterD = [CIFilter filterWithName:@"CIEdgeWork"];
 //        [myFilterD setDefaults];
@@ -191,8 +191,8 @@
 //        [myFilterE setValue:[NSNumber numberWithFloat:20.00] forKey:@"inputRadius"];
 //        [myFilterE setValue:vector forKey:@"inputCenter"];
 //        return [myFilterE outputImage];
-//
-////        return [myFilterE valueForKey:@"outputImage"];
+
+//        return [myFilterE valueForKey:@"outputImage"];
     }
     
     

@@ -28,6 +28,25 @@
 }
 
 
+- (BOOL) prefersStatusBarHidden {
+    return YES;
+}
+
+
+
+
+//- (IBAction)back:(id)sender {
+//    
+//    UIViewController *prevVC = [self.navigationController.viewControllers objectAtIndex:1];
+//    [self.navigationController popToViewController:prevVC animated:YES];
+//    
+    
+    
+    
+    
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -38,6 +57,11 @@
         self.imageView.image = image;
         self.image = image;
     }
+    
+//    
+//    UINavigationBar *navBar = self.navigationController.navigationBar;
+    UIImage *imageNav = [UIImage imageNamed:@"gradient-strip-top.png"];
+    [_navBar setBackgroundImage:imageNav forBarMetrics:UIBarMetricsDefault];
 }
 
 

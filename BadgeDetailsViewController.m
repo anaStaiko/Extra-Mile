@@ -13,6 +13,9 @@
 #import "Run.h"
 #import "BadgeController.h"
 
+#import "PopupView.h"
+#import "PopupViewAnimationFade.h"
+
 @interface BadgeDetailsViewController () 
 
 @property (nonatomic, weak) IBOutlet UIImageView *badgeImageView;
@@ -61,27 +64,7 @@
     
     self.bestLabel.text = [NSString stringWithFormat:@"Best: %@, %@", [Math stringifyAvgPaceFromDist:self.earnStatus.bestRun.distance.floatValue overTime:self.earnStatus.bestRun.duration.intValue], [formatter stringFromDate:self.earnStatus.bestRun.timestamp]];
 }
-    
-//- (IBAction)infoButtonPressed:(UIButton *)sender
-//{
-//    UIAlertController *alertController = [UIAlertController
-//                                          alertControllerWithTitle:self.earnStatus.badge.name                                          message:self.earnStatus.badge.information
-//                                          preferredStyle:UIAlertControllerStyleAlert];
-//    
-//    UIAlertAction* ok = [UIAlertAction
-//                         actionWithTitle:@"OK"
-//                         style:UIAlertActionStyleDefault
-//                         handler:^(UIAlertAction * action)
-//                         {
-//                             [self dismissViewControllerAnimated:YES completion:nil];
-//                         }];
-//    
-//    
-//    [alertController addAction:ok];
-//    [self presentViewController:alertController animated:YES completion:nil];
-//
-//    
-//}
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -89,14 +72,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)popupViewFadeAction:(id)sender {
+    
+    PopupView *view = [PopupView defaultPopupView];
+    view.parentVC = self;
+    
+    [self presentPopupView:view animation:[PopupViewAnimationFade new] dismissed:^{
+        NSLog(@"View is loaded");
+    }];
+    
 }
-*/
+
+
 
 @end

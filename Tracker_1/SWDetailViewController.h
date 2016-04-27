@@ -14,4 +14,6 @@
 
 - (IBAction)share:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
+
 @end

@@ -67,6 +67,8 @@
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
     
     [self logAllFilters];
+    
+        self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
 }
 
 - (void)didReceiveMemoryWarning

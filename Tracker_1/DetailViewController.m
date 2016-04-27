@@ -47,21 +47,25 @@ static float const mapPadding = 1.1f;
     [self configureView];
     [self loadMap];
     
+    UINavigationBar *navBar = self.navigationController.navigationBar;
+    UIImage *image = [UIImage imageNamed:@"gradient-strip-top.png"];
+    [navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    
 }
 
 
 - (void)configureView
 {
-    self.distanceLabel.text = [NSString stringWithFormat:@"Distance: %@", [Math stringifyDistance:self.run.distance.floatValue]];
+    self.distanceLabel.text = [NSString stringWithFormat:@"Distance: \n %@", [Math stringifyDistance:self.run.distance.floatValue]];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     
-    self.dateLabel.text = [NSString stringWithFormat:@"Date: %@", [formatter stringFromDate:self.run.timestamp]];
+    self.dateLabel.text = [NSString stringWithFormat:@"Time: \n %@", [formatter stringFromDate:self.run.timestamp]];
     
-    self.timeLabel.text = [NSString stringWithFormat:@"Time: %@",  [Math stringifySecondCount:self.run.duration.intValue usingLongFormat:YES]];
+    self.timeLabel.text = [NSString stringWithFormat:@"Pace: \n %@", [Math stringifySecondCount:self.run.duration.intValue usingLongFormat:YES]];
     
-    self.paceLabel.text = [NSString stringWithFormat:@"Pace: %@",  [Math stringifyAvgPaceFromDist:self.run.distance.floatValue overTime:self.run.duration.intValue]];
+    self.paceLabel.text = [NSString stringWithFormat:@"Date: \n %@", [Math stringifyAvgPaceFromDist:self.run.distance.floatValue overTime:self.run.duration.intValue]];
     
     Badge *badge = [[BadgeController defaultController] bestBadgeForDistance:self.run.distance.floatValue];
     self.badgeImageView.image = [UIImage imageNamed:badge.imageName];

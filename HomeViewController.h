@@ -26,5 +26,11 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+
+- (IBAction)compass:(id)sender;
+
+
+
 
 @end
