@@ -249,7 +249,7 @@
 		76814BC81CDAB5BD0022699D /* heart-monitor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-monitor.png"; sourceTree = "<group>"; };
 		7683EBA81CCAEC0200CA9BE1 /* start-my-workout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start-my-workout.png"; sourceTree = "<group>"; };
 		7683EBAA1CCAF29900CA9BE1 /* heart-monitor-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-monitor-active.png"; sourceTree = "<group>"; };
-		7685F2231C0B190700E6F39D /* Tracker_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tracker_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7685F2231C0B190700E6F39D /* Xtra Mile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xtra Mile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7685F2271C0B190700E6F39D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7685F2291C0B190700E6F39D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7685F22A1C0B190700E6F39D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -259,10 +259,10 @@
 		7685F2381C0B190700E6F39D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7685F23B1C0B190700E6F39D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7685F23D1C0B190700E6F39D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7685F2421C0B190700E6F39D /* Tracker_1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tracker_1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7685F2421C0B190700E6F39D /* Xtra Mile.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Xtra Mile.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7685F2461C0B190700E6F39D /* Tracker_1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tracker_1Tests.m; sourceTree = "<group>"; };
 		7685F2481C0B190700E6F39D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7685F24D1C0B190700E6F39D /* Tracker_1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tracker_1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7685F24D1C0B190700E6F39D /* Xtra Mile.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Xtra Mile.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7685F2511C0B190700E6F39D /* Tracker_1UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tracker_1UITests.m; sourceTree = "<group>"; };
 		7685F2531C0B190700E6F39D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7685F25F1C0B1DEC00E6F39D /* Location+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Location+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -394,7 +394,6 @@
 		7685F21A1C0B190700E6F39D = {
 			isa = PBXGroup;
 			children = (
-				764B7A611CBEC478008277E9 /* MessageUI.framework */,
 				7685F2251C0B190700E6F39D /* Tracker_1 */,
 				7685F2451C0B190700E6F39D /* Tracker_1Tests */,
 				7685F2501C0B190700E6F39D /* Tracker_1UITests */,
@@ -405,9 +404,9 @@
 		7685F2241C0B190700E6F39D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7685F2231C0B190700E6F39D /* Tracker_1.app */,
-				7685F2421C0B190700E6F39D /* Tracker_1Tests.xctest */,
-				7685F24D1C0B190700E6F39D /* Tracker_1UITests.xctest */,
+				7685F2231C0B190700E6F39D /* Xtra Mile.app */,
+				7685F2421C0B190700E6F39D /* Xtra Mile.xctest */,
+				7685F24D1C0B190700E6F39D /* Xtra Mile.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -495,6 +494,7 @@
 			isa = PBXGroup;
 			children = (
 				7685F2271C0B190700E6F39D /* main.m */,
+				764B7A611CBEC478008277E9 /* MessageUI.framework */,
 				768C0A6D1CA8A9FB00D4B135 /* Photos.framework */,
 				761FBE561CA5E89B00F555CF /* AssetsLibrary.framework */,
 				761FBE541CA5E88D00F555CF /* CoreMedia.framework */,
@@ -627,9 +627,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7685F2221C0B190700E6F39D /* Tracker_1 */ = {
+		7685F2221C0B190700E6F39D /* Xtra Mile */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7685F2561C0B190700E6F39D /* Build configuration list for PBXNativeTarget "Tracker_1" */;
+			buildConfigurationList = 7685F2561C0B190700E6F39D /* Build configuration list for PBXNativeTarget "Xtra Mile" */;
 			buildPhases = (
 				7685F21F1C0B190700E6F39D /* Sources */,
 				7685F2201C0B190700E6F39D /* Frameworks */,
@@ -639,14 +639,14 @@
 			);
 			dependencies = (
 			);
-			name = Tracker_1;
+			name = "Xtra Mile";
 			productName = Tracker_1;
-			productReference = 7685F2231C0B190700E6F39D /* Tracker_1.app */;
+			productReference = 7685F2231C0B190700E6F39D /* Xtra Mile.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7685F2411C0B190700E6F39D /* Tracker_1Tests */ = {
+		7685F2411C0B190700E6F39D /* Xtra MileTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7685F2591C0B190700E6F39D /* Build configuration list for PBXNativeTarget "Tracker_1Tests" */;
+			buildConfigurationList = 7685F2591C0B190700E6F39D /* Build configuration list for PBXNativeTarget "Xtra MileTests" */;
 			buildPhases = (
 				7685F23E1C0B190700E6F39D /* Sources */,
 				7685F23F1C0B190700E6F39D /* Frameworks */,
@@ -657,14 +657,14 @@
 			dependencies = (
 				7685F2441C0B190700E6F39D /* PBXTargetDependency */,
 			);
-			name = Tracker_1Tests;
+			name = "Xtra MileTests";
 			productName = Tracker_1Tests;
-			productReference = 7685F2421C0B190700E6F39D /* Tracker_1Tests.xctest */;
+			productReference = 7685F2421C0B190700E6F39D /* Xtra Mile.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		7685F24C1C0B190700E6F39D /* Tracker_1UITests */ = {
+		7685F24C1C0B190700E6F39D /* Xtra MileUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7685F25C1C0B190700E6F39D /* Build configuration list for PBXNativeTarget "Tracker_1UITests" */;
+			buildConfigurationList = 7685F25C1C0B190700E6F39D /* Build configuration list for PBXNativeTarget "Xtra MileUITests" */;
 			buildPhases = (
 				7685F2491C0B190700E6F39D /* Sources */,
 				7685F24A1C0B190700E6F39D /* Frameworks */,
@@ -675,9 +675,9 @@
 			dependencies = (
 				7685F24F1C0B190700E6F39D /* PBXTargetDependency */,
 			);
-			name = Tracker_1UITests;
+			name = "Xtra MileUITests";
 			productName = Tracker_1UITests;
-			productReference = 7685F24D1C0B190700E6F39D /* Tracker_1UITests.xctest */;
+			productReference = 7685F24D1C0B190700E6F39D /* Xtra Mile.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -710,7 +710,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7685F21E1C0B190700E6F39D /* Build configuration list for PBXProject "Tracker_1" */;
+			buildConfigurationList = 7685F21E1C0B190700E6F39D /* Build configuration list for PBXProject "Xtra Mile" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -723,9 +723,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7685F2221C0B190700E6F39D /* Tracker_1 */,
-				7685F2411C0B190700E6F39D /* Tracker_1Tests */,
-				7685F24C1C0B190700E6F39D /* Tracker_1UITests */,
+				7685F2221C0B190700E6F39D /* Xtra Mile */,
+				7685F2411C0B190700E6F39D /* Xtra MileTests */,
+				7685F24C1C0B190700E6F39D /* Xtra MileUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -905,12 +905,12 @@
 /* Begin PBXTargetDependency section */
 		7685F2441C0B190700E6F39D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7685F2221C0B190700E6F39D /* Tracker_1 */;
+			target = 7685F2221C0B190700E6F39D /* Xtra Mile */;
 			targetProxy = 7685F2431C0B190700E6F39D /* PBXContainerItemProxy */;
 		};
 		7685F24F1C0B190700E6F39D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7685F2221C0B190700E6F39D /* Tracker_1 */;
+			target = 7685F2221C0B190700E6F39D /* Xtra Mile */;
 			targetProxy = 7685F24E1C0B190700E6F39D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -971,7 +971,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1009,7 +1009,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1026,7 +1026,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AnaApp.Tracker-1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Xtra Mile";
 			};
 			name = Debug;
 		};
@@ -1039,7 +1039,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AnaApp.Tracker-1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Xtra Mile";
 			};
 			name = Release;
 		};
@@ -1050,8 +1050,8 @@
 				INFOPLIST_FILE = Tracker_1Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AnaApp.Tracker-1Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tracker_1.app/Tracker_1";
+				PRODUCT_NAME = "Xtra Mile";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Xtra Mile.app/Xtra Mile";
 			};
 			name = Debug;
 		};
@@ -1062,8 +1062,8 @@
 				INFOPLIST_FILE = Tracker_1Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AnaApp.Tracker-1Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tracker_1.app/Tracker_1";
+				PRODUCT_NAME = "Xtra Mile";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Xtra Mile.app/Xtra Mile";
 			};
 			name = Release;
 		};
@@ -1073,7 +1073,7 @@
 				INFOPLIST_FILE = Tracker_1UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AnaApp.Tracker-1UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Xtra Mile";
 				TEST_TARGET_NAME = Tracker_1;
 				USES_XCTRUNNER = YES;
 			};
@@ -1085,7 +1085,7 @@
 				INFOPLIST_FILE = Tracker_1UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AnaApp.Tracker-1UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Xtra Mile";
 				TEST_TARGET_NAME = Tracker_1;
 				USES_XCTRUNNER = YES;
 			};
@@ -1094,7 +1094,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7685F21E1C0B190700E6F39D /* Build configuration list for PBXProject "Tracker_1" */ = {
+		7685F21E1C0B190700E6F39D /* Build configuration list for PBXProject "Xtra Mile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7685F2541C0B190700E6F39D /* Debug */,
@@ -1103,7 +1103,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7685F2561C0B190700E6F39D /* Build configuration list for PBXNativeTarget "Tracker_1" */ = {
+		7685F2561C0B190700E6F39D /* Build configuration list for PBXNativeTarget "Xtra Mile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7685F2571C0B190700E6F39D /* Debug */,
@@ -1112,7 +1112,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7685F2591C0B190700E6F39D /* Build configuration list for PBXNativeTarget "Tracker_1Tests" */ = {
+		7685F2591C0B190700E6F39D /* Build configuration list for PBXNativeTarget "Xtra MileTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7685F25A1C0B190700E6F39D /* Debug */,
@@ -1121,7 +1121,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7685F25C1C0B190700E6F39D /* Build configuration list for PBXNativeTarget "Tracker_1UITests" */ = {
+		7685F25C1C0B190700E6F39D /* Build configuration list for PBXNativeTarget "Xtra MileUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7685F25D1C0B190700E6F39D /* Debug */,

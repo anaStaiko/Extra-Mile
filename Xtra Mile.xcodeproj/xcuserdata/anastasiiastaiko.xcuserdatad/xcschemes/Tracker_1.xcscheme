@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7685F2221C0B190700E6F39D"
-               BuildableName = "Tracker_1.app"
-               BlueprintName = "Tracker_1"
-               ReferencedContainer = "container:Tracker_1.xcodeproj">
+               BuildableName = "Xtra Mile.app"
+               BlueprintName = "Xtra Mile"
+               ReferencedContainer = "container:Xtra Mile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7685F2411C0B190700E6F39D"
-               BuildableName = "Tracker_1Tests.xctest"
-               BlueprintName = "Tracker_1Tests"
-               ReferencedContainer = "container:Tracker_1.xcodeproj">
+               BuildableName = "Xtra Mile.xctest"
+               BlueprintName = "Xtra MileTests"
+               ReferencedContainer = "container:Xtra Mile.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7685F24C1C0B190700E6F39D"
-               BuildableName = "Tracker_1UITests.xctest"
-               BlueprintName = "Tracker_1UITests"
-               ReferencedContainer = "container:Tracker_1.xcodeproj">
+               BuildableName = "Xtra Mile.xctest"
+               BlueprintName = "Xtra MileUITests"
+               ReferencedContainer = "container:Xtra Mile.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7685F2221C0B190700E6F39D"
-            BuildableName = "Tracker_1.app"
-            BlueprintName = "Tracker_1"
-            ReferencedContainer = "container:Tracker_1.xcodeproj">
+            BuildableName = "Xtra Mile.app"
+            BlueprintName = "Xtra Mile"
+            ReferencedContainer = "container:Xtra Mile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7685F2221C0B190700E6F39D"
-            BuildableName = "Tracker_1.app"
-            BlueprintName = "Tracker_1"
-            ReferencedContainer = "container:Tracker_1.xcodeproj">
+            BuildableName = "Xtra Mile.app"
+            BlueprintName = "Xtra Mile"
+            ReferencedContainer = "container:Xtra Mile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7685F2221C0B190700E6F39D"
-            BuildableName = "Tracker_1.app"
-            BlueprintName = "Tracker_1"
-            ReferencedContainer = "container:Tracker_1.xcodeproj">
+            BuildableName = "Xtra Mile.app"
+            BlueprintName = "Xtra Mile"
+            ReferencedContainer = "container:Xtra Mile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
