@@ -11,7 +11,7 @@
 #import "ThumbNail.h"
 
 
-@interface MediaViewController ()
+@interface MediaViewController () <UIGestureRecognizerDelegate>
 
 @end
 
@@ -26,7 +26,7 @@
 @synthesize filtersVC;
 @synthesize popoverFilters;
 @synthesize popoverAlbum;
-//@synthesize seg;
+
 
 
 //shows all the CI Foto Filters and their attributes
@@ -68,8 +68,35 @@
     
     [self logAllFilters];
     
-        self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+   [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor darkGrayColor] forKey:NSForegroundColorAttributeName]];
+    
+
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+    
+    [self.imageView addGestureRecognizer:tapGestureRecognizer];
+    
+    tapGestureRecognizer.delegate = self;
+    
 }
+
+
+
+- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
+{
+    if ( self.loadPhotoProp.layer.opacity == 1) {
+        [UIButton animateWithDuration:0.4 animations:^{
+            self.loadPhotoProp.layer.opacity = 0;        }];
+    } else {
+        
+        [UIButton animateWithDuration:0.4 animations:^{
+            self.loadPhotoProp.layer.opacity = 1;        }];
+
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

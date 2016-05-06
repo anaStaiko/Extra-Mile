@@ -18,7 +18,9 @@ extern float const goldMultiplier;
 
 + (BadgeController *)defaultController;
 
-- (NSArray *)earnStatusesForRuns:(NSArray *)runArray;
+//- (NSArray *)earnStatusesForRuns:(NSArray *)runArray;
+
+- (NSMutableArray *)earnStatusesForRuns:(NSArray *)runArray;
 
 - (Badge *)bestBadgeForDistance:(float)distance;
 

@@ -30,9 +30,10 @@
     
     
 //    UINavigationBar *navBar = self.navigationController.navigationBar;
-    UIImage *image = [UIImage imageNamed:@"gradient-strip-top.png"];
+    
+//    UIImage *image = [UIImage imageNamed:@"gradient-strip-top.png"];
 
-    [_navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+//    [_navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -66,6 +67,12 @@
         });
     }
     
+//    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+//    self.navigationController.navigationBar.shadowImage = [UIColor whiteColor];
+//    self.navigationController.navigationBar.titleTextAttributes = [UIColor whiteColor];
+ 
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,9 +83,9 @@
 
 
 
-- (BOOL) prefersStatusBarHidden {
-    return YES;
-}
+//- (BOOL) prefersStatusBarHidden {
+//    return YES;
+//}
 
 
 

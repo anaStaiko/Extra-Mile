@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,29 +18,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start-screen.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZHK-Wb-XFg">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nc3-6I-qae">
+                                <rect key="frame" x="206" y="164" width="158" height="142"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Xtra Mile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIn-Lq-vpm">
-                                <rect key="frame" x="214" y="423" width="172" height="75"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="172" id="6Bt-Sn-mCW"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="43"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Xtra Mile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIn-Lq-vpm">
+                                <rect key="frame" x="223" y="327" width="172" height="75"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.10660787890843663" green="0.79132519654608913" blue="0.88242953431372551" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="ZHK-Wb-XFg" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="B4h-iN-1fQ"/>
-                            <constraint firstItem="HIn-Lq-vpm" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="403" id="RWq-rq-Phn"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="HIn-Lq-vpm" secondAttribute="bottom" constant="102" id="Vp8-hy-lcm"/>
-                            <constraint firstItem="ZHK-Wb-XFg" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="VrM-wh-Ovx"/>
-                            <constraint firstAttribute="trailing" secondItem="ZHK-Wb-XFg" secondAttribute="trailing" id="hVZ-fK-dDe"/>
-                            <constraint firstItem="ZHK-Wb-XFg" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="oBn-Wq-RKW"/>
-                            <constraint firstItem="HIn-Lq-vpm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zGC-7h-Hp3"/>
+                            <constraint firstAttribute="trailing" secondItem="HIn-Lq-vpm" secondAttribute="trailing" id="3io-Nm-0db"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Nc3-6I-qae" secondAttribute="bottom" constant="290" id="PZW-PC-KsW"/>
+                            <constraint firstItem="Nc3-6I-qae" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="QYB-jK-At1"/>
+                            <constraint firstItem="Nc3-6I-qae" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="110" id="Qct-JK-p2A"/>
+                            <constraint firstItem="Nc3-6I-qae" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="90" id="RD1-v2-fgK"/>
+                            <constraint firstItem="Nc3-6I-qae" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="80" id="Rd1-S9-NID"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="HIn-Lq-vpm" secondAttribute="bottom" constant="229" id="VlW-4O-THg"/>
+                            <constraint firstItem="Nc3-6I-qae" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="X8t-zV-2jP"/>
+                            <constraint firstItem="HIn-Lq-vpm" firstAttribute="centerX" secondItem="Nc3-6I-qae" secondAttribute="centerX" id="YSy-Wf-IT6"/>
+                            <constraint firstItem="HIn-Lq-vpm" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ZEF-Bh-SYu"/>
+                            <constraint firstItem="HIn-Lq-vpm" firstAttribute="top" secondItem="Nc3-6I-qae" secondAttribute="bottom" constant="8" id="aOW-rn-T8R"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Nc3-6I-qae" secondAttribute="trailing" constant="80" id="bRa-Pe-One"/>
+                            <constraint firstItem="HIn-Lq-vpm" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="278" id="egD-Ey-LBg"/>
+                            <constraint firstItem="Nc3-6I-qae" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="l6E-kG-jLM"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="HIn-Lq-vpm" secondAttribute="bottom" constant="209" id="pSe-sR-7eu"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="QYB-jK-At1"/>
+                                <exclude reference="Qct-JK-p2A"/>
+                                <exclude reference="RD1-v2-fgK"/>
+                                <exclude reference="Rd1-S9-NID"/>
+                                <exclude reference="X8t-zV-2jP"/>
+                                <exclude reference="bRa-Pe-One"/>
+                                <exclude reference="l6E-kG-jLM"/>
+                                <exclude reference="3io-Nm-0db"/>
+                                <exclude reference="YSy-Wf-IT6"/>
+                                <exclude reference="ZEF-Bh-SYu"/>
+                                <exclude reference="aOW-rn-T8R"/>
+                                <exclude reference="egD-Ey-LBg"/>
+                                <exclude reference="PZW-PC-KsW"/>
+                                <exclude reference="VlW-4O-THg"/>
+                                <exclude reference="pSe-sR-7eu"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="QYB-jK-At1"/>
+                                <include reference="Qct-JK-p2A"/>
+                                <exclude reference="RD1-v2-fgK"/>
+                                <exclude reference="Rd1-S9-NID"/>
+                                <exclude reference="X8t-zV-2jP"/>
+                                <exclude reference="bRa-Pe-One"/>
+                                <exclude reference="l6E-kG-jLM"/>
+                                <include reference="3io-Nm-0db"/>
+                                <include reference="YSy-Wf-IT6"/>
+                                <include reference="ZEF-Bh-SYu"/>
+                                <exclude reference="aOW-rn-T8R"/>
+                                <include reference="egD-Ey-LBg"/>
+                                <exclude reference="PZW-PC-KsW"/>
+                                <include reference="VlW-4O-THg"/>
+                                <exclude reference="pSe-sR-7eu"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -48,6 +92,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="start-screen.png" width="320" height="568"/>
+        <image name="icon1.png" width="180" height="180"/>
     </resources>
 </document>

@@ -13,30 +13,35 @@
 #import "Math.h"
 #import "Run.h"
 #import "BadgeDetailsViewController.h"
+#import "AppDelegate.h"
+
 
 @interface BadgesTableViewController ()
 
-@property (strong, nonatomic) UIColor *redColor;
-@property (strong, nonatomic) UIColor *greenColor;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
-//@property (assign, nonatomic) CGAffineTransform transform;
 
 @end
 
 @implementation BadgesTableViewController
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
-    self.redColor = [UIColor colorWithRed:1.0f green:20/255.0 blue:44/255.0 alpha:1.0f];
-    self.greenColor = [UIColor colorWithRed:0.0f green:146/255.0 blue:78/255.0 alpha:1.0f];
-    
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-//    self.transform = CGAffineTransformMakeRotation(M_PI/8);
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
    }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -66,38 +71,79 @@
     BadgeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BadgeCell" forIndexPath:indexPath];
     BadgeEarnStatus *earnStatus = [self.earnStatusArray objectAtIndex:indexPath.row];
     
-
-    
     if (earnStatus.earnRun) {
-        
         cell.nameLabel.textColor = [UIColor blackColor];
-//        cell.nameLabel.textColor = self.greenColor;
         cell.nameLabel.text = earnStatus.badge.name;
         cell.descLabel.textColor = [UIColor grayColor];
-//        cell.descLabel.textColor = self.greenColor;
         cell.descLabel.text = [NSString stringWithFormat:@"Earned: %@", [self.dateFormatter stringFromDate:earnStatus.earnRun.timestamp]];
         cell.badgeImageView.image = [UIImage imageNamed:earnStatus.badge.imageName];
-        cell.silverImageView.hidden = !earnStatus.silverRun;
-        cell.goldImageView.hidden = !earnStatus.goldRun;
-//        cell.silverImageView.transform = self.transform;
-//        cell.goldImageView.transform = self.transform;
-        cell.userInteractionEnabled = YES;
         
-//    }
+        if (!earnStatus.silverRun) {
+            
+            cell.silverImageView.hidden = NO;
+        } else {
+            cell.silverImageView.hidden = YES;
+        }
+        
+        
+        if (!earnStatus.goldRun) {
+            cell.goldImageView.hidden = NO;
+        } else {
+            cell.goldImageView.hidden = YES;
+        }
+        
+//        cell.silverImageView.hidden = !earnStatus.silverRun;
+//        cell.goldImageView.hidden = !earnStatus.goldRun;
+
+        cell.userInteractionEnabled = YES;
     } else {
         cell.nameLabel.textColor = nil;
         cell.nameLabel.text = nil;
         cell.descLabel.textColor = nil;
         cell.descLabel.text = nil;
         cell.badgeImageView.image = nil;
+        cell.silverImageView.hidden = YES;
+        cell.goldImageView.hidden = YES;
         cell.userInteractionEnabled = NO;
-    
     }
-
     return cell;
 }
 
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+ 
+                
+        BadgeEarnStatus *bStatus = [self.earnStatusArray objectAtIndex:indexPath.row];
+        NSMutableArray *bArray = [[NSMutableArray alloc] init];
+        [bArray insertObject:bStatus atIndex:0];
+
+    
+        [self.earnStatusArray removeObjectAtIndex:indexPath.row];
+        
+        NSMutableArray *savedArray = [NSMutableArray arrayWithObject:indexPath];
+        
+        [self.tableView deleteRowsAtIndexPaths:savedArray withRowAnimation:UITableViewRowAnimationAutomatic];
+
+        
+    }
+}
+
+
+
+
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
 
 /*
 // Override to support conditional editing of the table view.

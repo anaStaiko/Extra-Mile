@@ -17,10 +17,8 @@
 #import "AppDelegate.h"
 
 
-@interface PastRunsViewController () { 
-    
-//    NSMutableArray *rowsContent;
-}
+@interface PastRunsViewController ()
+
 
 @end
 
@@ -36,6 +34,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 //    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor darkGrayColor] forKey:NSForegroundColorAttributeName]];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -46,13 +48,11 @@
 
 #pragma mark - Contents Assignment
 
-
--(void)setRunArray:(NSArray *)runArray {
-    
-//    rowsContent = [NSMutableArray arrayWithArray:runArray];
-    _runArray = [runArray mutableCopy];
-    [self.tableView reloadData];
-}
+//
+//-(void)setRunArray:(NSArray *)runArray {
+//    _runArray = [runArray mutableCopy];
+//    [self.tableView reloadData];
+//}
 
 
 
@@ -94,12 +94,6 @@
 
 #pragma mark - Table Changes
 
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleDelete;
-}
-
-
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -138,27 +132,10 @@
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
+
     
     return YES;
 }
-
-
-
-//#pragma mark Row reordering
-// Determine whether a given row is eligible for reordering or not.
-//- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return YES;
-//}
-////// Process the row move. This means updating the data model to correct the item indices.
-//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
-//      toIndexPath:(NSIndexPath *)toIndexPath {
-//    NSString *item = [rowsContent objectAtIndex:fromIndexPath.row];
-//    [rowsContent removeObject:item];
-//    [rowsContent insertObject:item atIndex:toIndexPath.row];
-//}
-//
-
-
 
 
 @end

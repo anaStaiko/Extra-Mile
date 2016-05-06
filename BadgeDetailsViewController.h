@@ -12,6 +12,7 @@
 
 @interface BadgeDetailsViewController : UIViewController
 
-@property (strong, nonatomic) BadgeEarnStatus *earnStatus; 
+@property (strong, nonatomic) BadgeEarnStatus *earnStatus;
+
 
 @end

@@ -17,7 +17,9 @@
 #import "BadgeController.h"
 #import "Badge.h"
 #import <AudioToolbox/AudioToolbox.h>
-
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <QuartzCore/QuartzCore.h>
 
 static NSString * const detailSegueName = @"RunDetails";
 
@@ -28,88 +30,111 @@ static NSString * const detailSegueName = @"RunDetails";
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSMutableArray *locations;
 @property (nonatomic, strong) NSTimer *timer;
-
 @property (nonatomic, strong) Run *run;
-
 @property (nonatomic, strong) Badge *upcomingBadge;
 @property (nonatomic, weak) IBOutlet UILabel *nextBadgeLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *nextBadgeImageView;
-
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
-
-//@property (nonatomic, weak) IBOutlet UILabel *promptLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *distLabel;
 @property (nonatomic, weak) IBOutlet UILabel *paceLabel;
 @property (nonatomic, weak) IBOutlet UIButton *startButton;
 @property (nonatomic, weak) IBOutlet UIButton *stopButton;
+@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
+@property (weak, nonatomic) IBOutlet UIButton *resumeButton;
 
-
-
-@property (weak, nonatomic) IBOutlet UILabel *T1;
-@property (weak, nonatomic) IBOutlet UILabel *D1;
-@property (weak, nonatomic) IBOutlet UILabel *P1;
-@property (weak, nonatomic) IBOutlet UILabel *NB1;
-
-
-
+- (IBAction)pause:(id)sender;
+- (IBAction)resume:(id)sender;
 
 @end
 
 @implementation NewRunViewController
 
+bool isShownImage = false;
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     UINavigationBar *navBar = self.navigationController.navigationBar;
     UIImage *image = [UIImage imageNamed:@"gradient-strip-top.png"];
     [navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor darkGrayColor] forKey:NSForegroundColorAttributeName]];
     
-    self.T1.hidden = NO;
-    self.P1.hidden = NO;
-    self.NB1.hidden = NO;
-    self.D1.hidden = NO;
-    
-    
-    
-}
 
+    self.mapView.showsUserLocation = YES;
+    self.mapView.showsBuildings = YES;
+    
+// [self startLocationUpdates];
+   
+       
+        // Compass
+    _locationManager=[[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    [_locationManager startUpdatingHeading];
+    _compassImageB.layer.opacity = 0;
+    
+     }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.startButton.hidden = NO;
-//    self.promptLabel.hidden = NO;
     
-    self.timeLabel.text = @"";
+//    [self.locationManager startUpdatingLocation];
+//    [self startLocationUpdates];
+    
+    self.timeLabel.text = @"00:00";
     self.timeLabel.hidden = NO;
+    self.distLabel.text = @"0.00";
     self.distLabel.hidden = NO;
+    self.paceLabel.text = @"00:00";
     self.paceLabel.hidden = NO;
-    self.stopButton.hidden = NO;
-    
-    self.mapView.hidden = NO;
-    
+    self.nextBadgeLabel.text = @"0:00";
     self.nextBadgeLabel.hidden = NO;
+    self.nextBadgeImageView.image = [UIImage imageNamed: @"badge1.png"];
     self.nextBadgeImageView.hidden = NO;
-
+    
+//    self.mapView.hidden = NO;
+    self.stopButton.hidden = NO;
+    self.startButton.hidden = NO;
+    self.pauseButton.hidden = YES;
+    self.resumeButton.hidden = YES;
 }
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    MKCoordinateRegion region =
+    MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 500, 500);
+    [self.mapView setRegion:region animated:NO];
+}
+
 
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.timer invalidate];
+//    [self.timer invalidate];
+    
+
 }
 
 
+
 - (void)eachSecond {
+    
     self.seconds++;
-    self.timeLabel.text = [NSString stringWithFormat:@"Time: \n %@", [Math stringifySecondCount:self.seconds usingLongFormat:NO]];
-    self.distLabel.text = [NSString stringWithFormat:@"Distance: \n %@", [Math stringifyDistance:self.distance]];
-    self.paceLabel.text = [NSString stringWithFormat:@"Pace: \n %@", [Math stringifyAvgPaceFromDist:self.distance overTime:self.seconds]];
-    self.nextBadgeLabel.text = [NSString stringWithFormat:@"%@ Until \n %@!", [Math stringifyDistance:(self.upcomingBadge.distance - self.distance)], self.upcomingBadge.name];
+    self.timeLabel.text = [NSString stringWithFormat:@"%@", [Math stringifySecondCount:self.seconds usingLongFormat:NO]];
+    
+//       self.timeLabel.text = [NSString stringWithFormat:@"%@", [Math stringifySecondCount:self.seconds/60 usingLongFormat:YES]];
+    
+    self.distLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyDistance:self.distance]];
+    self.paceLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyAvgPaceFromDist:self.distance overTime:self.seconds]];
+    self.nextBadgeLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyDistance:(self.upcomingBadge.distance - self.distance)]];
+//    
+//     self.nextBadgeLabel.text = [NSString stringWithFormat:@"%@ until %@!", [Math stringifyDistance:(self.upcomingBadge.distance - self.distance)], self.upcomingBadge.name];
     [self checkNextBadge];
-                                                                                                  
+
+                                                                                                     
 }
 
 - (void)checkNextBadge
@@ -118,22 +143,20 @@ static NSString * const detailSegueName = @"RunDetails";
     
     if (self.upcomingBadge
         && ![nextBadge.name isEqualToString:self.upcomingBadge.name]) {
-        
         [self playSuccessSound];
     }
-    
     self.upcomingBadge = nextBadge;
     self.nextBadgeImageView.image = [UIImage imageNamed:nextBadge.imageName];
 }
 
 - (void)playSuccessSound
 {
-    NSString *path = [NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], @"/success.wav"];
-    SystemSoundID soundID;
-    NSURL *filePath = [NSURL fileURLWithPath:path isDirectory:NO];
-    AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain(filePath), &soundID);
-    AudioServicesPlaySystemSound(soundID);
-    
+//    NSString *path = [NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], @"/success.wav"];
+//    SystemSoundID soundID;
+//    NSURL *filePath = [NSURL fileURLWithPath:path isDirectory:NO];
+//    AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain(filePath), &soundID);
+//    AudioServicesPlaySystemSound(soundID);
+//    
     //also vibrate
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
@@ -141,11 +164,9 @@ static NSString * const detailSegueName = @"RunDetails";
 
 - (void)startLocationUpdates
 {
-
     if (self.locationManager == nil) {
         self.locationManager = [[CLLocationManager alloc] init];
     }
-    
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.activityType = CLActivityTypeFitness;
@@ -154,7 +175,7 @@ static NSString * const detailSegueName = @"RunDetails";
     
     // Movement threshold for new events.
     self.locationManager.distanceFilter = 10; // meters
-    
+//
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [self.locationManager requestWhenInUseAuthorization];
             [self.locationManager requestAlwaysAuthorization];
@@ -229,8 +250,11 @@ static NSString * const detailSegueName = @"RunDetails";
 -(IBAction)startPressed:(id)sender {
     
     //hide the start UI
-    self.startButton.hidden = NO;
-//    self.promptLabel.hidden = YES;
+    self.startButton.hidden = YES;
+    
+    self.pauseButton.hidden = NO;
+    self.resumeButton.hidden = YES;
+
     
     //show the running UI
     self.timeLabel.hidden = NO;
@@ -244,21 +268,10 @@ static NSString * const detailSegueName = @"RunDetails";
     self.timer = [NSTimer scheduledTimerWithTimeInterval:(1.0) target:self
                                                 selector:@selector(eachSecond) userInfo:nil repeats:YES];
     self.mapView.hidden = NO;
-    
     self.nextBadgeImageView.hidden = NO;
     self.nextBadgeLabel.hidden = NO;
-    
     [self startLocationUpdates];
-    
-    
-    
-    self.T1.hidden = YES;
-    self.P1.hidden = YES;
-    self.NB1.hidden = YES;
-    self.D1.hidden = YES;
-    
-  
-    
+
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
@@ -266,7 +279,7 @@ static NSString * const detailSegueName = @"RunDetails";
     if ([overlay isKindOfClass:[MKPolyline class]]) {
         MKPolyline *polyLine = (MKPolyline *)overlay;
         MKPolylineRenderer *aRenderer = [[MKPolylineRenderer alloc] initWithPolyline:polyLine];
-        aRenderer.strokeColor = [UIColor blueColor];
+        aRenderer.strokeColor = [UIColor colorWithRed:0 green:206 blue:209 alpha:1.0];
         aRenderer.lineWidth = 3;
         return aRenderer;
     }
@@ -276,6 +289,18 @@ static NSString * const detailSegueName = @"RunDetails";
 
 
 -(IBAction)stopPressed:(id)sender {
+    
+//    [self.locationManager stopUpdatingLocation];
+//    [self.timer invalidate];
+    
+    [self pauseTimer:_timer];
+    
+    self.pauseButton.hidden = YES;
+    self.resumeButton.hidden = YES;
+    self.startButton.hidden = NO;
+    
+
+
     
     UIAlertController * alert=   [UIAlertController
                                   alertControllerWithTitle:@"Would you like to save your results?"
@@ -287,6 +312,9 @@ static NSString * const detailSegueName = @"RunDetails";
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction * action)
                          {
+                                 [self.locationManager stopUpdatingLocation];
+                                 [self.timer invalidate];
+                             
                               [self saveRun];
                               [self performSegueWithIdentifier:detailSegueName sender:nil];
                              
@@ -296,8 +324,11 @@ static NSString * const detailSegueName = @"RunDetails";
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
-                                 [self dismissViewControllerAnimated:YES completion:nil];
                                  
+                          [self dismissViewControllerAnimated:YES completion:nil];
+                                 
+                                 [self resumeTimer:_timer];
+
                              }];
     
     UIAlertAction* discard = [UIAlertAction
@@ -305,9 +336,20 @@ static NSString * const detailSegueName = @"RunDetails";
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
-                                 [self.navigationController popToRootViewControllerAnimated:YES];
-
+                                 [self dismissViewControllerAnimated:YES completion:nil];
                                  
+                                 [self.locationManager stopUpdatingLocation];
+                                 [self.timer invalidate];
+                                 
+                                 self.timeLabel.text = @"00:00";
+                                 self.distLabel.text = @"0.00";
+                                 self.paceLabel.text = @"00:00";
+                                 self.nextBadgeLabel.text = @"0:00";
+                                 self.nextBadgeImageView.image = [UIImage imageNamed: @"badge1.png"];
+
+//                                 
+//                                 [self.navigationController popToRootViewControllerAnimated:YES];
+  
                              }];
 
     [alert addAction:save];
@@ -315,13 +357,7 @@ static NSString * const detailSegueName = @"RunDetails";
     [alert addAction:discard];
     
     [self presentViewController:alert animated:YES completion:nil];
-    
-    [self.locationManager stopUpdatingLocation];
-    [self.timer invalidate];
-    
-
-    }
-
+}
 
 
 -(void)alertController:(UIAlertController *)alerController clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -337,16 +373,20 @@ static NSString * const detailSegueName = @"RunDetails";
         } else if (buttonIndex == 1) {
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
-    
 }
-
 
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
     [[segue destinationViewController] setRun:self.run];
 }
+
+
+
+
+
 
 // Record Video
 
@@ -360,7 +400,6 @@ static NSString * const detailSegueName = @"RunDetails";
     
     [self startCameraControllerFromViewController1:self usingDelegate:self];
 }
-
 
 
 -(BOOL)startCameraControllerFromViewController:(UIViewController*)controller
@@ -399,14 +438,10 @@ static NSString * const detailSegueName = @"RunDetails";
 }
 
 
-
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-
 
 
 // For responding to the user accepting a newly-captured picture or movie
@@ -467,21 +502,15 @@ static NSString * const detailSegueName = @"RunDetails";
                              {
                                  [self dismissViewControllerAnimated:YES completion:nil];
                              }];
-        
-        
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
         
     } else {
-        
-        
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"Video Saved"
                                       message:@"Saved to Photo Album"
                                       preferredStyle:UIAlertControllerStyleAlert];
-        
-        
-        
+ 
         UIAlertAction* ok = [UIAlertAction
                              actionWithTitle:@"OK"
                              style:UIAlertActionStyleDefault
@@ -489,8 +518,7 @@ static NSString * const detailSegueName = @"RunDetails";
                              {
                                  [self dismissViewControllerAnimated:YES completion:nil];
                              }];
-        
-        
+
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
         
@@ -506,8 +534,6 @@ static NSString * const detailSegueName = @"RunDetails";
                                       message:@"Photo Saving Failed"
                                       preferredStyle:UIAlertControllerStyleAlert];
         
-        
-        
         UIAlertAction* ok = [UIAlertAction
                              actionWithTitle:@"OK"
                              style:UIAlertActionStyleDefault
@@ -515,21 +541,17 @@ static NSString * const detailSegueName = @"RunDetails";
                              {
                                  [self dismissViewControllerAnimated:YES completion:nil];
                              }];
-        
         
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
         
     } else {
-        
-        
+
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"Photo Saved"
                                       message:@"Saved to Photo Album"
                                       preferredStyle:UIAlertControllerStyleAlert];
-        
-        
-        
+
         UIAlertAction* ok = [UIAlertAction
                              actionWithTitle:@"OK"
                              style:UIAlertActionStyleDefault
@@ -537,7 +559,6 @@ static NSString * const detailSegueName = @"RunDetails";
                              {
                                  [self dismissViewControllerAnimated:YES completion:nil];
                              }];
-        
         
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
@@ -546,22 +567,81 @@ static NSString * const detailSegueName = @"RunDetails";
 }
 
 
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
+    // Convert Degree to Radian and move the needle
+    float oldRad = -manager.heading.trueHeading * M_PI / 180.0f;
+    float newRad = -newHeading.trueHeading * M_PI / 180.0f;
+    
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         _compassImageB.transform = CGAffineTransformMakeRotation(newRad);
+                     }];
+    NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)compassButtonTog:(id)sender {
+
+    if (!isShownImage) {
+        [UIImageView animateWithDuration:0.5 animations:^{
+            _compassImageB.layer.opacity = 1;
+        }];
+        isShownImage = true;
+    } else {
+        [UIImageView animateWithDuration:0.5 animations:^{
+            _compassImageB.layer.opacity = 0;
+        }];
+        isShownImage = false;
+    }
+   
 }
-*/
+
+
+
+
+
+NSDate *pauseStart, *previousFireDate;
+
+-(void) pauseTimer:(NSTimer *)timer {
+    
+    pauseStart = [NSDate dateWithTimeIntervalSinceNow:0];
+    
+    previousFireDate = [timer fireDate];
+    
+    [timer setFireDate:[NSDate distantFuture]];
+}
+
+-(void) resumeTimer:(NSTimer *)timer {
+    
+    float pauseTime = -1*[pauseStart timeIntervalSinceNow];
+    
+    [timer setFireDate:[previousFireDate initWithTimeInterval:pauseTime sinceDate:previousFireDate]];
+    
+}
+
+
+
+
+
+- (IBAction)pause:(id)sender {
+    
+    [self pauseTimer:_timer];
+//    [self.locationManager stopUpdatingLocation];
+    
+    self.pauseButton.hidden = YES;
+    self.resumeButton.hidden = NO;
+   
+}
+
+- (IBAction)resume:(id)sender {
+    
+    [self resumeTimer:_timer];
+//    [self.locationManager startUpdatingLocation];
+    
+    self.pauseButton.hidden = NO;
+    self.resumeButton.hidden = YES;
+}
+
+
 
 @end

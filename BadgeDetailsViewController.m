@@ -36,11 +36,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
 
     self.nameLabel.text = self.earnStatus.badge.name;
-    self.distanceLabel.text = [Math stringifyDistance:self.earnStatus.badge.distance];
+    
+    self.distanceLabel.text = [NSString stringWithFormat:@"%@ mi", [Math stringifyDistance:self.earnStatus.badge.distance]];
+    
+//    self.distanceLabel.text = [Math stringifyDistance:self.earnStatus.badge.distance];
     self.badgeImageView.image = [UIImage imageNamed:self.earnStatus.badge.imageName];
     self.earnedLabel.text = [NSString stringWithFormat:@"Reached on %@" , [formatter stringFromDate:self.earnStatus.earnRun.timestamp]];
     
@@ -49,6 +54,7 @@
         self.silverLabel.text = [NSString stringWithFormat:@"Earned on %@" , [formatter stringFromDate:self.earnStatus.silverRun.timestamp]];
         
     } else {
+//        self.silverImageView.hidden = NO;
         self.silverImageView.hidden = YES;
         self.silverLabel.text = [NSString stringWithFormat:@"Pace < %@ for silver!", [Math stringifyAvgPaceFromDist:(self.earnStatus.earnRun.distance.floatValue * silverMultiplier) overTime:self.earnStatus.earnRun.duration.intValue]];
     }
@@ -58,11 +64,12 @@
         self.goldLabel.text = [NSString stringWithFormat:@"Earned on %@" , [formatter stringFromDate:self.earnStatus.goldRun.timestamp]];
         
     } else {
+//        self.goldImageView.hidden = NO;
         self.goldImageView.hidden = YES;
         self.goldLabel.text = [NSString stringWithFormat:@"Pace < %@ for gold!", [Math stringifyAvgPaceFromDist:(self.earnStatus.earnRun.distance.floatValue * goldMultiplier) overTime:self.earnStatus.earnRun.duration.intValue]];
     }
     
-    self.bestLabel.text = [NSString stringWithFormat:@"Best: %@, %@", [Math stringifyAvgPaceFromDist:self.earnStatus.bestRun.distance.floatValue overTime:self.earnStatus.bestRun.duration.intValue], [formatter stringFromDate:self.earnStatus.bestRun.timestamp]];
+    self.bestLabel.text = [NSString stringWithFormat:@"Best result: %@ min/mi \n Reached on %@", [Math stringifyAvgPaceFromDist:self.earnStatus.bestRun.distance.floatValue overTime:self.earnStatus.bestRun.duration.intValue], [formatter stringFromDate:self.earnStatus.bestRun.timestamp]];
 }
 
 

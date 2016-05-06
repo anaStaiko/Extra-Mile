@@ -91,21 +91,22 @@ float const goldMultiplier = 1.10; // 10% speed increase
                 double earnRunSpeed = earnStatus.earnRun.distance.doubleValue / earnStatus.earnRun.duration.doubleValue;
                 double runSpeed = run.distance.doubleValue / run.duration.doubleValue;
                 
-                // silver?
+                // silver
                 if (!earnStatus.silverRun
                     && runSpeed > earnRunSpeed * silverMultiplier) {
                     
                     earnStatus.silverRun = run;
                 }
                 
-                // gold?
+                
+                // gold
                 if (!earnStatus.goldRun
                     && runSpeed > earnRunSpeed * goldMultiplier) {
                     
                     earnStatus.goldRun = run;
                 }
                 
-                // is it the best for this distance?
+                // Best run for this distance
                 if (!earnStatus.bestRun) {
                     earnStatus.bestRun = run;
                     

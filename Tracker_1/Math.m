@@ -120,8 +120,8 @@ static float const metersInMile = 1609.344;
         // to get from meters to miles divide by this
         unitDivider = metersInMile;
     }
-    
-    return [NSString stringWithFormat:@"%.2f %@", (meters / unitDivider), unitName];
+       return [NSString stringWithFormat:@"%.2f", meters / unitDivider];
+//    return [NSString stringWithFormat:@"%.2f %@", (meters / unitDivider), unitName];
 }
 
 + (NSString *)stringifySecondCount:(int)seconds usingLongFormat:(BOOL)longFormat
@@ -134,11 +134,14 @@ static float const metersInMile = 1609.344;
     
     if (longFormat) {
         if (hours > 0) {
-            return [NSString stringWithFormat:@"%ihr %imin %isec", hours, minutes, remainingSeconds];
+            return [NSString stringWithFormat:@"%i %i %i", hours, minutes, remainingSeconds];
+//             return [NSString stringWithFormat:@"%ihr %imin %isec", hours, minutes, remainingSeconds];
         } else if (minutes > 0) {
-            return [NSString stringWithFormat:@"%imin %isec", minutes, remainingSeconds];
+            return [NSString stringWithFormat:@"%i %i", minutes, remainingSeconds];
+//                return [NSString stringWithFormat:@"%imin %isec", minutes, remainingSeconds];
         } else {
-            return [NSString stringWithFormat:@"%isec", remainingSeconds];
+            return [NSString stringWithFormat:@"%i", remainingSeconds];
+//                return [NSString stringWithFormat:@"%isec", remainingSeconds];
         }
     } else {
         if (hours > 0) {
@@ -156,6 +159,7 @@ static float const metersInMile = 1609.344;
     if (seconds == 0 || meters == 0) {
         return @"0";
     }
+
     
     float avgPaceSecMeters = seconds / meters;
     
@@ -171,11 +175,13 @@ static float const metersInMile = 1609.344;
         unitName = @"min/mi";
         unitMultiplier = metersInMile;
     }
-    
+
     int paceMin = (int) ((avgPaceSecMeters * unitMultiplier) / 60);
     int paceSec = (int) (avgPaceSecMeters * unitMultiplier - (paceMin*60));
     
-    return [NSString stringWithFormat:@"%i:%02i %@", paceMin, paceSec, unitName];
+    return [NSString stringWithFormat:@"%i:%02i", paceMin, paceSec];
+//        return [NSString stringWithFormat:@"%i:%02i %@", paceMin, paceSec, unitName];
+   
 }
 
 @end

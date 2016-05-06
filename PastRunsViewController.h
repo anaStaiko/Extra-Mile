@@ -14,9 +14,10 @@
 
 @interface PastRunsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
-//@property (strong, nonatomic) NSArray *runArray;
-
 @property (strong, nonatomic) NSMutableArray *runArray;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+
+
 
 @end

@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BadgesTableViewController : UITableViewController
+@interface BadgesTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSArray *earnStatusArray;
+//@property (strong, nonatomic) NSArray *earnStatusArray;
+
+@property (strong, nonatomic) NSMutableArray *earnStatusArray;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

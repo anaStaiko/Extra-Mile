@@ -16,6 +16,7 @@
 #import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+
 @interface HomeViewController : UIViewController  <CLLocationManagerDelegate, MKMapViewDelegate> {
     
     CLLocationManager *locationManager;
@@ -24,13 +25,9 @@
 }
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
-
-- (IBAction)compass:(id)sender;
-
-
-
+- (IBAction)btnToggleClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *btnToggle;
 
 @end

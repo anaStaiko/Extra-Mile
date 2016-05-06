@@ -30,6 +30,9 @@
 //@property (weak, nonatomic) IBOutlet UISegmentedControl *seg;
 @property FiltersViewController *filtersVC;
 
+@property (weak, nonatomic) IBOutlet UIButton *loadPhotoProp;
+
+
 //Touching the Segmented Control shows the Original or Filtered Image (iPad)
 //- (IBAction)valueChanged:(UISegmentedControl *)sender;
 

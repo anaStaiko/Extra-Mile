@@ -28,9 +28,9 @@
 }
 
 
-- (BOOL) prefersStatusBarHidden {
-    return YES;
-}
+//- (BOOL) prefersStatusBarHidden {
+//    return YES;
+//}
 
 
 
@@ -58,8 +58,13 @@
         self.image = image;
     }
     
-//    
+    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+    
+//     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor darkGrayColor] forKey:NSForegroundColorAttributeName]];
+////    
 //    UINavigationBar *navBar = self.navigationController.navigationBar;
+    
+//    
     UIImage *imageNav = [UIImage imageNamed:@"gradient-strip-top.png"];
     [_navBar setBackgroundImage:imageNav forBarMetrics:UIBarMetricsDefault];
 }

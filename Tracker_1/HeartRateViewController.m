@@ -10,8 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PulseDetector.h"
 #import "Filter.h"
-#import "PopupView.h"
-#import "PopupViewAnimationFade.h"
+//#import "PopupView.h"
+//#import "PopupViewAnimationFade.h"
 
 
 typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
@@ -34,18 +34,24 @@ typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
 @property(nonatomic, strong) IBOutlet UILabel *pulseRate;
 @property(nonatomic, strong) IBOutlet UILabel *validFrames;
 
+- (IBAction)startBtn:(id)sender;
+
+- (IBAction)stopBtn:(id)sender;
+
+
+
+
+
 @end
 
 @implementation HeartRateViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.filter=[[Filter alloc] init];
-    self.pulseDetector=[[PulseDetector alloc] init];
-    [self startCameraCapture];
     
     
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor darkGrayColor] forKey:NSForegroundColorAttributeName]];
     
 }
 
@@ -270,15 +276,22 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
 
 
 
+- (IBAction)startBtn:(id)sender {
+    
+    self.filter=[[Filter alloc] init];
+    self.pulseDetector=[[PulseDetector alloc] init];
+    [self startCameraCapture];
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
 }
-*/
+
+- (IBAction)stopBtn:(id)sender {
+    
+    [self.session stopRunning];
+    self.session=nil;
+}
+
+
+
 
 @end
