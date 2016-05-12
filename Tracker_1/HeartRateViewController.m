@@ -38,10 +38,6 @@ typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
 
 - (IBAction)stopBtn:(id)sender;
 
-
-
-
-
 @end
 
 @implementation HeartRateViewController
@@ -52,7 +48,6 @@ typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
     
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor darkGrayColor] forKey:NSForegroundColorAttributeName]];
-    
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -261,18 +256,6 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
         self.pulseRate.text=[NSString stringWithFormat:@"%0.0f", pulse];
     }
 }
-
-//
-//- (IBAction)popupViewFadeAction:(id)sender {
-//    
-//    PopupView *view = [PopupView defaultPopupView];
-//    view.parentVC = self;
-//    
-//    [self presentPopupView:view animation:[PopupViewAnimationFade new] dismissed:^{
-//        NSLog(@"View is loaded");
-//    }];
-//    
-//}
 
 
 

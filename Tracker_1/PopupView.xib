@@ -12,49 +12,64 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="450"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="There are 30 Badges total. Runners get 1 badge for each mile they run, making it 30 mi to win all 30 Badges." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZr-Wi-WxO">
-                    <rect key="frame" x="15" y="9" width="271" height="67"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOd-jx-QlV">
-                    <rect key="frame" x="106" y="450" width="101" height="42"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOd-jx-QlV">
+                    <rect key="frame" x="100" y="404" width="101" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="101" id="WG9-AC-QTl"/>
+                        <constraint firstAttribute="height" constant="42" id="cxf-TQ-NdT"/>
+                    </constraints>
                     <state key="normal" title="Dismiss" image=" " backgroundImage="dismiss-button.png"/>
                     <connections>
                         <action selector="dismissAction:" destination="-1" eventType="touchUpInside" id="cB9-jh-AMf"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="badges-all.png" translatesAutoresizingMaskIntoConstraints="NO" id="yux-dk-H7y">
-                    <rect key="frame" x="30" y="73" width="240" height="261"/>
-                </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="When a Runner reaches next Badge with 5% and 10% speep increase, a Silver and Gold Badges are aworded accordingly. " textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecK-V5-4tQ">
-                    <rect key="frame" x="30" y="337" width="203" height="100"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZr-Wi-WxO">
+                    <rect key="frame" x="30" y="5" width="235" height="107"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="107" id="vsK-v8-8C8"/>
+                    </constraints>
+                    <string key="text">There are 30 Badges total, each of them is awarded for running 1 mile. To win all 30 Badges you must complete 30 miles in one run.</string>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="GoldG.png" translatesAutoresizingMaskIntoConstraints="NO" id="do1-Ns-F0c">
-                    <rect key="frame" x="238" y="389" width="30" height="30"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SilverG.png" translatesAutoresizingMaskIntoConstraints="NO" id="zK1-2x-JMC">
-                    <rect key="frame" x="238" y="351" width="30" height="30"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="badges-all.png" translatesAutoresizingMaskIntoConstraints="NO" id="yux-dk-H7y">
+                    <rect key="frame" x="30" y="116" width="240" height="278"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="GQe-cj-UYr"/>
+                        <constraint firstAttribute="height" constant="278" id="oAQ-kI-BXZ"/>
+                    </constraints>
                 </imageView>
             </subviews>
+            <constraints>
+                <constraint firstItem="hZr-Wi-WxO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="32s-WJ-YB0"/>
+                <constraint firstAttribute="trailing" secondItem="lOd-jx-QlV" secondAttribute="trailing" constant="99" id="7N0-eg-pSi"/>
+                <constraint firstItem="hZr-Wi-WxO" firstAttribute="centerX" secondItem="yux-dk-H7y" secondAttribute="centerX" constant="-2.5" id="8oR-f9-jY9"/>
+                <constraint firstItem="yux-dk-H7y" firstAttribute="top" secondItem="hZr-Wi-WxO" secondAttribute="bottom" constant="4" id="H8I-dt-QeT"/>
+                <constraint firstItem="hZr-Wi-WxO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-2.5" id="Qft-fF-yq1"/>
+                <constraint firstItem="yux-dk-H7y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="SmB-la-Kcu"/>
+                <constraint firstItem="hZr-Wi-WxO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="eB4-LC-QBF"/>
+                <constraint firstItem="lOd-jx-QlV" firstAttribute="centerX" relation="greaterThanOrEqual" secondItem="yux-dk-H7y" secondAttribute="centerX" id="feZ-bx-bLa"/>
+                <constraint firstItem="lOd-jx-QlV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yux-dk-H7y" secondAttribute="bottom" constant="10" id="tlX-kV-pfg"/>
+                <constraint firstAttribute="bottom" secondItem="lOd-jx-QlV" secondAttribute="bottom" constant="4" id="v2F-cQ-1CL"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="8oR-f9-jY9"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="457" y="375"/>
         </view>
     </objects>
     <resources>
-        <image name=" " width="48" height="40"/>
-        <image name="GoldG.png" width="28" height="27"/>
-        <image name="SilverG.png" width="28" height="27"/>
+        <image name=" " width="212" height="260"/>
         <image name="badges-all.png" width="273" height="325"/>
         <image name="dismiss-button.png" width="160" height="50"/>
     </resources>

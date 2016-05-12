@@ -16,8 +16,8 @@
 #import "Location.h"
 #import "BadgeAnnotation.h"
 
-float const silverMultiplier = 1.05; // 5% speed increase
-float const goldMultiplier = 1.10; // 10% speed increase
+//float const silverMultiplier = 1.05; // 5% speed increase
+//float const goldMultiplier = 1.10; // 10% speed increase
 
 @interface BadgeController ()
 
@@ -88,23 +88,11 @@ float const goldMultiplier = 1.10; // 10% speed increase
                     earnStatus.earnRun = run;
                 }
                 
-                double earnRunSpeed = earnStatus.earnRun.distance.doubleValue / earnStatus.earnRun.duration.doubleValue;
+//                double earnRunSpeed = earnStatus.earnRun.distance.doubleValue / earnStatus.earnRun.duration.doubleValue;
                 double runSpeed = run.distance.doubleValue / run.duration.doubleValue;
-                
-                // silver
-                if (!earnStatus.silverRun
-                    && runSpeed > earnRunSpeed * silverMultiplier) {
-                    
-                    earnStatus.silverRun = run;
-                }
+              
                 
                 
-                // gold
-                if (!earnStatus.goldRun
-                    && runSpeed > earnRunSpeed * goldMultiplier) {
-                    
-                    earnStatus.goldRun = run;
-                }
                 
                 // Best run for this distance
                 if (!earnStatus.bestRun) {

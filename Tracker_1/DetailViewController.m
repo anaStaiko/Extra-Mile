@@ -13,7 +13,7 @@
 #import "Location.h"
 #import "Badge.h"
 #import "BadgeController.h"
-#import "Location.h"
+//#import "Location.h"
 #import "MulticolorPolylineSegment.h"
 #import "BadgeAnnotation.h"
 #import "SWDetailViewController.h"

@@ -20,6 +20,9 @@
 @property (strong, nonatomic) Run *goldRun;
 @property (strong, nonatomic) Run *bestRun;
 
+@property (strong, nonatomic) Run *bestieSilver;
+@property (strong, nonatomic) Run *bestieGold;
+
 
 
 

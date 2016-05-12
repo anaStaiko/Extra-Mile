@@ -10,9 +10,12 @@
 
 @class BadgeEarnStatus;
 
+@class Run;
+
 @interface BadgeDetailsViewController : UIViewController
 
 @property (strong, nonatomic) BadgeEarnStatus *earnStatus;
 
+@property (strong, nonatomic) Run *run;
 
 @end

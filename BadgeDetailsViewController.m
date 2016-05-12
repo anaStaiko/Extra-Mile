@@ -12,9 +12,9 @@
 #import "Math.h"
 #import "Run.h"
 #import "BadgeController.h"
-
 #import "PopupView.h"
 #import "PopupViewAnimationFade.h"
+//#import "Location.h"
 
 @interface BadgeDetailsViewController () 
 
@@ -22,11 +22,15 @@
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *distanceLabel;
 @property (nonatomic, weak) IBOutlet UILabel *earnedLabel;
-@property (nonatomic, weak) IBOutlet UILabel *silverLabel;
-@property (nonatomic, weak) IBOutlet UILabel *goldLabel;
+//@property (nonatomic, weak) IBOutlet UILabel *silverLabel;
+//@property (nonatomic, weak) IBOutlet UILabel *goldLabel;
 @property (nonatomic, weak) IBOutlet UILabel *bestLabel;
-@property (nonatomic, weak) IBOutlet UIImageView *silverImageView;
-@property (nonatomic, weak) IBOutlet UIImageView *goldImageView;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *bestDate;
+
+
+
 
 @end
 
@@ -45,38 +49,25 @@
     
     self.distanceLabel.text = [NSString stringWithFormat:@"%@ mi", [Math stringifyDistance:self.earnStatus.badge.distance]];
     
-//    self.distanceLabel.text = [Math stringifyDistance:self.earnStatus.badge.distance];
     self.badgeImageView.image = [UIImage imageNamed:self.earnStatus.badge.imageName];
     self.earnedLabel.text = [NSString stringWithFormat:@"Reached on %@" , [formatter stringFromDate:self.earnStatus.earnRun.timestamp]];
     
-    if (self.earnStatus.silverRun) {
-        self.silverImageView.hidden = NO;
-        self.silverLabel.text = [NSString stringWithFormat:@"Earned on %@" , [formatter stringFromDate:self.earnStatus.silverRun.timestamp]];
-        
-    } else {
-//        self.silverImageView.hidden = NO;
-        self.silverImageView.hidden = YES;
-        self.silverLabel.text = [NSString stringWithFormat:@"Pace < %@ for silver!", [Math stringifyAvgPaceFromDist:(self.earnStatus.earnRun.distance.floatValue * silverMultiplier) overTime:self.earnStatus.earnRun.duration.intValue]];
-    }
     
-    if (self.earnStatus.goldRun) {
-        self.goldImageView.hidden = NO;
-        self.goldLabel.text = [NSString stringWithFormat:@"Earned on %@" , [formatter stringFromDate:self.earnStatus.goldRun.timestamp]];
-        
-    } else {
-//        self.goldImageView.hidden = NO;
-        self.goldImageView.hidden = YES;
-        self.goldLabel.text = [NSString stringWithFormat:@"Pace < %@ for gold!", [Math stringifyAvgPaceFromDist:(self.earnStatus.earnRun.distance.floatValue * goldMultiplier) overTime:self.earnStatus.earnRun.duration.intValue]];
-    }
     
-    self.bestLabel.text = [NSString stringWithFormat:@"Best result: %@ min/mi \n Reached on %@", [Math stringifyAvgPaceFromDist:self.earnStatus.bestRun.distance.floatValue overTime:self.earnStatus.bestRun.duration.intValue], [formatter stringFromDate:self.earnStatus.bestRun.timestamp]];
-}
+//    
+//    self.myPace.text = [NSString stringWithFormat:@"%@", [Math stringifyAvgPaceFromDist:self.run.distance.floatValue overTime:self.run.duration.intValue]];
 
+    
+//    self.bestLabel.text = [NSString stringWithFormat:@"Your Best Result: %@ min/mi \n Reached on %@", [Math stringifyAvgPaceFromDist:self.earnStatus.bestRun.distance.floatValue overTime:self.earnStatus.bestRun.duration.intValue], [formatter stringFromDate:self.earnStatus.bestRun.timestamp]];
+//    
+    
+    self.bestLabel.text = [NSString stringWithFormat:@"%@ min/mi", [Math stringifyAvgPaceFromDist:self.earnStatus.bestRun.distance.floatValue overTime:self.earnStatus.bestRun.duration.intValue]];
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    
+    self.bestDate.text = [NSString stringWithFormat:@"%@", [formatter stringFromDate:self.earnStatus.bestRun.timestamp]];
+    
+  
 }
 
 

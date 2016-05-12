@@ -14,8 +14,6 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-// Record Video
-
 - (IBAction)recordAndPlay:(id)sender;
 - (IBAction)takePhoto:(id)sender;
 

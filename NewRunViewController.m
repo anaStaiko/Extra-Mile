@@ -52,8 +52,6 @@ static NSString * const detailSegueName = @"RunDetails";
 
 bool isShownImage = false;
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -62,28 +60,31 @@ bool isShownImage = false;
     [navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor darkGrayColor] forKey:NSForegroundColorAttributeName]];
-    
 
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                   initWithTitle: @"Main"
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(aleartBack)];
+    
+    self.navigationItem.leftBarButtonItem = backButton;
+    
     self.mapView.showsUserLocation = YES;
     self.mapView.showsBuildings = YES;
+//    _locationManager.pausesLocationUpdatesAutomatically = YES;
+//    _locationManager.allowsBackgroundLocationUpdates = YES;
+  
     
-// [self startLocationUpdates];
-   
-       
-        // Compass
+    // Compass
     _locationManager=[[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     [_locationManager startUpdatingHeading];
     _compassImageB.layer.opacity = 0;
-    
-     }
+}
+
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    
-//    [self.locationManager startUpdatingLocation];
-//    [self startLocationUpdates];
     
     self.timeLabel.text = @"00:00";
     self.timeLabel.hidden = NO;
@@ -95,8 +96,6 @@ bool isShownImage = false;
     self.nextBadgeLabel.hidden = NO;
     self.nextBadgeImageView.image = [UIImage imageNamed: @"badge1.png"];
     self.nextBadgeImageView.hidden = NO;
-    
-//    self.mapView.hidden = NO;
     self.stopButton.hidden = NO;
     self.startButton.hidden = NO;
     self.pauseButton.hidden = YES;
@@ -110,14 +109,76 @@ bool isShownImage = false;
 }
 
 
-
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-//    [self.timer invalidate];
+-(void)aleartBack {
     
-
+    if (self.startButton.hidden == YES) {
+        [self pauseTimer:_timer];
+        [self.locationManager stopUpdatingLocation];
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Would you like to save your results before exiting?"
+                                      message:@"This action can not be undone"
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* save = [UIAlertAction
+                               actionWithTitle:@"Save"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+//                                   [self.locationManager stopUpdatingLocation];
+                                   [self.timer invalidate];
+                                   
+                                   [self saveRun];
+                                   [self performSegueWithIdentifier:detailSegueName sender:nil];
+                                   
+                               }];
+        UIAlertAction* cancel = [UIAlertAction
+                                 actionWithTitle:@"Cancel"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     
+                                     [self dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                     [self resumeTimer:_timer];
+                                     [self.locationManager startUpdatingLocation];
+                                     self.startButton.hidden = YES;
+                                     
+                                     self.pauseButton.hidden = NO;
+                                     self.resumeButton.hidden = YES;
+                                     
+                                 }];
+        
+        UIAlertAction* discard = [UIAlertAction
+                                  actionWithTitle:@"Don't save"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction * action)
+                                  {
+                                      [self dismissViewControllerAnimated:YES completion:nil];
+                                      
+//                                      [self.locationManager stopUpdatingLocation];
+                                      [self.timer invalidate];
+                                      
+                                      [self.navigationController popToRootViewControllerAnimated:YES];
+                                      
+                                  }];
+        
+        [alert addAction:save];
+        [alert addAction:cancel];
+        [alert addAction:discard];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+         [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
+
+
+//-(void)viewWillDisappear:(BOOL)animated {
+//            [super viewWillDisappear:animated];
+//
+//}
 
 
 - (void)eachSecond {
@@ -151,13 +212,7 @@ bool isShownImage = false;
 
 - (void)playSuccessSound
 {
-//    NSString *path = [NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], @"/success.wav"];
-//    SystemSoundID soundID;
-//    NSURL *filePath = [NSURL fileURLWithPath:path isDirectory:NO];
-//    AudioServicesCreateSystemSoundID((CFURLRef)CFBridgingRetain(filePath), &soundID);
-//    AudioServicesPlaySystemSound(soundID);
-//    
-    //also vibrate
+//   vibrate
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
@@ -289,18 +344,16 @@ bool isShownImage = false;
 
 
 -(IBAction)stopPressed:(id)sender {
-    
-//    [self.locationManager stopUpdatingLocation];
-//    [self.timer invalidate];
-    
+
     [self pauseTimer:_timer];
+//    [self.locationManager stopUpdatingLocation];
+    
+//     self.locationManager.allowsBackgroundLocationUpdates = NO;
+
     
     self.pauseButton.hidden = YES;
     self.resumeButton.hidden = YES;
     self.startButton.hidden = NO;
-    
-
-
     
     UIAlertController * alert=   [UIAlertController
                                   alertControllerWithTitle:@"Would you like to save your results?"
@@ -328,6 +381,15 @@ bool isShownImage = false;
                           [self dismissViewControllerAnimated:YES completion:nil];
                                  
                                  [self resumeTimer:_timer];
+//                                 [self.locationManager startUpdatingLocation];
+                                 
+                                 self.startButton.hidden = YES;
+                                 
+                                 self.pauseButton.hidden = NO;
+                                 self.resumeButton.hidden = YES;
+                                 
+
+
 
                              }];
     
@@ -347,9 +409,6 @@ bool isShownImage = false;
                                  self.nextBadgeLabel.text = @"0:00";
                                  self.nextBadgeImageView.image = [UIImage imageNamed: @"badge1.png"];
 
-//                                 
-//                                 [self.navigationController popToRootViewControllerAnimated:YES];
-  
                              }];
 
     [alert addAction:save];
@@ -379,11 +438,8 @@ bool isShownImage = false;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
     [[segue destinationViewController] setRun:self.run];
 }
-
-
 
 
 
@@ -597,9 +653,6 @@ bool isShownImage = false;
 }
 
 
-
-
-
 NSDate *pauseStart, *previousFireDate;
 
 -(void) pauseTimer:(NSTimer *)timer {
@@ -621,12 +674,10 @@ NSDate *pauseStart, *previousFireDate;
 
 
 
-
-
 - (IBAction)pause:(id)sender {
     
     [self pauseTimer:_timer];
-//    [self.locationManager stopUpdatingLocation];
+    [self.locationManager stopUpdatingLocation];
     
     self.pauseButton.hidden = YES;
     self.resumeButton.hidden = NO;
@@ -636,7 +687,7 @@ NSDate *pauseStart, *previousFireDate;
 - (IBAction)resume:(id)sender {
     
     [self resumeTimer:_timer];
-//    [self.locationManager startUpdatingLocation];
+    [self.locationManager startUpdatingLocation];
     
     self.pauseButton.hidden = NO;
     self.resumeButton.hidden = YES;

@@ -14,6 +14,7 @@
 #import "Run.h"
 #import "BadgeDetailsViewController.h"
 #import "AppDelegate.h"
+#import "BadgeController.h"
 
 
 @interface BadgesTableViewController ()
@@ -23,6 +24,15 @@
 @end
 
 @implementation BadgesTableViewController
+
+bool isHidden = true;
+
+
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    
+}
 
 
 -(void)viewDidAppear:(BOOL)animated
@@ -37,8 +47,10 @@
     
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     
+
    }
 
 
@@ -77,23 +89,6 @@
         cell.descLabel.textColor = [UIColor grayColor];
         cell.descLabel.text = [NSString stringWithFormat:@"Earned: %@", [self.dateFormatter stringFromDate:earnStatus.earnRun.timestamp]];
         cell.badgeImageView.image = [UIImage imageNamed:earnStatus.badge.imageName];
-        
-        if (!earnStatus.silverRun) {
-            
-            cell.silverImageView.hidden = NO;
-        } else {
-            cell.silverImageView.hidden = YES;
-        }
-        
-        
-        if (!earnStatus.goldRun) {
-            cell.goldImageView.hidden = NO;
-        } else {
-            cell.goldImageView.hidden = YES;
-        }
-        
-//        cell.silverImageView.hidden = !earnStatus.silverRun;
-//        cell.goldImageView.hidden = !earnStatus.goldRun;
 
         cell.userInteractionEnabled = YES;
     } else {
@@ -110,83 +105,5 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
- 
-                
-        BadgeEarnStatus *bStatus = [self.earnStatusArray objectAtIndex:indexPath.row];
-        NSMutableArray *bArray = [[NSMutableArray alloc] init];
-        [bArray insertObject:bStatus atIndex:0];
-
-    
-        [self.earnStatusArray removeObjectAtIndex:indexPath.row];
-        
-        NSMutableArray *savedArray = [NSMutableArray arrayWithObject:indexPath];
-        
-        [self.tableView deleteRowsAtIndexPaths:savedArray withRowAnimation:UITableViewRowAnimationAutomatic];
-
-        
-    }
-}
-
-
-
-
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    
-    return YES;
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleDelete;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

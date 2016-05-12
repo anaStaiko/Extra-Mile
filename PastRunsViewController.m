@@ -19,7 +19,6 @@
 
 @interface PastRunsViewController ()
 
-
 @end
 
 @implementation PastRunsViewController
@@ -48,13 +47,6 @@
 
 #pragma mark - Contents Assignment
 
-//
-//-(void)setRunArray:(NSArray *)runArray {
-//    _runArray = [runArray mutableCopy];
-//    [self.tableView reloadData];
-//}
-
-
 
 #pragma mark - Table view data source
 
@@ -70,9 +62,13 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
-    cell.dateLabel.text = [formatter stringFromDate:runObject.timestamp];
+    cell.dateLabel.text = [NSString stringWithFormat:@"Earned: %@", [formatter stringFromDate:runObject.timestamp]];
     
-    cell.distanceLabel.text = [Math stringifyDistance:runObject.distance.floatValue];
+//    self.distanceLabel.text = [NSString stringWithFormat:@"%@ mi", [Math stringifyDistance:self.earnStatus.badge.distance]];
+//
+    cell.distanceLabel.text = [NSString stringWithFormat:@"Distance: %@ mi", [Math stringifyDistance:runObject.distance.floatValue]];
+    
+//    cell.distanceLabel.text = [Math stringifyDistance:runObject.distance.floatValue];
     
     Badge *badge = [[BadgeController defaultController] bestBadgeForDistance:runObject.distance.floatValue];
     cell.badgeImageView.image = [UIImage imageNamed:badge.imageName];

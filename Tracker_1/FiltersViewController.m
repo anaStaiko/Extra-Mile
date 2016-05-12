@@ -24,24 +24,11 @@
 @synthesize context;
 @synthesize previews=_previews;
 @synthesize tView;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-//    UINavigationBar *navBar = self.navigationController.navigationBar;
-    
-//    UIImage *image = [UIImage imageNamed:@"gradient-strip-top.png"];
 
-//    [_navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     
     //get an Array of all Filters from the Filters class
     self.context = [CIContext contextWithOptions:nil];
@@ -67,11 +54,6 @@
         });
     }
     
-//    self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
-//    self.navigationController.navigationBar.shadowImage = [UIColor whiteColor];
-//    self.navigationController.navigationBar.titleTextAttributes = [UIColor whiteColor];
- 
-
     
 }
 
@@ -80,13 +62,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
-//- (BOOL) prefersStatusBarHidden {
-//    return YES;
-//}
-
 
 
 
@@ -130,44 +105,7 @@
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return THUMBNAIL_SIZE;

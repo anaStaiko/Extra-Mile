@@ -10,8 +10,6 @@
 #import "ThumbNail.h"
 #import "Filters.h"
 
-
-
 @protocol FilterControllerDelegate <NSObject>
 
 -(void) userDidMakeChoice:(NSString *)choice;

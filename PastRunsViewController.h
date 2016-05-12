@@ -17,7 +17,4 @@
 @property (strong, nonatomic) NSMutableArray *runArray;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-
-
-
 @end

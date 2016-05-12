@@ -11,7 +11,7 @@
 @implementation PopupViewAnimationFade
 
 - (void)showView:(UIView *)popupView overlayView:(UIView *)overlayView{
-    // Generating Start and Stop Positions
+    // Start and Stop Positions
     // Set starting properties
     popupView.center = overlayView.center;
     popupView.alpha = 0.0f;
