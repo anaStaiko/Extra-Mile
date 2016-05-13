@@ -227,9 +227,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		763384421CE67A5E00E97080 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		7685F21A1C0B190700E6F39D = {
 			isa = PBXGroup;
 			children = (
+				763384421CE67A5E00E97080 /* New Group */,
 				7685F2251C0B190700E6F39D /* Tracker_1 */,
 				7685F2451C0B190700E6F39D /* Tracker_1Tests */,
 				7685F2501C0B190700E6F39D /* Tracker_1UITests */,

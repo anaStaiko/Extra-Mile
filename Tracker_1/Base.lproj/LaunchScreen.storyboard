@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,36 +18,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Start Screen.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cdx-nM-eK4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Start Screen@3x" translatesAutoresizingMaskIntoConstraints="NO" id="Nu5-Io-7jG">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Cdx-nM-eK4" secondAttribute="trailing" constant="-20" id="CVs-3a-OVf"/>
-                            <constraint firstItem="Cdx-nM-eK4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="S29-Du-EDD"/>
-                            <constraint firstItem="Cdx-nM-eK4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="YB8-Om-ojJ"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Cdx-nM-eK4" secondAttribute="bottom" id="cRW-nF-4xw"/>
+                            <constraint firstItem="Nu5-Io-7jG" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="EFa-zW-9UZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Nu5-Io-7jG" secondAttribute="trailing" constant="-20" id="fzd-HG-aGH"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Nu5-Io-7jG" secondAttribute="bottom" id="nFI-tR-pdP"/>
+                            <constraint firstItem="Nu5-Io-7jG" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="owe-Me-jX8"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="Cdx-nM-eK4"/>
+                                <exclude reference="Nu5-Io-7jG"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="cRW-nF-4xw"/>
-                                <exclude reference="CVs-3a-OVf"/>
-                                <exclude reference="S29-Du-EDD"/>
-                                <exclude reference="YB8-Om-ojJ"/>
+                                <exclude reference="EFa-zW-9UZ"/>
+                                <exclude reference="fzd-HG-aGH"/>
+                                <exclude reference="owe-Me-jX8"/>
+                                <exclude reference="nFI-tR-pdP"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="Cdx-nM-eK4"/>
+                                <include reference="Nu5-Io-7jG"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="cRW-nF-4xw"/>
-                                <include reference="CVs-3a-OVf"/>
-                                <include reference="S29-Du-EDD"/>
-                                <include reference="YB8-Om-ojJ"/>
+                                <include reference="EFa-zW-9UZ"/>
+                                <include reference="fzd-HG-aGH"/>
+                                <include reference="owe-Me-jX8"/>
+                                <include reference="nFI-tR-pdP"/>
                             </mask>
                         </variation>
                     </view>
@@ -59,6 +58,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Start Screen.png" width="414" height="736"/>
+        <image name="Start Screen@3x" width="1242" height="2208"/>
     </resources>
 </document>

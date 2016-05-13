@@ -10,6 +10,7 @@
 #import "Location.h"
 #import "MulticolorPolylineSegment.h"
 
+
 //static bool const isMetric = YES;   // can change that to NO
 static bool const isMetric = NO;   // can change that to NO
 static float const metersInKM = 1000;
@@ -156,10 +157,14 @@ static float const metersInMile = 1609.344;
 
 + (NSString *)stringifyAvgPaceFromDist:(float)meters overTime:(int)seconds
 {
-    if (seconds == 0 || meters == 0) {
-        return @"0";
-    }
 
+//    
+//    double speed = meters/seconds;
+    
+    if (seconds == 0 || meters == 0) {
+        return @"00:00";
+
+    }
     
     float avgPaceSecMeters = seconds / meters;
     
@@ -175,13 +180,24 @@ static float const metersInMile = 1609.344;
         unitName = @"min/mi";
         unitMultiplier = metersInMile;
     }
+        
 
     int paceMin = (int) ((avgPaceSecMeters * unitMultiplier) / 60);
     int paceSec = (int) (avgPaceSecMeters * unitMultiplier - (paceMin*60));
     
     return [NSString stringWithFormat:@"%i:%02i", paceMin, paceSec];
+    
+//    if (paceMin == 0 && paceSec == 0) {
+//        return @"00:00";
+//    } else {
+//        
+//    }
+    
+ 
 //        return [NSString stringWithFormat:@"%i:%02i %@", paceMin, paceSec, unitName];
-   
+        
+        
+
 }
 
 @end

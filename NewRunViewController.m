@@ -71,9 +71,6 @@ bool isShownImage = false;
     
     self.mapView.showsUserLocation = YES;
     self.mapView.showsBuildings = YES;
-//    _locationManager.pausesLocationUpdatesAutomatically = YES;
-//    _locationManager.allowsBackgroundLocationUpdates = YES;
-  
     
     // Compass
     _locationManager=[[CLLocationManager alloc] init];
@@ -112,9 +109,13 @@ bool isShownImage = false;
 -(void)aleartBack {
     
     if (self.startButton.hidden == YES) {
-        [self pauseTimer:_timer];
-        [self.locationManager stopUpdatingLocation];
-        
+
+        if (self.startButton.hidden == YES && self.pauseButton.hidden == YES) {
+            // do nothing
+        } else if (self.startButton.hidden == YES && self.resumeButton.hidden == YES)  {
+            [self pauseTimer:_timer];
+        }
+
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"Would you like to save your results before exiting?"
                                       message:@"This action can not be undone"
@@ -125,9 +126,8 @@ bool isShownImage = false;
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action)
                                {
-//                                   [self.locationManager stopUpdatingLocation];
+                                   [self.locationManager stopUpdatingLocation];
                                    [self.timer invalidate];
-                                   
                                    [self saveRun];
                                    [self performSegueWithIdentifier:detailSegueName sender:nil];
                                    
@@ -140,13 +140,12 @@ bool isShownImage = false;
                                      
                                      [self dismissViewControllerAnimated:YES completion:nil];
                                      
-                                     [self resumeTimer:_timer];
-                                     [self.locationManager startUpdatingLocation];
-                                     self.startButton.hidden = YES;
-                                     
-                                     self.pauseButton.hidden = NO;
-                                     self.resumeButton.hidden = YES;
-                                     
+                                     if (self.startButton.hidden == YES && self.pauseButton.hidden == YES) {
+                                         // do nothing
+                                     } else if (self.startButton.hidden == YES && self.resumeButton.hidden == YES)  {
+                                         [self resumeTimer:_timer];
+                                     }
+
                                  }];
         
         UIAlertAction* discard = [UIAlertAction
@@ -155,12 +154,10 @@ bool isShownImage = false;
                                   handler:^(UIAlertAction * action)
                                   {
                                       [self dismissViewControllerAnimated:YES completion:nil];
-                                      
-//                                      [self.locationManager stopUpdatingLocation];
                                       [self.timer invalidate];
-                                      
+                                      [self.locationManager stopUpdatingLocation];
                                       [self.navigationController popToRootViewControllerAnimated:YES];
-                                      
+
                                   }];
         
         [alert addAction:save];
@@ -175,24 +172,23 @@ bool isShownImage = false;
 
 
 
-//-(void)viewWillDisappear:(BOOL)animated {
-//            [super viewWillDisappear:animated];
-//
-//}
-
-
 - (void)eachSecond {
     
     self.seconds++;
     self.timeLabel.text = [NSString stringWithFormat:@"%@", [Math stringifySecondCount:self.seconds usingLongFormat:NO]];
-    
-//       self.timeLabel.text = [NSString stringWithFormat:@"%@", [Math stringifySecondCount:self.seconds/60 usingLongFormat:YES]];
-    
     self.distLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyDistance:self.distance]];
-    self.paceLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyAvgPaceFromDist:self.distance overTime:self.seconds]];
+    
+//    if (self.startButton.hidden == YES && self.resumeButton.hidden == YES) {
+//        
+//        self.paceLabel.text = @"00:00";
+//
+//    } else {
+//       
+//    }
+    
+     self.paceLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyAvgPaceFromDist:self.distance overTime:self.seconds]];
+    
     self.nextBadgeLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyDistance:(self.upcomingBadge.distance - self.distance)]];
-//    
-//     self.nextBadgeLabel.text = [NSString stringWithFormat:@"%@ until %@!", [Math stringifyDistance:(self.upcomingBadge.distance - self.distance)], self.upcomingBadge.name];
     [self checkNextBadge];
 
                                                                                                      
@@ -226,14 +222,14 @@ bool isShownImage = false;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.activityType = CLActivityTypeFitness;
     self.locationManager.allowsBackgroundLocationUpdates = YES;
-    self.locationManager.pausesLocationUpdatesAutomatically = YES;
-    
+    self.locationManager.pausesLocationUpdatesAutomatically = NO;
+
     // Movement threshold for new events.
     self.locationManager.distanceFilter = 10; // meters
 //
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [self.locationManager requestWhenInUseAuthorization];
-            [self.locationManager requestAlwaysAuthorization];
+        [self.locationManager requestAlwaysAuthorization];
     }
     [self.locationManager startUpdatingLocation];
 
@@ -252,19 +248,34 @@ bool isShownImage = false;
         if (fabs(howRecent) < 10.0 && newLocation.horizontalAccuracy < 20) {
             
             // update distance
-            if (self.locations.count > 0) {
-                self.distance += [newLocation distanceFromLocation:self.locations.lastObject];
-                
-                CLLocationCoordinate2D coords[2];
-                coords[0] = ((CLLocation *)self.locations.lastObject).coordinate;
-                coords[1] = newLocation.coordinate;
-                
-                MKCoordinateRegion region =
-                MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 500, 500);
-                [self.mapView setRegion:region animated:YES];
-                
-                [self.mapView addOverlay:[MKPolyline polylineWithCoordinates:coords count:2]];
-            }
+            
+            
+            
+                        if (self.locations.count > 0) {
+                            self.distance += [newLocation distanceFromLocation:self.locations.lastObject];
+            
+                            
+                            
+                            
+                                        if (self.locations.count > 0) {
+                                            self.distance += [newLocation distanceFromLocation:self.locations.lastObject];
+                            
+                                            CLLocationCoordinate2D coords[2];
+                                            coords[0] = ((CLLocation *)self.locations.lastObject).coordinate;
+                                            coords[1] = newLocation.coordinate;
+                            
+                                            MKCoordinateRegion region =
+                                            MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 500, 500);
+                                            [self.mapView setRegion:region animated:YES];
+                                            
+                                            [self.mapView addOverlay:[MKPolyline polylineWithCoordinates:coords count:2]];
+
+                            
+                            
+                                        }
+        
+                        }
+            
             
             [self.locations addObject:newLocation];
         }
@@ -304,14 +315,10 @@ bool isShownImage = false;
 
 -(IBAction)startPressed:(id)sender {
     
-    //hide the start UI
     self.startButton.hidden = YES;
-    
     self.pauseButton.hidden = NO;
     self.resumeButton.hidden = YES;
-
     
-    //show the running UI
     self.timeLabel.hidden = NO;
     self.distLabel.hidden = NO;
     self.paceLabel.hidden = NO;
@@ -325,6 +332,7 @@ bool isShownImage = false;
     self.mapView.hidden = NO;
     self.nextBadgeImageView.hidden = NO;
     self.nextBadgeLabel.hidden = NO;
+      self.locationManager.allowsBackgroundLocationUpdates = YES;
     [self startLocationUpdates];
 
 }
@@ -345,16 +353,15 @@ bool isShownImage = false;
 
 -(IBAction)stopPressed:(id)sender {
 
-    [self pauseTimer:_timer];
-//    [self.locationManager stopUpdatingLocation];
-    
-//     self.locationManager.allowsBackgroundLocationUpdates = NO;
+    if (self.startButton.hidden == YES && self.pauseButton.hidden == YES) {
+        
+     // do nothing
+        
+    } else if (self.startButton.hidden == YES && self.resumeButton.hidden == YES)  {
+        [self pauseTimer:_timer];
+//        [self.locationManager stopUpdatingLocation];
+    }
 
-    
-    self.pauseButton.hidden = YES;
-    self.resumeButton.hidden = YES;
-    self.startButton.hidden = NO;
-    
     UIAlertController * alert=   [UIAlertController
                                   alertControllerWithTitle:@"Would you like to save your results?"
                                   message:@""
@@ -365,9 +372,8 @@ bool isShownImage = false;
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction * action)
                          {
-                                 [self.locationManager stopUpdatingLocation];
-                                 [self.timer invalidate];
-                             
+                              [self.timer invalidate];
+                              [self.locationManager stopUpdatingLocation];
                               [self saveRun];
                               [self performSegueWithIdentifier:detailSegueName sender:nil];
                              
@@ -377,20 +383,16 @@ bool isShownImage = false;
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
+                                 [self dismissViewControllerAnimated:YES completion:nil];
                                  
-                          [self dismissViewControllerAnimated:YES completion:nil];
-                                 
-                                 [self resumeTimer:_timer];
 //                                 [self.locationManager startUpdatingLocation];
                                  
-                                 self.startButton.hidden = YES;
-                                 
-                                 self.pauseButton.hidden = NO;
-                                 self.resumeButton.hidden = YES;
-                                 
-
-
-
+                                 if (self.startButton.hidden == YES && self.pauseButton.hidden == YES) {
+                                    // do nothing
+                                 } else if (self.startButton.hidden == YES && self.resumeButton.hidden == YES)  {
+                                     [self resumeTimer:_timer];
+                                 }
+ 
                              }];
     
     UIAlertAction* discard = [UIAlertAction
@@ -399,15 +401,18 @@ bool isShownImage = false;
                              handler:^(UIAlertAction * action)
                              {
                                  [self dismissViewControllerAnimated:YES completion:nil];
-                                 
-                                 [self.locationManager stopUpdatingLocation];
                                  [self.timer invalidate];
-                                 
                                  self.timeLabel.text = @"00:00";
                                  self.distLabel.text = @"0.00";
                                  self.paceLabel.text = @"00:00";
                                  self.nextBadgeLabel.text = @"0:00";
+                                 self.pauseButton.hidden = YES;
+                                 self.resumeButton.hidden = YES;
+                                 self.startButton.hidden = NO;
                                  self.nextBadgeImageView.image = [UIImage imageNamed: @"badge1.png"];
+                                 [self.locationManager stopUpdatingLocation];
+                                 [self.mapView removeOverlays:self.mapView.overlays];
+                           
 
                              }];
 
@@ -435,13 +440,10 @@ bool isShownImage = false;
 }
 
 
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     [[segue destinationViewController] setRun:self.run];
 }
-
-
 
 
 // Record Video
@@ -677,18 +679,18 @@ NSDate *pauseStart, *previousFireDate;
 - (IBAction)pause:(id)sender {
     
     [self pauseTimer:_timer];
-    [self.locationManager stopUpdatingLocation];
-    
+//    [self.locationManager stopUpdatingLocation];
     self.pauseButton.hidden = YES;
     self.resumeButton.hidden = NO;
+//    self.paceLabel.text = @"00:00";
+
    
 }
 
 - (IBAction)resume:(id)sender {
     
     [self resumeTimer:_timer];
-    [self.locationManager startUpdatingLocation];
-    
+//    [self.locationManager startUpdatingLocation];
     self.pauseButton.hidden = NO;
     self.resumeButton.hidden = YES;
 }
