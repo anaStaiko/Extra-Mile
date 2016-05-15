@@ -732,7 +732,7 @@
 				INFOPLIST_FILE = Tracker_1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "AnaApp.Tracker-1";
+				PRODUCT_BUNDLE_IDENTIFIER = AnaApp.XtraMile;
 				PRODUCT_NAME = "Xtra Mile";
 			};
 			name = Debug;
@@ -745,7 +745,7 @@
 				INFOPLIST_FILE = Tracker_1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "AnaApp.Tracker-1";
+				PRODUCT_BUNDLE_IDENTIFIER = AnaApp.XtraMile;
 				PRODUCT_NAME = "Xtra Mile";
 			};
 			name = Release;
