@@ -12,7 +12,6 @@
 
 @implementation PopupView
 
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -33,7 +32,6 @@
     
         [_parentVC dismissPopupView];
 }
-
 
 
 @end

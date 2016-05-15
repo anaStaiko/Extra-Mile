@@ -11,6 +11,4 @@
 
 @interface PopupViewAnimationFade : NSObject <PopupAnimation>
 
-
-
 @end

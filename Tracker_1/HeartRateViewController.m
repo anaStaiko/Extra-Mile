@@ -10,9 +10,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PulseDetector.h"
 #import "Filter.h"
-//#import "PopupView.h"
-//#import "PopupViewAnimationFade.h"
-
 
 typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
     STATE_PAUSED,
@@ -29,13 +26,10 @@ typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
 @property(nonatomic, strong) Filter *filter;
 @property(nonatomic, assign) CURRENT_STATE currentState;
 @property(nonatomic, assign) int validFrameCounter;
-
-
 @property(nonatomic, strong) IBOutlet UILabel *pulseRate;
 @property(nonatomic, strong) IBOutlet UILabel *validFrames;
 
 - (IBAction)startBtn:(id)sender;
-
 - (IBAction)stopBtn:(id)sender;
 
 @end
@@ -44,8 +38,7 @@ typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
+
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor darkGrayColor] forKey:NSForegroundColorAttributeName]];
 }
@@ -89,8 +82,6 @@ typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
     // Set the output
     AVCaptureVideoDataOutput* videoOutput = [[AVCaptureVideoDataOutput alloc] init];
     
-    
-    
     // create a queue to run the capture on
     dispatch_queue_t captureQueue=dispatch_queue_create("captureQueue", NULL);
     
@@ -99,13 +90,12 @@ typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
     
     // configure the pixel format
     videoOutput.videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA], (id)kCVPixelBufferPixelFormatTypeKey, nil];
-    
-    // set the minimum acceptable frame rate to 10 fps
-    //    videoOutput.minFrameDuration=CMTimeMake(1, 10);
+
     [self.camera lockForConfiguration:nil];
+        // set the minimum acceptable frame rate to 10 fps
     self.camera.activeVideoMinFrameDuration =CMTimeMake(1, 10);
     
-    // and the size of the frames we want - we'll use the smallest frame size available
+    // the size of the frames
     [self.session setSessionPreset:AVCaptureSessionPresetLow];
     
     // Add the input and output
@@ -115,7 +105,7 @@ typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
     // Start the session
     [self.session startRunning];
     
-    // we're now sampling from the camera
+    // sampling from the camera
     self.currentState=STATE_SAMPLING;
     
     // stop the app from sleeping
@@ -194,9 +184,9 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
         self.validFrameCounter=0;
         return;
     }
-    // this is the image buffer
+    // image buffer
     CVImageBufferRef cvimgRef = CMSampleBufferGetImageBuffer(sampleBuffer);
-    // Lock the image buffer
+    // lock the image buffer
     CVPixelBufferLockBaseAddress(cvimgRef,0);
     // access the data
     size_t width=CVPixelBufferGetWidth(cvimgRef);
@@ -220,20 +210,21 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
     // convert from rgb to hsv colourspace
     float h,s,v;
     RGBtoHSV(r, g, b, &h, &s, &v);
-    // do a sanity check to see if a finger is placed over the camera
+    // check to see if a finger is placed over the camera
     if(s>0.5 && v>0.5) {
         // increment the valid frame count
         self.validFrameCounter++;
-        // filter the hue value - the filter is a simple band pass filter that removes any DC component and any high frequency noise
+        
+        // filter the hue value
         float filtered=[self.filter processValue:h];
-        // have we collected enough frames for the filter to settle?
+ 
         if(self.validFrameCounter > MIN_FRAMES_FOR_FILTER_TO_SETTLE) {
             // add the new value to the pulse detector
             [self.pulseDetector addNewValue:filtered atTime:CACurrentMediaTime()];
         }
     } else {
         self.validFrameCounter = 0;
-        // clear the pulse detector - we only really need to do this once, just before we start adding valid samples
+        // clear the pulse detector
         [self.pulseDetector reset];
     }
 }
@@ -242,7 +233,7 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
     
     self.validFrames.text = [NSString stringWithFormat:@"Processing: %d%%", MIN(100, (100 * self.validFrameCounter)/MIN_FRAMES_FOR_FILTER_TO_SETTLE)];
     
-    // if we're paused then there's nothing to do
+    // if paused then there's nothing to do
     if(self.currentState==STATE_PAUSED) return;
     
     // get the average period of the pulse rate from the pulse detector
@@ -258,14 +249,11 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
 }
 
 
-
 - (IBAction)startBtn:(id)sender {
     
     self.filter=[[Filter alloc] init];
     self.pulseDetector=[[PulseDetector alloc] init];
     [self startCameraCapture];
-
-    
 }
 
 - (IBAction)stopBtn:(id)sender {

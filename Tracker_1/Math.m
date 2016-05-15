@@ -12,7 +12,7 @@
 
 
 //static bool const isMetric = YES;   // can change that to NO
-static bool const isMetric = NO;   // can change that to NO
+static bool const isMetric = NO;   // can change that to YES
 static float const metersInKM = 1000;
 static float const metersInMile = 1609.344;
 
@@ -21,7 +21,7 @@ static float const metersInMile = 1609.344;
 
 + (NSArray *)colorSegmentsForLocations:(NSArray *)locations 
 {
-    // make array of all speeds, find slowest+fastest
+    // an array of all speeds, finding slowest+fastest
     NSMutableArray *speeds = [NSMutableArray array];
     double slowestSpeed = DBL_MAX;
     double fastestSpeed = 0.0;
@@ -43,7 +43,7 @@ static float const metersInMile = 1609.344;
         [speeds addObject:@(speed)];
         
     }
-    // now knowing the slowest+fastest, we can get mean too
+    
     double meanSpeed = (slowestSpeed + fastestSpeed)/2;
     
     // RGB for red (slowest)
@@ -113,12 +113,10 @@ static float const metersInMile = 1609.344;
     // metric
     if (isMetric) {
         unitName = @"km";
-        // to get from meters to kilometers divide by this
         unitDivider = metersInKM;
-        // U.S.
+        //U.S.
     } else {
         unitName = @"mi";
-        // to get from meters to miles divide by this
         unitDivider = metersInMile;
     }
        return [NSString stringWithFormat:@"%.2f", meters / unitDivider];
@@ -158,8 +156,6 @@ static float const metersInMile = 1609.344;
 + (NSString *)stringifyAvgPaceFromDist:(float)meters overTime:(int)seconds
 {
 
-//    
-//    double speed = meters/seconds;
     
     if (seconds == 0 || meters == 0) {
         return @"00:00";
@@ -186,17 +182,6 @@ static float const metersInMile = 1609.344;
     int paceSec = (int) (avgPaceSecMeters * unitMultiplier - (paceMin*60));
     
     return [NSString stringWithFormat:@"%i:%02i", paceMin, paceSec];
-    
-//    if (paceMin == 0 && paceSec == 0) {
-//        return @"00:00";
-//    } else {
-//        
-//    }
-    
- 
-//        return [NSString stringWithFormat:@"%i:%02i %@", paceMin, paceSec, unitName];
-        
-        
 
 }
 

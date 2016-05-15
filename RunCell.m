@@ -10,7 +10,6 @@
 
 @implementation RunCell
 
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -31,7 +30,6 @@
     
     // Configure the view for the selected state
 }
-
 
 
 @end

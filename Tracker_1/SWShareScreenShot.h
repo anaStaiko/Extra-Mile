@@ -16,12 +16,10 @@
 
 }
 
-
 @property (readonly, nonatomic, strong) NSMutableDictionary *images;
 
 + (SWShareScreenShot*)shareManager;
 - (void)keepImageByCurrentViewController:(UIViewController*)viewController withName:(NSString*)name;
 - (void)removeImagesByName:(NSString*)name;
-
 
 @end

@@ -11,7 +11,6 @@
 #import "Run.h"
 #import "Location+CoreDataProperties.h"
 
-
 @interface PastRunsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *runArray;

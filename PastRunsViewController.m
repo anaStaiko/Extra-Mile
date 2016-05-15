@@ -16,13 +16,11 @@
 #import "NewRunViewController.h"
 #import "AppDelegate.h"
 
-
 @interface PastRunsViewController ()
 
 @end
 
 @implementation PastRunsViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,7 +28,7 @@
     // Uncomment the following line to preserve selection between presentations.
 //    self.clearsSelectionOnViewWillAppear = YES;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // Edit button in the navigation bar for this view controller
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 //    self.tableView.allowsMultipleSelectionDuringEditing = NO;
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
@@ -45,7 +43,6 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - Contents Assignment
 
 
 #pragma mark - Table view data source
@@ -63,13 +60,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     cell.dateLabel.text = [NSString stringWithFormat:@"Earned: %@", [formatter stringFromDate:runObject.timestamp]];
-    
-//    self.distanceLabel.text = [NSString stringWithFormat:@"%@ mi", [Math stringifyDistance:self.earnStatus.badge.distance]];
-//
     cell.distanceLabel.text = [NSString stringWithFormat:@"Distance: %@ mi", [Math stringifyDistance:runObject.distance.floatValue]];
-    
-//    cell.distanceLabel.text = [Math stringifyDistance:runObject.distance.floatValue];
-    
     Badge *badge = [[BadgeController defaultController] bestBadgeForDistance:runObject.distance.floatValue];
     cell.badgeImageView.image = [UIImage imageNamed:badge.imageName];
     
@@ -93,7 +84,6 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
     Run *run = [self.runArray objectAtIndex:indexPath.row];
@@ -109,27 +99,22 @@
         
     if (error) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+//        abort();
         }
     
-      
         [self.runArray removeObjectAtIndex:indexPath.row];
 
         NSMutableArray *savedArray = [NSMutableArray arrayWithObject:indexPath];
         
         [self.tableView deleteRowsAtIndexPaths:savedArray withRowAnimation:UITableViewRowAnimationAutomatic];
-
-
+        
     }
 }
-
 
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-
-    
     return YES;
 }
 

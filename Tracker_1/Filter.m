@@ -10,7 +10,6 @@
 
 #define GAIN    1.894427025e+01
 
-// see http://www-users.cs.york.ac.uk/~fisher/mkfilter/
 @implementation Filter
 
 -(float) processValue:(float) value {

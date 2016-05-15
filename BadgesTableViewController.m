@@ -16,7 +16,6 @@
 #import "AppDelegate.h"
 #import "BadgeController.h"
 
-
 @interface BadgesTableViewController ()
 
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
@@ -27,11 +26,8 @@
 
 bool isHidden = true;
 
-
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    
 }
 
 
@@ -47,11 +43,8 @@ bool isHidden = true;
     
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-//    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
-    
-
-   }
+}
 
 
 
@@ -97,8 +90,6 @@ bool isHidden = true;
         cell.descLabel.textColor = nil;
         cell.descLabel.text = nil;
         cell.badgeImageView.image = nil;
-        cell.silverImageView.hidden = YES;
-        cell.goldImageView.hidden = YES;
         cell.userInteractionEnabled = NO;
     }
     return cell;

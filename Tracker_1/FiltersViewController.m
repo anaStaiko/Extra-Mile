@@ -8,7 +8,6 @@
 
 #import "FiltersViewController.h"
 
-
 @interface FiltersViewController ()
 @property CIImage *ciImage;
 @property CIContext *context;
@@ -28,7 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     
     //get an Array of all Filters from the Filters class
     self.context = [CIContext contextWithOptions:nil];
@@ -53,8 +51,6 @@
             });
         });
     }
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,8 +96,6 @@
         [cell addSubview:myImageView];
         //cell.imageView.image = [self.previews objectForKey:cellText];
     }
-    
-    
     return cell;
 }
 

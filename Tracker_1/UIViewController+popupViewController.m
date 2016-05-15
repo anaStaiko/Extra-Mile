@@ -10,7 +10,6 @@
 #import <objc/runtime.h>
 #import "PopupBackgroundView.h"
 
-
 #define kPopupView @"kPopupView"
 #define kOverlayView @"kOverlayView"
 #define kPopupViewDismissedBlock @"kPopupViewDismissedBlock"
@@ -95,11 +94,9 @@
 
 - (void)_presentPopupView:(UIView*)popupView animation:(id<PopupAnimation>)animation backgroundClickable:(BOOL)clickable dismissed:(void(^)(void))dismissed{
 
-    
     // check if source view controller is not in destination
     if ([self.overlayView.subviews containsObject:popupView]) return;
     
-    // fix issue #2
     if (self.overlayView && self.overlayView.subviews.count > 1) {
         [self _dismissPopupViewWithAnimation:nil];
     }

@@ -10,7 +10,6 @@
 #import "Filters.h"
 #import "ThumbNail.h"
 
-
 @interface MediaViewController () <UIGestureRecognizerDelegate>
 
 @end
@@ -25,8 +24,6 @@
 @synthesize filtersVC;
 @synthesize popoverFilters;
 @synthesize popoverAlbum;
-
-
 
 //shows all the CI Foto Filters and their attributes
 -(void)logAllFilters {
@@ -89,7 +86,6 @@
 }
 
 
-
 //opens the Photo Album on the Device
 - (IBAction)loadPhoto:(id)sender {
     
@@ -149,9 +145,7 @@
                               // 5
                               CGImageRelease(cgImg);
                           }];
-    
-    
-    
+
 }
 
 
@@ -225,7 +219,7 @@
     } else if (orientation == UIImageOrientationLeft) {
         CGContextRotateCTM (context, [self radians:90]);
     } else if (orientation == UIImageOrientationDown) {
-        // NOTHING
+        // do nothing
     } else if (orientation == UIImageOrientationUp) {
         CGContextRotateCTM (context, [self radians:0]);
     }
@@ -238,12 +232,10 @@
 }
 
 
-
 // When no image is selected, the Image Picker is just dismissed
 - (void)imagePickerControllerDidCancel: (UIImagePickerController *)picker {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 
 //Creating FiltersViewController and showing the Filters to pick from

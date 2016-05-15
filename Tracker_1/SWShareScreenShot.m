@@ -43,8 +43,7 @@
     {
         if (![window respondsToSelector:@selector(screen)] || [window screen] == [UIScreen mainScreen])
         {
-            // -renderInContext: renders in the coordinate space of the layer,
-            // so we must first apply the layer's geometry to the graphics context
+            // renderInContext: renders in the coordinate space of the layer
             CGContextSaveGState(context);
             // Center the context around the window's anchor point
             CGContextTranslateCTM(context, [window center].x, [window center].y);

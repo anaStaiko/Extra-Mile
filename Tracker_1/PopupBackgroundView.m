@@ -10,7 +10,6 @@
 
 @implementation PopupBackgroundView
 
-
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -26,6 +25,5 @@
     CGContextDrawRadialGradient (context, gradient, center, 0, center, radius, kCGGradientDrawsAfterEndLocation);
     CGGradientRelease(gradient);
 }
-
 
 @end

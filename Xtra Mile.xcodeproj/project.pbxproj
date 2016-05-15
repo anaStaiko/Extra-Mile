@@ -227,118 +227,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		763384421CE67A5E00E97080 /* New Group */ = {
+		763384421CE67A5E00E97080 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			name = "New Group";
-			sourceTree = "<group>";
-		};
-		7685F21A1C0B190700E6F39D = {
-			isa = PBXGroup;
-			children = (
-				763384421CE67A5E00E97080 /* New Group */,
-				7685F2251C0B190700E6F39D /* Tracker_1 */,
-				7685F2451C0B190700E6F39D /* Tracker_1Tests */,
-				7685F2501C0B190700E6F39D /* Tracker_1UITests */,
-				7685F2241C0B190700E6F39D /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		7685F2241C0B190700E6F39D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7685F2231C0B190700E6F39D /* Xtra Mile.app */,
-				7685F2421C0B190700E6F39D /* Xtra Mile.xctest */,
-				7685F24D1C0B190700E6F39D /* Xtra Mile.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		7685F2251C0B190700E6F39D /* Tracker_1 */ = {
-			isa = PBXGroup;
-			children = (
-				7685F2291C0B190700E6F39D /* AppDelegate.h */,
-				7685F22A1C0B190700E6F39D /* AppDelegate.m */,
-				7685F2BC1C0B377D00E6F39D /* HomeViewController.h */,
-				7685F2BD1C0B377D00E6F39D /* HomeViewController.m */,
-				7685F2BF1C0B396200E6F39D /* NewRunViewController.h */,
-				7685F2C01C0B396200E6F39D /* NewRunViewController.m */,
-				76192CF31C9A1182006F5EE6 /* Main.storyboard */,
-				762185BF1CC0470A002FD7B8 /* PopupBackgroundView.h */,
-				762185C01CC0470A002FD7B8 /* PopupBackgroundView.m */,
-				762185C11CC0470A002FD7B8 /* PopupViewAnimationFade.h */,
-				762185C21CC0470A002FD7B8 /* PopupViewAnimationFade.m */,
-				762185C31CC0470A002FD7B8 /* UIViewController+popupViewController.h */,
-				762185C41CC0470A002FD7B8 /* UIViewController+popupViewController.m */,
-				762185C51CC0470A002FD7B8 /* PopupView.xib */,
-				762185C61CC0470A002FD7B8 /* PopupView.h */,
-				762185C71CC0470A002FD7B8 /* PopupView.m */,
-				76221F2C1CB57F77001EF511 /* MediaViewController.h */,
-				76221F2D1CB57F77001EF511 /* MediaViewController.m */,
-				76221F2E1CB57F77001EF511 /* FiltersViewController.h */,
-				76221F2F1CB57F77001EF511 /* FiltersViewController.m */,
-				76221F301CB57F77001EF511 /* Filters.h */,
-				76221F311CB57F77001EF511 /* Filters.m */,
-				76221F321CB57F77001EF511 /* ThumbNail.h */,
-				76221F331CB57F77001EF511 /* ThumbNail.m */,
-				76A94D6A1CA339F800CE2D81 /* HeartRateViewController.h */,
-				76A94D6B1CA339F800CE2D81 /* HeartRateViewController.m */,
-				76FF39EE1C2A0BBA00D3C6A7 /* PastRunsViewController.h */,
-				76FF39EF1C2A0BBA00D3C6A7 /* PastRunsViewController.m */,
-				7668F12D1C2B50BB003C2E03 /* BadgeDetailsViewController.h */,
-				7668F12E1C2B50BB003C2E03 /* BadgeDetailsViewController.m */,
-				7685F2321C0B190700E6F39D /* DetailViewController.h */,
-				7685F2331C0B190700E6F39D /* DetailViewController.m */,
-				764B7A631CBEC590008277E9 /* SWShareScreenShot.h */,
-				764B7A641CBEC590008277E9 /* SWShareScreenShot.m */,
-				764B7A651CBEC590008277E9 /* SWDetailViewController.h */,
-				764B7A661CBEC590008277E9 /* SWDetailViewController.m */,
-				764BCED01C0C4F0D008AFF67 /* Math.h */,
-				764BCED11C0C4F0D008AFF67 /* Math.m */,
-				761FED8E1C24922D006FF374 /* MulticolorPolylineSegment.h */,
-				761FED8F1C24922D006FF374 /* MulticolorPolylineSegment.m */,
-				76EED0D71C457FEB00EB48CB /* BadgeAnnotation.h */,
-				76EED0D81C457FEB00EB48CB /* BadgeAnnotation.m */,
-				76B91AC11C236F2E007537D1 /* Badge.h */,
-				76B91AC21C236F2E007537D1 /* Badge.m */,
-				76FF39F11C2A0CB500D3C6A7 /* RunCell.h */,
-				76FF39F21C2A0CB500D3C6A7 /* RunCell.m */,
-				76B91AC41C237061007537D1 /* BadgeController.h */,
-				76B91AC51C237061007537D1 /* BadgeController.m */,
-				76B91AC91C2380AB007537D1 /* BadgeEarnStatus.h */,
-				76B91ACA1C2380AB007537D1 /* BadgeEarnStatus.m */,
-				76B91ACC1C238862007537D1 /* BadgeCell.h */,
-				76B91ACD1C238862007537D1 /* BadgeCell.m */,
-				76B91ACF1C2388BD007537D1 /* BadgesTableViewController.h */,
-				76B91AD01C2388BD007537D1 /* BadgesTableViewController.m */,
-				76A94D641CA339E500CE2D81 /* Filter.h */,
-				76A94D651CA339E500CE2D81 /* Filter.m */,
-				76A94D661CA339E500CE2D81 /* PulseDetector.h */,
-				76A94D671CA339E500CE2D81 /* PulseDetector.mm */,
-				7685F2381C0B190700E6F39D /* Assets.xcassets */,
-				7685F23A1C0B190700E6F39D /* LaunchScreen.storyboard */,
-				7685F23D1C0B190700E6F39D /* Info.plist */,
-				7685F22C1C0B190700E6F39D /* Tracker_1.xcdatamodeld */,
-				7685F2261C0B190700E6F39D /* Supporting Files */,
-				7629A9041C6519E8004A58D1 /* badges.txt */,
-				7685F25F1C0B1DEC00E6F39D /* Location+CoreDataProperties.h */,
-				7685F2601C0B1DEC00E6F39D /* Location+CoreDataProperties.m */,
-				7685F2611C0B1DEC00E6F39D /* Location.h */,
-				7685F2621C0B1DEC00E6F39D /* Location.m */,
-				7685F2631C0B1DEC00E6F39D /* Run+CoreDataProperties.h */,
-				7685F2641C0B1DEC00E6F39D /* Run+CoreDataProperties.m */,
-				7685F2651C0B1DEC00E6F39D /* Run.h */,
-				7685F2661C0B1DEC00E6F39D /* Run.m */,
-			);
-			path = Tracker_1;
-			sourceTree = "<group>";
-		};
-		7685F2261C0B190700E6F39D /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				7614340E1CE3F9B2005546E0 /* image.jpg */,
-				7685F2271C0B190700E6F39D /* main.m */,
 				764B7A611CBEC478008277E9 /* MessageUI.framework */,
 				768C0A6D1CA8A9FB00D4B135 /* Photos.framework */,
 				761FBE561CA5E89B00F555CF /* AssetsLibrary.framework */,
@@ -357,24 +248,168 @@
 				7685F26D1C0B1E1B00E6F39D /* CoreGraphics.framework */,
 				7685F26B1C0B1E1200E6F39D /* MapKit.framework */,
 			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		763384481CE687D300E97080 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7633844B1CE68DCE00E97080 /* ViewControllers */,
+				7685F2291C0B190700E6F39D /* AppDelegate.h */,
+				7685F22A1C0B190700E6F39D /* AppDelegate.m */,
+				764BCED01C0C4F0D008AFF67 /* Math.h */,
+				764BCED11C0C4F0D008AFF67 /* Math.m */,
+				762185C31CC0470A002FD7B8 /* UIViewController+popupViewController.h */,
+				762185C41CC0470A002FD7B8 /* UIViewController+popupViewController.m */,
+				76EED0D71C457FEB00EB48CB /* BadgeAnnotation.h */,
+				76EED0D81C457FEB00EB48CB /* BadgeAnnotation.m */,
+				76B91AC41C237061007537D1 /* BadgeController.h */,
+				76B91AC51C237061007537D1 /* BadgeController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		763384491CE6894100E97080 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				76B91AC11C236F2E007537D1 /* Badge.h */,
+				76B91AC21C236F2E007537D1 /* Badge.m */,
+				76B91AC91C2380AB007537D1 /* BadgeEarnStatus.h */,
+				76B91ACA1C2380AB007537D1 /* BadgeEarnStatus.m */,
+				7685F25F1C0B1DEC00E6F39D /* Location+CoreDataProperties.h */,
+				7685F2601C0B1DEC00E6F39D /* Location+CoreDataProperties.m */,
+				7685F2611C0B1DEC00E6F39D /* Location.h */,
+				7685F2621C0B1DEC00E6F39D /* Location.m */,
+				7685F2631C0B1DEC00E6F39D /* Run+CoreDataProperties.h */,
+				7685F2641C0B1DEC00E6F39D /* Run+CoreDataProperties.m */,
+				76221F301CB57F77001EF511 /* Filters.h */,
+				76221F311CB57F77001EF511 /* Filters.m */,
+				76221F321CB57F77001EF511 /* ThumbNail.h */,
+				76221F331CB57F77001EF511 /* ThumbNail.m */,
+				76A94D641CA339E500CE2D81 /* Filter.h */,
+				76A94D651CA339E500CE2D81 /* Filter.m */,
+				76A94D661CA339E500CE2D81 /* PulseDetector.h */,
+				76A94D671CA339E500CE2D81 /* PulseDetector.mm */,
+				764B7A631CBEC590008277E9 /* SWShareScreenShot.h */,
+				764B7A641CBEC590008277E9 /* SWShareScreenShot.m */,
+				7685F2651C0B1DEC00E6F39D /* Run.h */,
+				7685F2661C0B1DEC00E6F39D /* Run.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		7633844A1CE68AAA00E97080 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				76192CF31C9A1182006F5EE6 /* Main.storyboard */,
+				762185BF1CC0470A002FD7B8 /* PopupBackgroundView.h */,
+				762185C01CC0470A002FD7B8 /* PopupBackgroundView.m */,
+				762185C11CC0470A002FD7B8 /* PopupViewAnimationFade.h */,
+				762185C21CC0470A002FD7B8 /* PopupViewAnimationFade.m */,
+				762185C51CC0470A002FD7B8 /* PopupView.xib */,
+				7685F23A1C0B190700E6F39D /* LaunchScreen.storyboard */,
+				762185C61CC0470A002FD7B8 /* PopupView.h */,
+				762185C71CC0470A002FD7B8 /* PopupView.m */,
+				761FED8E1C24922D006FF374 /* MulticolorPolylineSegment.h */,
+				761FED8F1C24922D006FF374 /* MulticolorPolylineSegment.m */,
+				76FF39F11C2A0CB500D3C6A7 /* RunCell.h */,
+				76FF39F21C2A0CB500D3C6A7 /* RunCell.m */,
+				76B91ACC1C238862007537D1 /* BadgeCell.h */,
+				76B91ACD1C238862007537D1 /* BadgeCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7633844B1CE68DCE00E97080 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7685F2BC1C0B377D00E6F39D /* HomeViewController.h */,
+				7685F2BD1C0B377D00E6F39D /* HomeViewController.m */,
+				7685F2BF1C0B396200E6F39D /* NewRunViewController.h */,
+				7685F2C01C0B396200E6F39D /* NewRunViewController.m */,
+				76221F2C1CB57F77001EF511 /* MediaViewController.h */,
+				76221F2D1CB57F77001EF511 /* MediaViewController.m */,
+				76221F2E1CB57F77001EF511 /* FiltersViewController.h */,
+				76221F2F1CB57F77001EF511 /* FiltersViewController.m */,
+				76A94D6A1CA339F800CE2D81 /* HeartRateViewController.h */,
+				76A94D6B1CA339F800CE2D81 /* HeartRateViewController.m */,
+				76FF39EE1C2A0BBA00D3C6A7 /* PastRunsViewController.h */,
+				76FF39EF1C2A0BBA00D3C6A7 /* PastRunsViewController.m */,
+				7668F12D1C2B50BB003C2E03 /* BadgeDetailsViewController.h */,
+				7668F12E1C2B50BB003C2E03 /* BadgeDetailsViewController.m */,
+				7685F2321C0B190700E6F39D /* DetailViewController.h */,
+				7685F2331C0B190700E6F39D /* DetailViewController.m */,
+				764B7A651CBEC590008277E9 /* SWDetailViewController.h */,
+				764B7A661CBEC590008277E9 /* SWDetailViewController.m */,
+				76B91ACF1C2388BD007537D1 /* BadgesTableViewController.h */,
+				76B91AD01C2388BD007537D1 /* BadgesTableViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		7685F21A1C0B190700E6F39D = {
+			isa = PBXGroup;
+			children = (
+				7685F2251C0B190700E6F39D /* XtraMile */,
+				763384421CE67A5E00E97080 /* Frameworks */,
+				7685F2451C0B190700E6F39D /* XtraMileTests */,
+				7685F2501C0B190700E6F39D /* XtraMileUITests */,
+				7685F2241C0B190700E6F39D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7685F2241C0B190700E6F39D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7685F2231C0B190700E6F39D /* Xtra Mile.app */,
+				7685F2421C0B190700E6F39D /* Xtra Mile.xctest */,
+				7685F24D1C0B190700E6F39D /* Xtra Mile.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7685F2251C0B190700E6F39D /* XtraMile */ = {
+			isa = PBXGroup;
+			children = (
+				763384481CE687D300E97080 /* Controllers */,
+				7633844A1CE68AAA00E97080 /* View */,
+				763384491CE6894100E97080 /* Model */,
+				7685F2261C0B190700E6F39D /* Supporting Files */,
+			);
+			name = XtraMile;
+			path = Tracker_1;
+			sourceTree = "<group>";
+		};
+		7685F2261C0B190700E6F39D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7685F2381C0B190700E6F39D /* Assets.xcassets */,
+				7685F23D1C0B190700E6F39D /* Info.plist */,
+				7685F22C1C0B190700E6F39D /* Tracker_1.xcdatamodeld */,
+				7614340E1CE3F9B2005546E0 /* image.jpg */,
+				7629A9041C6519E8004A58D1 /* badges.txt */,
+				7685F2271C0B190700E6F39D /* main.m */,
+			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7685F2451C0B190700E6F39D /* Tracker_1Tests */ = {
+		7685F2451C0B190700E6F39D /* XtraMileTests */ = {
 			isa = PBXGroup;
 			children = (
 				7685F2461C0B190700E6F39D /* Tracker_1Tests.m */,
 				7685F2481C0B190700E6F39D /* Info.plist */,
 			);
+			name = XtraMileTests;
 			path = Tracker_1Tests;
 			sourceTree = "<group>";
 		};
-		7685F2501C0B190700E6F39D /* Tracker_1UITests */ = {
+		7685F2501C0B190700E6F39D /* XtraMileUITests */ = {
 			isa = PBXGroup;
 			children = (
 				7685F2511C0B190700E6F39D /* Tracker_1UITests.m */,
 				7685F2531C0B190700E6F39D /* Info.plist */,
 			);
+			name = XtraMileUITests;
 			path = Tracker_1UITests;
 			sourceTree = "<group>";
 		};

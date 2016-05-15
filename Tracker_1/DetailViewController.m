@@ -13,7 +13,6 @@
 #import "Location.h"
 #import "Badge.h"
 #import "BadgeController.h"
-//#import "Location.h"
 #import "MulticolorPolylineSegment.h"
 #import "BadgeAnnotation.h"
 #import "SWDetailViewController.h"
@@ -31,15 +30,12 @@ static float const mapPadding = 1.1f;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *paceLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *badgeImageView;
-//@property (nonatomic, weak) IBOutlet UIButton *infoButton;
 
 @end
 
 @implementation DetailViewController
 
 #pragma mark - Managing the detail item
-
-
 
 
 - (void)viewDidLoad
@@ -63,16 +59,12 @@ static float const mapPadding = 1.1f;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
-    
-    
-//    self.dateLabel.textAlignment = NSTextAlignmentJustified;
     self.dateLabel.text = [NSString stringWithFormat:@"%@",
                            [formatter stringFromDate:self.run.timestamp]];
     self.timeLabel.text = [NSString stringWithFormat:@"%@", [Math stringifySecondCount:self.run.duration.intValue usingLongFormat:NO]];
     self.paceLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyAvgPaceFromDist:self.run.distance.floatValue overTime:self.run.duration.intValue]];
     Badge *badge = [[BadgeController defaultController] bestBadgeForDistance:self.run.distance.floatValue];
     self.badgeImageView.image = [UIImage imageNamed:badge.imageName];
-
 }
 
 
@@ -94,41 +86,6 @@ static float const mapPadding = 1.1f;
     
     return annView;
 }
-
-
-
-//- (IBAction)displayModeToggled:(UISwitch *)sender
-//{
-//    self.badgeImageView.hidden = !sender.isOn;
-////    self.infoButton.hidden = !sender.isOn;
-//    self.mapView.hidden = sender.isOn;
-//  
-//}
-
-//- (IBAction)infoButtonPressed
-//{
-//    Badge *badge = [[BadgeController defaultController] bestBadgeForDistance:self.run.distance.floatValue];
-//    
-//    UIAlertController *alertController = [UIAlertController
-//                                          alertControllerWithTitle:badge.name
-//                                          message:badge.information
-//                                          preferredStyle:UIAlertControllerStyleAlert];
-//    
-//    UIAlertAction* ok = [UIAlertAction
-//                         actionWithTitle:@"OK"
-//                         style:UIAlertActionStyleDefault
-//                         handler:^(UIAlertAction * action)
-//                         {
-//                             //Do some thing here
-//                             [self dismissViewControllerAnimated:YES completion:nil];
-//                         }];
-//    
-//    
-//    [alertController addAction:ok];
-//    [self presentViewController:alertController animated:YES completion:nil];
-//    
-//}
-
 
 
 - (MKCoordinateRegion)mapRegion
@@ -228,7 +185,6 @@ static float const mapPadding = 1.1f;
                                  [self dismissViewControllerAnimated:YES completion:nil];
                                   }];
         
-        
         [alertController addAction:ok];
         [self presentViewController:alertController animated:YES completion:nil];
         
@@ -251,33 +207,5 @@ static float const mapPadding = 1.1f;
     
 }
 
-
-
-//- (void)setDetailItem:(id)newDetailItem {
-//    if (_detailItem != newDetailItem) {
-//        _detailItem = newDetailItem;
-//            
-//        // Update the view.
-//        [self configureView];
-//    }
-//}
-//
-//- (void)configureView {
-//    // Update the user interface for the detail item.
-//    if (self.detailItem) {
-//        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
-//    }
-//}
-//
-//- (void)viewDidLoad {
-//    [super viewDidLoad];
-//    // Do any additional setup after loading the view, typically from a nib.
-//    [self configureView];
-//}
-//
-//- (void)didReceiveMemoryWarning {
-//    [super didReceiveMemoryWarning];
-//    // Dispose of any resources that can be recreated.
-//}
 
 @end

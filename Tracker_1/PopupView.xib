@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopupView">
@@ -15,17 +16,6 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="450"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOd-jx-QlV">
-                    <rect key="frame" x="100" y="404" width="101" height="42"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="101" id="WG9-AC-QTl"/>
-                        <constraint firstAttribute="height" constant="42" id="cxf-TQ-NdT"/>
-                    </constraints>
-                    <state key="normal" title="Dismiss" image=" " backgroundImage="dismiss-button.png"/>
-                    <connections>
-                        <action selector="dismissAction:" destination="-1" eventType="touchUpInside" id="cB9-jh-AMf"/>
-                    </connections>
-                </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZr-Wi-WxO">
                     <rect key="frame" x="30" y="5" width="235" height="107"/>
                     <constraints>
@@ -36,41 +26,42 @@
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="badges-all.png" translatesAutoresizingMaskIntoConstraints="NO" id="yux-dk-H7y">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="badges-all" translatesAutoresizingMaskIntoConstraints="NO" id="yux-dk-H7y">
                     <rect key="frame" x="30" y="116" width="240" height="278"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="240" id="GQe-cj-UYr"/>
                         <constraint firstAttribute="height" constant="278" id="oAQ-kI-BXZ"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOd-jx-QlV">
+                    <rect key="frame" x="86" y="402" width="123" height="40"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
+                    <state key="normal" title="Dismiss" backgroundImage="dismiss-button.png"/>
+                    <connections>
+                        <action selector="dismissAction:" destination="-1" eventType="touchUpInside" id="cB9-jh-AMf"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="hZr-Wi-WxO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="32s-WJ-YB0"/>
-                <constraint firstAttribute="trailing" secondItem="lOd-jx-QlV" secondAttribute="trailing" constant="99" id="7N0-eg-pSi"/>
-                <constraint firstItem="hZr-Wi-WxO" firstAttribute="centerX" secondItem="yux-dk-H7y" secondAttribute="centerX" constant="-2.5" id="8oR-f9-jY9"/>
+                <constraint firstItem="lOd-jx-QlV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="86" id="4XU-We-ypv"/>
                 <constraint firstItem="yux-dk-H7y" firstAttribute="top" secondItem="hZr-Wi-WxO" secondAttribute="bottom" constant="4" id="H8I-dt-QeT"/>
                 <constraint firstItem="hZr-Wi-WxO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-2.5" id="Qft-fF-yq1"/>
                 <constraint firstItem="yux-dk-H7y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="SmB-la-Kcu"/>
+                <constraint firstItem="lOd-jx-QlV" firstAttribute="centerX" secondItem="hZr-Wi-WxO" secondAttribute="centerX" id="ZN4-x3-zRR"/>
                 <constraint firstItem="hZr-Wi-WxO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="eB4-LC-QBF"/>
-                <constraint firstItem="lOd-jx-QlV" firstAttribute="centerX" relation="greaterThanOrEqual" secondItem="yux-dk-H7y" secondAttribute="centerX" id="feZ-bx-bLa"/>
-                <constraint firstItem="lOd-jx-QlV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yux-dk-H7y" secondAttribute="bottom" constant="10" id="tlX-kV-pfg"/>
-                <constraint firstAttribute="bottom" secondItem="lOd-jx-QlV" secondAttribute="bottom" constant="4" id="v2F-cQ-1CL"/>
+                <constraint firstItem="lOd-jx-QlV" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="eak-ms-Nuf"/>
+                <constraint firstItem="lOd-jx-QlV" firstAttribute="top" secondItem="yux-dk-H7y" secondAttribute="bottom" constant="8" symbolic="YES" id="tQe-4P-z6g"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="8oR-f9-jY9"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="457" y="375"/>
         </view>
     </objects>
     <resources>
-        <image name=" " width="212" height="260"/>
-        <image name="badges-all.png" width="273" height="325"/>
+        <image name="badges-all" width="273" height="325"/>
         <image name="dismiss-button.png" width="160" height="50"/>
     </resources>
 </document>

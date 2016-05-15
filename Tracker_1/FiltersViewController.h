@@ -25,12 +25,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tView;
 @property UIImage *image;
 @property NSMutableDictionary *previews;
-
 @property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 
-
 - (IBAction)goBack:(id)sender;
-
-
 
 @end

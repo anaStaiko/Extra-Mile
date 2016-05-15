@@ -3,8 +3,7 @@
 //  Tracker_1
 //
 //  Created by Anastasiia Staiko on 11/29/15.
-//  Copyright © 2015 Anastasiia Staiko. All rights reserved. 
-//
+//  Copyright © 2015 Anastasiia Staiko. All rights reserved.
 
 #import "NewRunViewController.h"
 #import "DetailViewController.h"
@@ -177,21 +176,9 @@ bool isShownImage = false;
     self.seconds++;
     self.timeLabel.text = [NSString stringWithFormat:@"%@", [Math stringifySecondCount:self.seconds usingLongFormat:NO]];
     self.distLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyDistance:self.distance]];
-    
-//    if (self.startButton.hidden == YES && self.resumeButton.hidden == YES) {
-//        
-//        self.paceLabel.text = @"00:00";
-//
-//    } else {
-//       
-//    }
-    
-     self.paceLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyAvgPaceFromDist:self.distance overTime:self.seconds]];
-    
+    self.paceLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyAvgPaceFromDist:self.distance overTime:self.seconds]];
     self.nextBadgeLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyDistance:(self.upcomingBadge.distance - self.distance)]];
     [self checkNextBadge];
-
-                                                                                                     
 }
 
 - (void)checkNextBadge
@@ -224,7 +211,7 @@ bool isShownImage = false;
     self.locationManager.allowsBackgroundLocationUpdates = YES;
     self.locationManager.pausesLocationUpdatesAutomatically = NO;
 
-    // Movement threshold for new events.
+    // Movement threshold for new events
     self.locationManager.distanceFilter = 10; // meters
 //
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
@@ -248,14 +235,8 @@ bool isShownImage = false;
         if (fabs(howRecent) < 10.0 && newLocation.horizontalAccuracy < 20) {
             
             // update distance
-            
-            
-            
                         if (self.locations.count > 0) {
                             self.distance += [newLocation distanceFromLocation:self.locations.lastObject];
-            
-                            
-                            
                             
                                         if (self.locations.count > 0) {
                                             self.distance += [newLocation distanceFromLocation:self.locations.lastObject];
@@ -270,12 +251,9 @@ bool isShownImage = false;
                                             
                                             [self.mapView addOverlay:[MKPolyline polylineWithCoordinates:coords count:2]];
 
-                            
-                            
                                         }
         
                         }
-            
             
             [self.locations addObject:newLocation];
         }
@@ -349,17 +327,12 @@ bool isShownImage = false;
     return nil;
 }
 
-
-
 -(IBAction)stopPressed:(id)sender {
 
     if (self.startButton.hidden == YES && self.pauseButton.hidden == YES) {
-        
      // do nothing
-        
     } else if (self.startButton.hidden == YES && self.resumeButton.hidden == YES)  {
         [self pauseTimer:_timer];
-//        [self.locationManager stopUpdatingLocation];
     }
 
     UIAlertController * alert=   [UIAlertController
@@ -384,9 +357,6 @@ bool isShownImage = false;
                              handler:^(UIAlertAction * action)
                              {
                                  [self dismissViewControllerAnimated:YES completion:nil];
-                                 
-//                                 [self.locationManager startUpdatingLocation];
-                                 
                                  if (self.startButton.hidden == YES && self.pauseButton.hidden == YES) {
                                     // do nothing
                                  } else if (self.startButton.hidden == YES && self.resumeButton.hidden == YES)  {
@@ -412,7 +382,6 @@ bool isShownImage = false;
                                  self.nextBadgeImageView.image = [UIImage imageNamed: @"badge1.png"];
                                  [self.locationManager stopUpdatingLocation];
                                  [self.mapView removeOverlays:self.mapView.overlays];
-                           
 
                              }];
 
@@ -446,7 +415,7 @@ bool isShownImage = false;
 }
 
 
-// Record Video
+// Take Photo and Record Video
 
 - (IBAction)recordAndPlay:(id)sender {
     
@@ -679,18 +648,13 @@ NSDate *pauseStart, *previousFireDate;
 - (IBAction)pause:(id)sender {
     
     [self pauseTimer:_timer];
-//    [self.locationManager stopUpdatingLocation];
     self.pauseButton.hidden = YES;
     self.resumeButton.hidden = NO;
-//    self.paceLabel.text = @"00:00";
-
-   
 }
 
 - (IBAction)resume:(id)sender {
     
     [self resumeTimer:_timer];
-//    [self.locationManager startUpdatingLocation];
     self.pauseButton.hidden = NO;
     self.resumeButton.hidden = YES;
 }

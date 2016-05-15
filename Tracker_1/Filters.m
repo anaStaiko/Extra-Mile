@@ -13,7 +13,6 @@
 
 @implementation Filters
 
-
 // Create and return the Array of Filters
 +(NSArray *)getAllFilters{
     NSArray *myArray = [NSArray arrayWithObjects:@"Vintage", @"Black & White", @"Monochrome Blue", @"Invert", @"Noise", @"More Brightness", @"Increase Saturation",@"Shadow Adjust",@"Posterize", @"Hue Adjust", @"Gamma Adjust", @"Exposure Adjust", @"Vignette",@"Sepia", @"Photo Effect Transfer", @"Photo Effect Process", @"Motion Blur", @"Pointillize", @"Aquamarine", @"Monochrome Red", nil];

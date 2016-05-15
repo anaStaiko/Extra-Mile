@@ -19,7 +19,6 @@
 
 @synthesize periodStart;
 
-
 - (id) init
 {
 	self = [super init];
