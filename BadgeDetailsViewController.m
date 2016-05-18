@@ -24,6 +24,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *bestLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bestDate;
 
+
 @end
 
 @implementation BadgeDetailsViewController
@@ -51,7 +52,7 @@
     view.parentVC = self;
     
     [self presentPopupView:view animation:[PopupViewAnimationFade new] dismissed:^{
-        NSLog(@"View is loaded");
+//        NSLog(@"View is loaded");
     }];
     
 }

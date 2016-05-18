@@ -90,10 +90,7 @@
                 
 //                double earnRunSpeed = earnStatus.earnRun.distance.doubleValue / earnStatus.earnRun.duration.doubleValue;
                 double runSpeed = run.distance.doubleValue / run.duration.doubleValue;
-              
-                
-                
-                
+
                 // Best run for this distance
                 if (!earnStatus.bestRun) {
                     earnStatus.bestRun = run;
@@ -112,6 +109,7 @@
     }
     
     return earnStatuses;
+   
 }
 
 

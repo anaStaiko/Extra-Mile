@@ -56,7 +56,6 @@
 {
     RunCell *cell = (RunCell *)[tableView dequeueReusableCellWithIdentifier:@"RunCell"];
     Run *runObject = [self.runArray objectAtIndex:indexPath.row];
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     cell.dateLabel.text = [NSString stringWithFormat:@"Earned: %@", [formatter stringFromDate:runObject.timestamp]];

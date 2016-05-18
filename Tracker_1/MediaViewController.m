@@ -29,7 +29,7 @@
 -(void)logAllFilters {
     NSArray *properties = [CIFilter filterNamesInCategory:
                            kCICategoryBuiltIn];
-    NSLog(@"%@", properties);
+//    NSLog(@"%@", properties);
     for (NSString *filterName in properties) {
         CIFilter *fltr = [CIFilter filterWithName:filterName];
         NSLog(@"%@", [fltr attributes]);
@@ -42,7 +42,7 @@
     
     // loads a default Image
     NSString *filePath =
-    [[NSBundle mainBundle] pathForResource:@"image" ofType:@"jpg"];
+    [[NSBundle mainBundle] pathForResource:@"image" ofType:@"png"];
     NSURL *fileNameAndPath = [NSURL fileURLWithPath:filePath];
     self.tabBar.delegate=self;
     self.beginImage = [CIImage imageWithContentsOfURL:fileNameAndPath];

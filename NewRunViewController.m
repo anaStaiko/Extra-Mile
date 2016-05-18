@@ -41,6 +41,8 @@ static NSString * const detailSegueName = @"RunDetails";
 @property (nonatomic, weak) IBOutlet UIButton *stopButton;
 @property (weak, nonatomic) IBOutlet UIButton *pauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *resumeButton;
+@property (weak, nonatomic) IBOutlet UILabel *BadgeCenter;
+
 
 - (IBAction)pause:(id)sender;
 - (IBAction)resume:(id)sender;
@@ -70,20 +72,23 @@ bool isShownImage = false;
     
     self.mapView.showsUserLocation = YES;
     self.mapView.showsBuildings = YES;
+    [self.locationManager requestAlwaysAuthorization];
     
     // Compass
     _locationManager=[[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     [_locationManager startUpdatingHeading];
     _compassImageB.layer.opacity = 0;
-}
-
-
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    
+    self.stopButton.hidden = NO;
+    self.startButton.hidden = NO;
+    self.pauseButton.hidden = YES;
+    self.resumeButton.hidden = YES;
+    
     
     self.timeLabel.text = @"00:00";
     self.timeLabel.hidden = NO;
+    self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.distLabel.text = @"0.00";
     self.distLabel.hidden = NO;
     self.paceLabel.text = @"00:00";
@@ -92,10 +97,12 @@ bool isShownImage = false;
     self.nextBadgeLabel.hidden = NO;
     self.nextBadgeImageView.image = [UIImage imageNamed: @"badge1.png"];
     self.nextBadgeImageView.hidden = NO;
-    self.stopButton.hidden = NO;
-    self.startButton.hidden = NO;
-    self.pauseButton.hidden = YES;
-    self.resumeButton.hidden = YES;
+}
+
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
 }
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
@@ -130,7 +137,18 @@ bool isShownImage = false;
                                    [self saveRun];
                                    [self performSegueWithIdentifier:detailSegueName sender:nil];
                                    
+                                   self.timeLabel.text = @"00:00";
+                                   self.distLabel.text = @"0.00";
+                                   self.paceLabel.text = @"00:00";
+                                   self.nextBadgeLabel.text = @"0:00";
+                                   self.pauseButton.hidden = YES;
+                                   self.resumeButton.hidden = YES;
+                                   self.startButton.hidden = NO;
+                                   self.nextBadgeImageView.image = [UIImage imageNamed: @"badge1.png"];
+                                   [self.locationManager stopUpdatingLocation];
+                                   [self.mapView removeOverlays:self.mapView.overlays];
                                }];
+        
         UIAlertAction* cancel = [UIAlertAction
                                  actionWithTitle:@"Cancel"
                                  style:UIAlertActionStyleDefault
@@ -177,9 +195,18 @@ bool isShownImage = false;
     self.timeLabel.text = [NSString stringWithFormat:@"%@", [Math stringifySecondCount:self.seconds usingLongFormat:NO]];
     self.distLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyDistance:self.distance]];
     self.paceLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyAvgPaceFromDist:self.distance overTime:self.seconds]];
-    self.nextBadgeLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyDistance:(self.upcomingBadge.distance - self.distance)]];
-    [self checkNextBadge];
-}
+    
+    if (_distance > 48280.32) {
+        self.nextBadgeLabel.text = @"00:00";
+        self.nextBadgeImageView.hidden = YES;
+        self.BadgeCenter.textAlignment = NSTextAlignmentRight;
+        
+    } else {
+        self.nextBadgeLabel.text = [NSString stringWithFormat:@"%@", [Math stringifyDistance:(self.upcomingBadge.distance - self.distance)]];
+        [self checkNextBadge];
+
+    }
+    }
 
 - (void)checkNextBadge
 {
@@ -210,15 +237,11 @@ bool isShownImage = false;
     self.locationManager.activityType = CLActivityTypeFitness;
     self.locationManager.allowsBackgroundLocationUpdates = YES;
     self.locationManager.pausesLocationUpdatesAutomatically = NO;
+    [self.locationManager requestAlwaysAuthorization];
+    [self.locationManager startUpdatingLocation];
 
     // Movement threshold for new events
     self.locationManager.distanceFilter = 10; // meters
-//
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
-        [self.locationManager requestAlwaysAuthorization];
-    }
-    [self.locationManager startUpdatingLocation];
 
 }
 
@@ -350,6 +373,18 @@ bool isShownImage = false;
                               [self saveRun];
                               [self performSegueWithIdentifier:detailSegueName sender:nil];
                              
+                             self.timeLabel.text = @"00:00";
+                             self.distLabel.text = @"0.00";
+                             self.paceLabel.text = @"00:00";
+                             self.nextBadgeLabel.text = @"0:00";
+                             self.pauseButton.hidden = YES;
+                             self.resumeButton.hidden = YES;
+                             self.startButton.hidden = NO;
+                             self.nextBadgeImageView.image = [UIImage imageNamed: @"badge1.png"];
+                             [self.locationManager stopUpdatingLocation];
+                             [self.mapView removeOverlays:self.mapView.overlays];
+
+                             
                          }];
     UIAlertAction* cancel = [UIAlertAction
                              actionWithTitle:@"Cancel"
@@ -468,6 +503,20 @@ bool isShownImage = false;
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    if (self.startButton.hidden == YES && self.pauseButton.hidden == YES) {
+        // do nothing
+        
+            self.startButton.hidden = YES;
+            self.pauseButton.hidden = YES;
+            self.resumeButton.hidden = NO;
+        
+    } else if (self.startButton.hidden == YES && self.resumeButton.hidden == YES)  {
+        
+        self.startButton.hidden = YES;
+        self.pauseButton.hidden = NO;
+        self.resumeButton.hidden = YES;
+    }
 }
 
 
@@ -520,19 +569,32 @@ bool isShownImage = false;
                                       message:@"Video Saving Failed"
                                       preferredStyle:UIAlertControllerStyleAlert];
         
-        
-        
         UIAlertAction* ok = [UIAlertAction
                              actionWithTitle:@"OK"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
                                  [self dismissViewControllerAnimated:YES completion:nil];
+                                 
+                                 if (self.startButton.hidden == YES && self.pauseButton.hidden == YES) {
+
+                                     self.startButton.hidden = YES;
+                                     self.pauseButton.hidden = YES;
+                                     self.resumeButton.hidden = NO;
+                                     
+                                 } else if (self.startButton.hidden == YES && self.resumeButton.hidden == YES)  {
+
+                                     self.startButton.hidden = YES;
+                                     self.pauseButton.hidden = NO;
+                                     self.resumeButton.hidden = YES;
+                                 }
+
                              }];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
         
     } else {
+        
         UIAlertController * alert=   [UIAlertController
                                       alertControllerWithTitle:@"Video Saved"
                                       message:@"Saved to Photo Album"
@@ -544,11 +606,24 @@ bool isShownImage = false;
                              handler:^(UIAlertAction * action)
                              {
                                  [self dismissViewControllerAnimated:YES completion:nil];
+
+                                 if (self.startButton.hidden == YES && self.pauseButton.hidden == YES) {
+                                     
+                                     self.startButton.hidden = YES;
+                                     self.pauseButton.hidden = YES;
+                                     self.resumeButton.hidden = NO;
+                                     
+                                 } else if (self.startButton.hidden == YES && self.resumeButton.hidden == YES)  {
+
+                                     self.startButton.hidden = YES;
+                                     self.pauseButton.hidden = NO;
+                                     self.resumeButton.hidden = YES;
+                                 }
+
                              }];
 
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
-        
     }
 }
 
@@ -567,6 +642,20 @@ bool isShownImage = false;
                              handler:^(UIAlertAction * action)
                              {
                                  [self dismissViewControllerAnimated:YES completion:nil];
+                                 
+                                 if (self.startButton.hidden == YES && self.pauseButton.hidden == YES) {
+                                     
+                                     self.startButton.hidden = YES;
+                                     self.pauseButton.hidden = YES;
+                                     self.resumeButton.hidden = NO;
+                                     
+                                 } else if (self.startButton.hidden == YES && self.resumeButton.hidden == YES)  {
+
+                                     self.startButton.hidden = YES;
+                                     self.pauseButton.hidden = NO;
+                                     self.resumeButton.hidden = YES;
+                                 }
+
                              }];
         
         [alert addAction:ok];
@@ -585,6 +674,20 @@ bool isShownImage = false;
                              handler:^(UIAlertAction * action)
                              {
                                  [self dismissViewControllerAnimated:YES completion:nil];
+                                 
+                                 if (self.startButton.hidden == YES && self.pauseButton.hidden == YES) {
+
+                                     self.startButton.hidden = YES;
+                                     self.pauseButton.hidden = YES;
+                                     self.resumeButton.hidden = NO;
+                                     
+                                 } else if (self.startButton.hidden == YES && self.resumeButton.hidden == YES)  {
+                                     
+                                     self.startButton.hidden = YES;
+                                     self.pauseButton.hidden = NO;
+                                     self.resumeButton.hidden = YES;
+                                 }
+  
                              }];
         
         [alert addAction:ok];

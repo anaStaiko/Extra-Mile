@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7614340F1CE3F9B2005546E0 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7614340E1CE3F9B2005546E0 /* image.jpg */; };
 		76192CF51C9A1182006F5EE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76192CF31C9A1182006F5EE6 /* Main.storyboard */; };
 		761FBE491CA5E83300F555CF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761FBE481CA5E83300F555CF /* AudioToolbox.framework */; };
 		761FBE4B1CA5E84400F555CF /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761FBE4A1CA5E84400F555CF /* CoreAudio.framework */; };
@@ -33,6 +32,7 @@
 		764B7A681CBEC590008277E9 /* SWDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 764B7A661CBEC590008277E9 /* SWDetailViewController.m */; };
 		764BCECC1C0C1CAA008AFF67 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764BCECB1C0C1CAA008AFF67 /* CoreLocation.framework */; };
 		764BCED21C0C4F0D008AFF67 /* Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 764BCED11C0C4F0D008AFF67 /* Math.m */; };
+		7666D8111CEA3B1100DBDBE7 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 7666D8101CEA3B1100DBDBE7 /* image.png */; };
 		7668F12F1C2B50BB003C2E03 /* BadgeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7668F12E1C2B50BB003C2E03 /* BadgeDetailsViewController.m */; };
 		7685F2281C0B190700E6F39D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7685F2271C0B190700E6F39D /* main.m */; };
 		7685F22B1C0B190700E6F39D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7685F22A1C0B190700E6F39D /* AppDelegate.m */; };
@@ -86,7 +86,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7614340E1CE3F9B2005546E0 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		76192CF41C9A1182006F5EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		761FBE481CA5E83300F555CF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		761FBE4A1CA5E84400F555CF /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -124,6 +123,7 @@
 		764BCECB1C0C1CAA008AFF67 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		764BCED01C0C4F0D008AFF67 /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
 		764BCED11C0C4F0D008AFF67 /* Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Math.m; sourceTree = "<group>"; };
+		7666D8101CEA3B1100DBDBE7 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		7668F12D1C2B50BB003C2E03 /* BadgeDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BadgeDetailsViewController.h; path = ../BadgeDetailsViewController.h; sourceTree = "<group>"; };
 		7668F12E1C2B50BB003C2E03 /* BadgeDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BadgeDetailsViewController.m; path = ../BadgeDetailsViewController.m; sourceTree = "<group>"; };
 		7685F2231C0B190700E6F39D /* Xtra Mile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xtra Mile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -385,8 +385,8 @@
 			children = (
 				7685F2381C0B190700E6F39D /* Assets.xcassets */,
 				7685F23D1C0B190700E6F39D /* Info.plist */,
+				7666D8101CEA3B1100DBDBE7 /* image.png */,
 				7685F22C1C0B190700E6F39D /* Tracker_1.xcdatamodeld */,
-				7614340E1CE3F9B2005546E0 /* image.jpg */,
 				7629A9041C6519E8004A58D1 /* badges.txt */,
 				7685F2271C0B190700E6F39D /* main.m */,
 			);
@@ -480,7 +480,7 @@
 				TargetAttributes = {
 					7685F2221C0B190700E6F39D = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = N9EJ58W8LM;
+						DevelopmentTeam = 77Q577NPEG;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -529,7 +529,7 @@
 				762185CB1CC0470A002FD7B8 /* PopupView.xib in Resources */,
 				7629A9051C6519E8004A58D1 /* badges.txt in Resources */,
 				76192CF51C9A1182006F5EE6 /* Main.storyboard in Resources */,
-				7614340F1CE3F9B2005546E0 /* image.jpg in Resources */,
+				7666D8111CEA3B1100DBDBE7 /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,6 +734,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AnaApp.XtraMile;
 				PRODUCT_NAME = "Xtra Mile";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -747,6 +748,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AnaApp.XtraMile;
 				PRODUCT_NAME = "Xtra Mile";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
