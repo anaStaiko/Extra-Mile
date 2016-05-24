@@ -35,8 +35,12 @@ bool isShown = false;
     locationManager.activityType = CLActivityTypeFitness;
     locationManager.headingFilter = 1;
     locationManager.distanceFilter = 10; // meters
-    [locationManager requestAlwaysAuthorization];
     
+    
+    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [locationManager requestWhenInUseAuthorization];
+        [locationManager requestAlwaysAuthorization];
+    }
     [locationManager startUpdatingLocation];
     [locationManager startUpdatingHeading];
 

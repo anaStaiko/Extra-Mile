@@ -237,11 +237,14 @@ bool isShownImage = false;
     self.locationManager.activityType = CLActivityTypeFitness;
     self.locationManager.allowsBackgroundLocationUpdates = YES;
     self.locationManager.pausesLocationUpdatesAutomatically = NO;
-    [self.locationManager requestAlwaysAuthorization];
-    [self.locationManager startUpdatingLocation];
-
-    // Movement threshold for new events
     self.locationManager.distanceFilter = 10; // meters
+    
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+    [self.locationManager startUpdatingHeading];
 
 }
 
