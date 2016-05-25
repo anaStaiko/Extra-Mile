@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
 @property(nonatomic, assign) int validFrameCounter;
 @property(nonatomic, strong) IBOutlet UILabel *pulseRate;
 @property(nonatomic, strong) IBOutlet UILabel *validFrames;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityInd;
 
 - (IBAction)startBtn:(id)sender;
 - (IBAction)stopBtn:(id)sender;
@@ -41,16 +42,20 @@ typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
 
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor darkGrayColor] forKey:NSForegroundColorAttributeName]];
+    self.activityInd.hidden = YES;
 }
 
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self resume];
+//    [self resume];
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self pause];
+//    [self pause];
+    [self.session stopRunning];
+    self.session=nil;
+    
 }
 
 
@@ -116,6 +121,7 @@ typedef NS_ENUM(NSUInteger, CURRENT_STATE) {
 }
 
 -(void) stopCameraCapture {
+
     [self.session stopRunning];
     self.session=nil;
 }
@@ -184,6 +190,7 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
         self.validFrameCounter=0;
         return;
     }
+
     // image buffer
     CVImageBufferRef cvimgRef = CMSampleBufferGetImageBuffer(sampleBuffer);
     // lock the image buffer
@@ -214,7 +221,7 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
     if(s>0.5 && v>0.5) {
         // increment the valid frame count
         self.validFrameCounter++;
-        
+
         // filter the hue value
         float filtered=[self.filter processValue:h];
  
@@ -229,9 +236,19 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
     }
 }
 
+
+
 -(void) update {
     
     self.validFrames.text = [NSString stringWithFormat:@"Processing: %d%%", MIN(100, (100 * self.validFrameCounter)/MIN_FRAMES_FOR_FILTER_TO_SETTLE)];
+    
+    if (self.validFrameCounter != 0) {
+        self.activityInd.hidden = NO;
+        [self.activityInd startAnimating];
+    } else {
+        self.activityInd.hidden = YES;
+        [self.activityInd stopAnimating];
+    }
     
     // if paused then there's nothing to do
     if(self.currentState==STATE_PAUSED) return;
@@ -241,10 +258,12 @@ void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v ) {
     if(avePeriod==INVALID_PULSE_PERIOD) {
         // no value available
         self.pulseRate.text=@"--";
-    } else {
+           } else {
         // got a value so show it
         float pulse=60.0/avePeriod;
         self.pulseRate.text=[NSString stringWithFormat:@"%0.0f", pulse];
+        self.activityInd.hidden = YES;
+        [self.activityInd stopAnimating];
     }
 }
 
